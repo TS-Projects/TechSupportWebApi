@@ -1,0 +1,1 @@
+angular.module('sampleApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'NotifierService', 'IdentityService', 'appRoutes', 'MainCtrl', 'ErrorHandlerService', 'ErrorHandlerHttpInterceptorService', 'AuthorizationService', 'MainService', 'LoginCtrl', 'SignUpCtrl', 'AuthService', 'AdministrationUsersCtrl', 'CustomerCardCtrl']);
