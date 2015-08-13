@@ -59,6 +59,10 @@
       <HintPath>..\..\packages\Elmah.Contrib.WebApi.1.0.10.25\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Elmah.Io, Version=1.0.0.33, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\elmah.io.core.1.0.0.33\lib\net40\Elmah.Io.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
       <Private>True</Private>
