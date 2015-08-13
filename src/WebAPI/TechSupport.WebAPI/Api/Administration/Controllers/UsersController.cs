@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using Elmah;
 using TechSupport.Data;
 using TechSupport.WebAPI.Controllers;
 using DataModel = TechSupport.WebAPI.Api.Administration.DataModels.UserProfileDataModel;
@@ -47,9 +48,12 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         // [AllowAnonymous]
         // [HttpPut]
         // PUT odata/Users(5)
+        
         public IHttpActionResult Put([FromODataUri] string key, [FromBody]DataModel user)
         {
-             throw new Exception();
+            var customEx = new Exception("Hello I am testing Elmah", new NotSupportedException());
+            ErrorSignal.FromCurrentContext().Raise(customEx);
+            throw new Exception();
             //if (!ModelState.IsValid)
             //{
             //    return BadRequest(ModelState);
