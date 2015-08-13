@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.OData.Formatter;
 using System.Web.Optimization;
+using System.Web.Routing;
+using Elmah.Contrib.WebApi;
 using TechSupport.WebAPI.Infrastructure.Mapping;
 
 namespace TechSupport.WebAPI
@@ -14,9 +16,7 @@ namespace TechSupport.WebAPI
     {
         protected void Application_Start()
         {
-            //AreaRegistration.RegisterAllAreas();
-
-            // GlobalConfiguration.Configure(ODataConfig.Register);
+            RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             List<ODataPayloadKind> data = new List<ODataPayloadKind>()
@@ -30,7 +30,8 @@ namespace TechSupport.WebAPI
             };
             GlobalConfiguration.Configuration.Formatters.Insert(0, new ODataMediaTypeFormatter(data));
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterHttpFilters(GlobalConfiguration.Configuration.Filters);
+            GlobalConfiguration.Configuration.Filters.Add(new ElmahHandleErrorApiAttribute());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             (new AutoMapperConfig(Assembly.GetExecutingAssembly())).Execute();
         }

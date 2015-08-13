@@ -1,6 +1,9 @@
 ﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using System.Web.Http.Routing;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
+using Elmah.Contrib.WebApi;
 using TechSupport.WebAPI.Api.Administration.DataModels;
 
 namespace TechSupport.WebAPI
@@ -12,15 +15,12 @@ namespace TechSupport.WebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            // config.SuppressDefaultHostAuthentication();
-            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<UserProfileDataModel>("Users");
             builder.EntitySet<CustomerCardAdministrationDataModel>("CustomerCard");
             var model = builder.GetEdmModel();
             config.MapODataServiceRoute("odata", "odata", model);
-
+            config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
             config.EnableCors();
 
             config.Routes.MapHttpRoute(

@@ -55,8 +55,12 @@
       <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Elmah.Io, Version=1.0.0.33, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\elmah.io.core.1.0.0.33\lib\net40\Elmah.Io.dll</HintPath>
+    <Reference Include="Elmah.Contrib.WebApi, Version=1.0.10.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Elmah.Contrib.WebApi.1.0.10.25\lib\net45\Elmah.Contrib.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -255,7 +259,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Administration\Controllers\TestController.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardRegistrationController.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardExtensions.cs" />
     <Compile Include="Api\CustomerCards\DataModels\CustomerCardDataModel.cs" />
@@ -263,9 +266,7 @@
     <Compile Include="Api\CustomerCards\Models\CustomerCardQuestionAnswerModel.cs" />
     <Compile Include="Api\CustomerCards\DataModels\CustomerCardQuestionDataModel.cs" />
     <Compile Include="Api\CustomerCards\Models\CustomerCardRegistrationModel.cs" />
-    <Compile Include="App_Start\ODataConfig.cs" />
     <Compile Include="Api\Administration\Controllers\CustomerCardController.cs" />
-    <Compile Include="Api\CustomerCards\Controllers\TODO.cs" />
     <Compile Include="Api\Administration\Controllers\UsersController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="DataModels\AdministrationDataModel.cs" />
@@ -375,6 +376,9 @@
       <Project>{6dea00a8-55e2-4b59-883f-c808642ab0b0}</Project>
       <Name>TechSupport.WebAPI.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0-beta006\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

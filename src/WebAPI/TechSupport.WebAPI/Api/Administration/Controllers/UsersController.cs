@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -48,44 +49,45 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         // PUT odata/Users(5)
         public IHttpActionResult Put([FromODataUri] string key, [FromBody]DataModel user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (key != user.Id)
-            {
-                return BadRequest();
-            }
-
-            //if (this.data.GetUserProfile(user.Id) == null)
+             throw new Exception();
+            //if (!ModelState.IsValid)
             //{
-            //    return NotFound();
+            //    return BadRequest(ModelState);
             //}
 
-            var dbModel = this.Data.Users.GetById(user.Id);
-            Mapper.Map<DataModel, Model>(user, dbModel);
-            // _dataService.Save(customer);
-            this.Data.Users.Update(dbModel);
+            //if (key != user.Id)
+            //{
+            //    return BadRequest();
+            //}
 
-            try
-            //await db.SaveChangesAsync();
-            {
-                this.Data.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            ////if (this.data.GetUserProfile(user.Id) == null)
+            ////{
+            ////    return NotFound();
+            ////}
 
-            return this.Updated(user);
+            //var dbModel = this.Data.Users.GetById(user.Id);
+            //Mapper.Map<DataModel, Model>(user, dbModel);
+            //// _dataService.Save(customer);
+            //this.Data.Users.Update(dbModel);
+
+            //try
+            ////await db.SaveChangesAsync();
+            //{
+            //    this.Data.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserExists(key))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return this.Updated(user);
         }
 
         //public IHttpActionResult Post(UserAdministrationDataModel vm)
