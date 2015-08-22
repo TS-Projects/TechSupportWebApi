@@ -1,0 +1,11 @@
+﻿{
+  "ignore": [
+    "**/*.min.js",
+    "\\theme\\",
+    "\\assets\\libs\\",
+    "\\assets\\css\\"
+  ],
+  "options": {
+    "predef": {}
+  }
+}

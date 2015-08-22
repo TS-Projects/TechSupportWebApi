@@ -13,7 +13,7 @@ angular.module('ErrorHandlerService', []).factory('errorHandler', ['notifier', f
 
             if (serverError.modelState) {
                 var modelStateErrors = serverError.modelState;
-                for(var propertyName in modelStateErrors) {
+                for (var propertyName in modelStateErrors) {
                     var errorMessages = modelStateErrors[propertyName];
                     var trimmedName = propertyName.substr(propertyName.indexOf('.') + 1);
                     for(var i = 0; i < errorMessages.length; i++) {

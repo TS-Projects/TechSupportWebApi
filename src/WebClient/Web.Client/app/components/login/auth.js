@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('AuthService', []).factory('auth', ['$http', '$q', 'identity', 'authorization', 'errorHandler', 'baseServiceUrl', function ($http, $q, identity, authorization, errorHandler, baseServiceUrl) {
-    var usersApi = baseServiceUrl + '/api/Account'
+    var usersApi = baseServiceUrl + '/api/Account';
 
     return {
         signup: function(user) {

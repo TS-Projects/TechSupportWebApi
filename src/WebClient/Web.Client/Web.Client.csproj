@@ -22,6 +22,8 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1433,6 +1435,7 @@
     <Content Include="assets\libs\kendoui\kendo.web.min.js.map" />
     <Content Include="assets\libs\kendoui\kendo.window.min.js.map" />
     <Content Include="packages.config" />
+    <Content Include="JSLintNet.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1441,11 +1444,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.module.js" />
-    <Content Include="app\app.routes.js" />
-    <Content Include="app\components\administration\usersController.js" />
+    <Content Include="app\app.js" />
+    <Content Include="app\components\administration\users-administration-controller.js" />
     <Content Include="app\components\administration\usersService.js" />
-    <Content Include="app\components\administration\users.html" />
+    <Content Include="app\components\administration\users-administration-view.html" />
     <Content Include="app\components\login\auth.js" />
     <Content Include="app\components\login\authorization.js" />
     <Content Include="app\components\login\errorHandler.js" />
@@ -1457,9 +1459,9 @@
     <Content Include="app\components\login\register.html" />
     <Content Include="app\components\login\signUpController.js" />
     <Content Include="app\components\login\unauthorized.html" />
-    <Content Include="app\components\main\mainController.js" />
-    <Content Include="app\components\main\mainService.js" />
-    <Content Include="app\components\main\main.html" />
+    <Content Include="app\components\home-page\home-page-controller.js" />
+    <Content Include="app\components\home-page\mainService.js" />
+    <Content Include="app\components\home-page\home-page-view.html" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\libs\bower_components\angular-cookies\angular-cookies.js" />
     <Content Include="assets\libs\bower_components\angular-cookies\angular-cookies.min.js" />
