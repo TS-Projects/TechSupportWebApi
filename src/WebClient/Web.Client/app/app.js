@@ -4,6 +4,7 @@
 
 //    $httpProvider.interceptors.push('errorHandlerHttpInterceptor');
 
+
 //    var routeUserChecks = {
 //        authenticated: {
 //            authenticate: function (auth) {
@@ -59,13 +60,14 @@
 
         //$locationProvider.html5Mode(true);
 
+
       //  var routeResolveChecks = routeResolversProvider.$get();
 
         $routeProvider
             .when('/', {
                 templateUrl: 'app/components/home-page/home-page-view.html',
                 controller: 'HomePageController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
               //  resolve: routeResolveChecks.home
             })
             //.when('/projects/search', {
