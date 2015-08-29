@@ -92,13 +92,13 @@
             //    requireBase: false
             //});
 
-       // $httpProvider.interceptors.push('httpResponseInterceptor');
+        $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
-    var run = function run($rootScope, $location) {
+    var run = function run($rootScope, $location, notifier) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
-                //notifier.warning('Please log into your account first!');
+                notifier.warning('Please log into your account first!');
                 $location.path('/');
                 angular
                     .element('#open-login-btn')
@@ -128,7 +128,7 @@
 
 
         .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
-        .run(['$rootScope', '$location', run])
+        .run(['$rootScope', '$location', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
         .constant('appSettings', {

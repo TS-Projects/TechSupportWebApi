@@ -75,6 +75,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\common\http-response-interceptor.js" />
+    <Content Include="app\common\notifier-service.js" />
     <Content Include="app\components\customercard\customercard.html" />
     <Content Include="app\components\customercard\customerCardController.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />
@@ -1451,7 +1453,6 @@
     <Content Include="app\components\login\auth.js" />
     <Content Include="app\components\login\authorization.js" />
     <Content Include="app\components\login\errorHandler.js" />
-    <Content Include="app\components\login\errorHandlerHttpInterceptor.js" />
     <Content Include="app\components\login\identity.js" />
     <Content Include="app\components\login\login.html" />
     <Content Include="app\components\login\loginController.js" />
@@ -5670,7 +5671,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\shared\" />
     <Folder Include="assets\img\" />
     <Folder Include="assets\js\" />
     <Folder Include="theme\metronicv401\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
