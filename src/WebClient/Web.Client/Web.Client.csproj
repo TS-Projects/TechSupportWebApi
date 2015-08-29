@@ -79,9 +79,6 @@
     <Content Include="app\common\header-directive.html" />
     <Content Include="app\common\header-directive.js" />
     <Content Include="app\common\http-response-interceptor.js" />
-    <Content Include="app\common\main-controller.js" />
-    <Content Include="app\common\main-menu-directive.html" />
-    <Content Include="app\common\main-menu-directive.js" />
     <Content Include="app\common\notifier-service.js" />
     <Content Include="app\common\route-resolvers-provider.js" />
     <Content Include="app\components\customercard\customercard.html" />
@@ -1459,8 +1456,8 @@
     <Content Include="app\components\administration\users-administration-view.html" />
     <Content Include="app\Identity\auth-service.js" />
     <Content Include="app\Identity\identity-service.js" />
-    <Content Include="app\Identity\login.html" />
-    <Content Include="app\Identity\loginController.js" />
+    <Content Include="app\Identity\login-page-view.html" />
+    <Content Include="app\Identity\login-page-controller.js" />
     <Content Include="app\Identity\register.html" />
     <Content Include="app\Identity\signUpController.js" />
     <Content Include="app\components\home-page\home-page-controller.js" />

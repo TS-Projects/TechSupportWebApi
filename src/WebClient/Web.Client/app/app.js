@@ -5,7 +5,7 @@
 
         var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
-        
+
         //$locationProvider.html5Mode(true);
 
         var routeResolveChecks = routeResolversProvider.$get();
@@ -23,27 +23,32 @@
             //    controllerAs: CONTROLLER_VIEW_MODEL_NAME,
             //    reloadOnSearch: false
             //})
+            .when('/demologin', {
+                templateUrl: 'app/Identity/login-page-view.html',
+                controller: 'LoginPageController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            })
             .when('/administration', {
                 templateUrl: 'app/components/administration/users-administration-view.html',
                 controller: 'UsersAdministrationController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
-              //  resolve: routeResolveChecks.addProject
+                //  resolve: routeResolveChecks.addProject
             })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
             })
             .otherwise({ redirectTo: '/notfound' });
 
-            //$locationProvider.html5Mode({
-            //    enabled: true,
-            //    requireBase: false
-            //});
+        //$locationProvider.html5Mode({
+        //    enabled: true,
+        //    requireBase: false
+        //});
 
 
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
-    var run = function run($rootScope, $location,auth, notifier) {
+    var run = function run($rootScope, $location, auth, notifier) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('Please log into your account first!');
@@ -65,13 +70,13 @@
         //}
     };
 
-   // angular.module('templates', []) // used for client-side template caching
+    // angular.module('templates', []) // used for client-side template caching
     angular.module('techSupportApp.data', []);
     angular.module('techSupportApp.services', []);
     angular.module('techSupportApp.controllers', ['techSupportApp.data', 'techSupportApp.services']);
     angular.module('techSupportApp.directives', []);
 
-    angular.module('techSupportApp', ['ngRoute','ngResource', 'ngCookies','kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
+    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', config])
         .run(['$rootScope', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
