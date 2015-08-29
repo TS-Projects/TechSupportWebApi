@@ -38,27 +38,23 @@
 (function () {
     'use strict';
 
-    var loginPageController = function loginPageController($scope, $location, notifier, identity, auth) {
+    var loginPageController = function loginPageController($scope, $location, notifier, auth) {
         var vm = this;
 
-        vm.identity = identity;
-
-        vm.login = function(user, loginForm) {
-            if (loginForm.$valid) {
-                auth.login(user).then(function(success) {
-                    if (success) {
-                        notifier.success('Successful login!');
-                        $location.path('/');
-                    } else {
-                        notifier.error('Username/Password combination is not valid!');
-                    }
-                });
-            } else {
-                notifier.error('Username and password are required fields!');
-            }
-        };
+        vm.login = function (user) {
+            auth.login(user).then(function (success) {
+                if (success) {
+                    notifier.success('Successful login!');
+                    $location.path('/');
+                }
+                else {
+                    notifier.error('Username/Password combination is not valid!');
+                }
+            });
+        }
     }
+
     angular
         .module('techSupportApp.controllers')
-        .controller('LoginPageController', ['$scope', '$location', 'notifier', 'identity', 'auth', loginPageController]);
+        .controller('LoginPageController', ['$scope', '$location', 'notifier', 'auth', loginPageController]);
 }());

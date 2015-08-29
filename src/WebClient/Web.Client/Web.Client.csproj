@@ -1455,7 +1455,6 @@
     <Content Include="app\components\administration\usersService.js" />
     <Content Include="app\components\administration\users-administration-view.html" />
     <Content Include="app\Identity\auth-service.js" />
-    <Content Include="app\Identity\identity-service.js" />
     <Content Include="app\Identity\login-page-view.html" />
     <Content Include="app\Identity\login-page-controller.js" />
     <Content Include="app\Identity\register.html" />

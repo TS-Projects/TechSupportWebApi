@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var baseData = function baseData($http, $q, appSettings, notifier, identity) {
+    var baseData = function baseData($http, $q, appSettings, notifier) {
         var headers = {
             'Content-Type': 'application/json'
         },
@@ -10,7 +10,7 @@
         function get(url, authorize) {
             var deferred = $q.defer();
 
-            if (authorize && !identity.isAuthenticated()) {
+            if (authorize) {
                 notifier.error(authorizationErrorMessage);
                 deferred.reject();
             }
@@ -47,7 +47,7 @@
         function post(url, data, authorize) {
             var deferred = $q.defer();
 
-            if (authorize && !identity.isAuthenticated()) {
+            if (authorize) {
                 notifier.error(authorizationErrorMessage);
                 deferred.reject();
             }
@@ -75,5 +75,5 @@
 
     angular
         .module('techSupportApp.data')
-        .factory('data', ['$http', '$q', 'appSettings', 'notifier', 'identity', baseData]);
+        .factory('data', ['$http', '$q', 'appSettings', 'notifier', baseData]);
 }());
