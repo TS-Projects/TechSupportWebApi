@@ -1,74 +1,21 @@
-//'use strict';
-
-//angular.module('appRoutes', []).config(function ($routeProvider, $httpProvider, $locationProvider) {
-
-//    $httpProvider.interceptors.push('errorHandlerHttpInterceptor');
-
-
-//    var routeUserChecks = {
-//        authenticated: {
-//            authenticate: function (auth) {
-//                return auth.isAuthenticated();
-//            }
-//        }
-//    };
-
-//    $routeProvider
-//		.when('/', {
-//		    templateUrl: 'app/components/main/main.html',
-//		    controller: 'MainController'
-//		})
-//		.when('/administration', {
-//		    templateUrl: 'app/components/administration/users.html',
-//		    controller: 'AdministrationUsersController'
-//		    //resolve: routeUserChecks.authenticated
-//		})
-//        .when('/customercard', {
-//            templateUrl: 'app/components/customercard/customercard.html',
-//            controller: 'CustomerCardController'
-//            //resolve: routeUserChecks.authenticated
-//        		})
-//        .when('/register', {
-//            templateUrl: 'app/components/login/register.html',
-//            controller: 'SignUpController'
-//        })
-//        .otherwise({ redirectTo: '/' });
-
-//    //$locationProvider.html5Mode({
-//    //    enabled: true,
-//    //    requireBase: false
-//    //});
-    
-//})
-// .run(function ($rootScope, $location) {
-//     $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
-//         if (rejection === 'not authorized') {
-//             $location.path('/unauthorized');
-//         }
-//     })
-// })
-//.value('toastr', toastr)
-//.constant('baseServiceUrl', 'http://localhost:13078');
-
-
 (function () {
     'use strict';
 
-    var config = function config($routeProvider, $locationProvider, $httpProvider) {
+    var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider) {
 
         var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
+        
         //$locationProvider.html5Mode(true);
 
-
-      //  var routeResolveChecks = routeResolversProvider.$get();
+        var routeResolveChecks = routeResolversProvider.$get();
 
         $routeProvider
             .when('/', {
                 templateUrl: 'app/components/home-page/home-page-view.html',
                 controller: 'HomePageController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME
-              //  resolve: routeResolveChecks.home
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+                resolve: routeResolveChecks.home
             })
             //.when('/projects/search', {
             //    templateUrl: 'projects-search-page/projects-search-page-view.html',
@@ -92,10 +39,11 @@
             //    requireBase: false
             //});
 
+
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
-    var run = function run($rootScope, $location, notifier) {
+    var run = function run($rootScope, $location,auth, notifier) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('Please log into your account first!');
@@ -124,11 +72,8 @@
     angular.module('techSupportApp.directives', []);
 
     angular.module('techSupportApp', ['ngRoute','ngResource', 'ngCookies','kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
-        //, 'NotifierService', 'IdentityService', 'appRoutes', 'MainCtrl', 'ErrorHandlerService', 'ErrorHandlerHttpInterceptorService', 'AuthorizationService', 'infinite-scroll' , 'ngAnimate' 'angular-loading-bar', 'templates', 'ui.bootstrap', 'hSweetAlert',
-
-
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', config])
-        .run(['$rootScope', '$location', 'notifier', run])
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', config])
+        .run(['$rootScope', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
         .constant('appSettings', {

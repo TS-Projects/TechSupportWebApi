@@ -75,8 +75,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\common\base-data.js" />
+    <Content Include="app\common\header-directive.html" />
+    <Content Include="app\common\header-directive.js" />
     <Content Include="app\common\http-response-interceptor.js" />
+    <Content Include="app\common\main-controller.js" />
+    <Content Include="app\common\main-menu-directive.html" />
+    <Content Include="app\common\main-menu-directive.js" />
     <Content Include="app\common\notifier-service.js" />
+    <Content Include="app\common\route-resolvers-provider.js" />
     <Content Include="app\components\customercard\customercard.html" />
     <Content Include="app\components\customercard\customerCardController.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />
@@ -1450,18 +1457,14 @@
     <Content Include="app\components\administration\users-administration-controller.js" />
     <Content Include="app\components\administration\usersService.js" />
     <Content Include="app\components\administration\users-administration-view.html" />
-    <Content Include="app\components\login\auth.js" />
-    <Content Include="app\components\login\authorization.js" />
-    <Content Include="app\components\login\errorHandler.js" />
-    <Content Include="app\components\login\identity.js" />
-    <Content Include="app\components\login\login.html" />
-    <Content Include="app\components\login\loginController.js" />
-    <Content Include="app\components\login\notifier.js" />
-    <Content Include="app\components\login\register.html" />
-    <Content Include="app\components\login\signUpController.js" />
-    <Content Include="app\components\login\unauthorized.html" />
+    <Content Include="app\Identity\auth-service.js" />
+    <Content Include="app\Identity\identity-service.js" />
+    <Content Include="app\Identity\login.html" />
+    <Content Include="app\Identity\loginController.js" />
+    <Content Include="app\Identity\register.html" />
+    <Content Include="app\Identity\signUpController.js" />
     <Content Include="app\components\home-page\home-page-controller.js" />
-    <Content Include="app\components\home-page\mainService.js" />
+    <Content Include="app\components\home-page\home-page-data.js" />
     <Content Include="app\components\home-page\home-page-view.html" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\libs\bower_components\angular-cookies\angular-cookies.js" />

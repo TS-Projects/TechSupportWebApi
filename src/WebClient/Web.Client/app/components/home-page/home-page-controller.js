@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    var homePageController = function homePageController() {
+    var homePageController = function homePageController(latestProjects) {
         var vm = this;
 
-        vm.tagline = 'To the moon and back!';
+        vm.latestProjects = latestProjects;
     };
 
     angular
         .module('techSupportApp.controllers')
-        .controller('HomePageController', [homePageController]);
+        .controller('HomePageController', ['latestProjects', homePageController]);
 }());
