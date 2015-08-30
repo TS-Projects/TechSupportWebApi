@@ -12,6 +12,12 @@
             }],
             latestProjects: ['homePageData', function (homePageData) {
                 return homePageData.getLatestProjects();
+            }],
+            allUsers: ['$injector', 'q', 'administrationPageData', function ($injector, $q, administrationPageData) {
+                var authPromise = $injector.invoke(routeResolvers.authenticated);
+                return authPromise.then(function() {
+                    return administrationPageData.getData();
+                });
             }]
             //popularProjects: ['homePageData', function (homePageData) {
             //    return homePageData.getMostPopularProjects();
@@ -67,6 +73,9 @@
                 latestProjects: routeResolvers.latestProjects
                 //popularProjects: routeResolvers.popularProjects,
                 //statistics: routeResolvers.statistics
+            },
+            administration: {
+                allUsers: routeResolvers.allUsers
             }
             //addProject: {
             //    seasonTags: routeResolvers.seasonTags,

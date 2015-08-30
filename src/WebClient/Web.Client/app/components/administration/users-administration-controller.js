@@ -159,43 +159,13 @@
 (function () {
     'use strict';
 
-    var usersAdministrationController = function usersAdministrationController($scope, appSettings) {
-        var vm = this;
+    var usersAdministrationController = function usersAdministrationController($scope, administrationPageData) {
+        //var vm = this;
 
-        var usersApi = appSettings.odataServerPath + '/Users';
+      //  var usersApi = appSettings.odataServerPath + '/Users';
 
         $scope.mainGridOptions = {
-            dataSource: {
-                type: "odata-v4",
-                transport: {
-                    read: {
-                        url: usersApi
-                    },
-                    update: {
-                        url: function (data) {
-                            console.log(data);
-                            return usersApi + "('" + data.Id + "')";
-                        }
-                    },
-                    create: {
-                        url: usersApi
-                    }
-                },
-                schema: {
-                    model: {
-                        id: "Id",
-                        fields: {
-                            Id: { type: "string" },
-                            FirstName: { type: "string" },
-                            LastName: { type: "string" },
-                            Address: { type: "string" }
-                        }
-                    }
-                },
-                pageSize: 5,
-                serverPaging: true,
-                serverSorting: true
-            },
+            dataSource: administrationPageData.getAllRegistersUsers(),
             toolbar: ["create"],
             sortable: true,
             pageable: {
@@ -214,5 +184,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UsersAdministrationController', ['$scope','appSettings', usersAdministrationController]);
+        .controller('UsersAdministrationController', ['$scope', 'administrationPageData', usersAdministrationController]);
 }());

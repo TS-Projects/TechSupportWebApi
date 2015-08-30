@@ -31,8 +31,8 @@
             .when('/administration', {
                 templateUrl: 'app/components/administration/users-administration-view.html',
                 controller: 'UsersAdministrationController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME
-                //  resolve: routeResolveChecks.addProject
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+                resolve: routeResolveChecks.allUsers
             })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'

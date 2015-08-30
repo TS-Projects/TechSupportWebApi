@@ -15,7 +15,6 @@ using Model = TechSupport.Data.Models.User;
 
 namespace TechSupport.WebAPI.Api.Administration.Controllers
 {
-    [EnableCorsAttribute("*", "*", "*")]
     public class UsersController : BaseOdataController
     {
         public UsersController(ITechSupportData data)

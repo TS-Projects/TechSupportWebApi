@@ -1,15 +1,15 @@
 ﻿(function () {
     'use strict';
 
-    var headerDirective = function headerDirective() {
+    var CheckerDirective = function CheckerDirective() {
         return {
             restrict: 'A',
             scope: false,
-            templateUrl: 'app/common/header-directive.html'
+            templateUrl: 'app/common/login-checker-directive.html'
         };
     };
 
     angular
         .module('techSupportApp.directives')
-        .directive('techsupportHeader', [headerDirective]);
+        .directive('loginChecker', [CheckerDirective]);
 }());

@@ -21,7 +21,6 @@ namespace TechSupport.WebAPI
             var model = builder.GetEdmModel();
             config.MapODataServiceRoute("odata", "odata", model);
             config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
-            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                     name: "DefaultApi",

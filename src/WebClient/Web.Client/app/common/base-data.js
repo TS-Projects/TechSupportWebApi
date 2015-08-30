@@ -66,10 +66,49 @@
             return deferred.promise;
         }
 
+        function getDataSource() {
+            var URL = appSettings.odataServerPath + '/Users';
+
+            var dataSource = {
+                type: "odata-v4",
+                transport: {
+                    read: {
+                        url: URL
+                    },
+                    update: {
+                        url: function (data) {
+                            console.log(data);
+                            return URL + "('" + data.Id + "')";
+                        }
+                    },
+                    create: {
+                        url: URL
+                    }
+                },
+                schema: {
+                    model: {
+                        id: "Id",
+                        fields: {
+                            Id: { type: "string" },
+                            FirstName: { type: "string" },
+                            LastName: { type: "string" },
+                            Address: { type: "string" }
+                        }
+                    }
+                },
+                pageSize: 5,
+                serverPaging: true,
+                serverSorting: true
+            }
+
+            return dataSource;
+        }
+
         return {
             get: get,
             getOData: getOData,
-            post: post
+            post: post,
+            getDataSource: getDataSource
         };
     };
 
