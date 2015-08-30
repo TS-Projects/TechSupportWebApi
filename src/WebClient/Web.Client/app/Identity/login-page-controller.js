@@ -8,8 +8,6 @@
             auth.login(user).then(function () {
                 notifier.success('Successful login!');
                 $location.path('/');
-            }, function () {
-               notifier.error('Username/Password combination is not valid!');
             });
         }
     }
