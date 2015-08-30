@@ -14,7 +14,7 @@
             var data = "grant_type=password&username=" + (user.username || '') + '&password=' + (user.password || '');
 
             $http.post(userLoginUrlApi, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                .success(function (response) {
+                .then(function (response) {
                     var tokenValue = response.access_token;
 
                     var theBigDay = new Date();
@@ -24,11 +24,10 @@
 
                     $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
 
-
                     deferred.resolve(response);
-                })
-                .error(function (err) {
-                    deferred.resolve(err);
+                    },
+                function (err) {
+                    deferred.reject(err);
                 });
 
             return deferred.promise;
