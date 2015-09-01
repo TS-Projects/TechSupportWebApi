@@ -59,7 +59,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="main">Nerds</a></li>
-                <li><a href="#/administration">Administration</a></li>
+                <li><a href="administration" ng-if="identity.isAuthenticated()">Administration </a></li>
                 <li><a href="login">Geeks</a></li>
                 <li><a href="register">Geeks</a></li>
             </ul>
@@ -138,11 +138,11 @@
     <script src="app/components/home-page/home-page-controller.js"></script>
     <script src="app/components/home-page/home-page-data.js"></script>
 
-<script src="app/Identity/auth-service.js"></script>
     <script src="app/Identity/auth-service.js"></script>
+    <script src="app/Identity/identity-service.js"></script>
     <script src="app/Identity/login-page-controller.js"></script>
 
-<script src="app/components/administration/users-administration-controller.js"></script>
+    <script src="app/components/administration/users-administration-controller.js"></script>
     <script src="app/components/administration/users-administration-data.js"></script>
     <!--<script src="app/components/administration/administrationService.js"></script>-->
     <!--<script src="app/components/customercard/customerCardController.js"></script>-->

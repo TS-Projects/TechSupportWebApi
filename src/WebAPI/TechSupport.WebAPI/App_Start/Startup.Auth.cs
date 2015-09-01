@@ -11,7 +11,7 @@ namespace TechSupport.WebAPI
 {
     public partial class Startup
     {
-        private const string TokenEndpointPath = "/api/login";
+        private const string TokenEndpointPath = "/api/users/login";
 
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 

@@ -16,7 +16,7 @@
             allUsers: ['$injector', 'q', 'administrationPageData', function ($injector, $q, administrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
                 return authPromise.then(function() {
-                    return administrationPageData.getData();
+                    return administrationPageData.getAllRegistersUsers();
                 });
             }]
             //popularProjects: ['homePageData', function (homePageData) {

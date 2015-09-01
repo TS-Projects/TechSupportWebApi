@@ -1,10 +1,13 @@
 (function () {
     'use strict';
 
-    var authService = function authService($http, $q, $cookies, appSettings) {
+    var authService = function authService($http, $q, $cookies, identity, appSettings) {
 
-        var userLoginUrlApi = appSettings.serverPath + '/login';
+        var userLoginUrlApi = appSettings.serverPath + '/users/login';
+        var userIdentityUrlApi = appSettings.serverPath + '/login';
         var userRegisterUrlApi = appSettings.serverPath + '/register';
+        ////'http://localhost:13078/api/users/login'
+        
 
         var TOKEN_KEY = 'authentication';
 
@@ -23,9 +26,12 @@
                     $cookies.put(TOKEN_KEY, tokenValue, { expires: theBigDay });
 
                     $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
-
-                    deferred.resolve(response);
-                    },
+                    console.log("before getIdentity() response:", response);
+                    getIdentity().then(function () {
+                        console.log("after getIdentity() response:", response);
+                        deferred.resolve(response);
+                    });
+                },
                 function (err) {
                     deferred.reject(err);
                 });
@@ -33,30 +39,52 @@
             return deferred.promise;
         };
 
-        var signUp = function (user) {
+        var getIdentity = function () {
             var deferred = $q.defer();
 
-            $http.post(userRegisterUrlApi + '/register', user)
-                            .success(function () {
-                                deferred.resolve();
-                            }, function (response) {
-                                deferred.reject(response);
-                            })
-                            .error(errorHandler.processError);
+            $http.get(userIdentityUrlApi)
+                .then(function (identityResponse) {
+                    identity.setUser(identityResponse);
+                    console.log("identityResponse on succ:", identityResponse);
+                    deferred.resolve(identityResponse);
+                }, function(err) {
+                    console.log('identityResponse on err: ', err);
+                    deferred.reject(err);
+                });
 
             return deferred.promise;
-        }
+        };
+
+        //var signUp = function (user) {
+        //    var deferred = $q.defer();
+
+        //    $http.post(userRegisterUrlApi + '/register', user)
+        //                    .success(function () {
+        //                        deferred.resolve();
+        //                    }, function (response) {
+        //                        deferred.reject(response);
+        //                    })
+        //                    .error(errorHandler.processError);
+
+        //    return deferred.promise;
+        //}
 
         return {
             login: login,
-            signUp: signUp,
+            //signUp: signUp,
+            getIdentity: getIdentity,
             isAuthenticated: function () {
                 return !!$cookies.get(TOKEN_KEY);
+            },
+            logout: function () {
+                $cookies.remove(TOKEN_KEY);
+                $http.defaults.headers.common.Authorization = null;
+                identity.removeUser();
             }
         };
     };
 
     angular
         .module('techSupportApp.services')
-        .factory('auth', ['$http', '$q', '$cookies', 'appSettings', authService]);
+        .factory('auth', ['$http', '$q', '$cookies', 'identity', 'appSettings', authService]);
 }());

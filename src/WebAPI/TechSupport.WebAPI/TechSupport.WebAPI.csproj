@@ -267,6 +267,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Users\Controllers\LoginController.cs" />
+    <Compile Include="Api\Users\DataModels\IdentityResponseModel.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardRegistrationController.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardExtensions.cs" />
     <Compile Include="Api\CustomerCards\DataModels\CustomerCardDataModel.cs" />

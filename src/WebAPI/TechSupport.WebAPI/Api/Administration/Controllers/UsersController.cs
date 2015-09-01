@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using System.Data.Entity.Infrastructure;
@@ -9,6 +10,7 @@ using System.Web.OData;
 using System.Web.OData.Routing;
 using Elmah;
 using TechSupport.Data;
+using TechSupport.WebAPI.Api.Administration.DataModels;
 using TechSupport.WebAPI.Controllers;
 using DataModel = TechSupport.WebAPI.Api.Administration.DataModels.UserProfileDataModel;
 using Model = TechSupport.Data.Models.User;
@@ -119,7 +121,6 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         //    vm.Id = dm.Id;
         //    return Created(vm);
         //}
-
         private bool UserExists(string userId)
         {
             return this.Data.Users.All().Select(u => u.Id == userId && !u.IsHidden).Any();

@@ -18,10 +18,10 @@
                 var URL = appSettings.serverPath + url;
 
                 $http.get(URL)
-                    .success(function (data) {
+                    .then(function (data) {
                         deferred.resolve(data);
-                    })
-                    .error(function (err) {
+                    },
+                    function (err) {
                         deferred.reject(err);
                     });
             }
@@ -34,10 +34,10 @@
             var URL = appSettings.odataServerPath + url;
 
             $http.get(URL)
-                .success(function (data) {
+                .then(function (data) {
                     deferred.resolve(data);
-                })
-                .error(function (err) {
+                },
+                function (err) {
                     deferred.reject(err);
                 });
 
@@ -55,10 +55,10 @@
                 var URL = appSettings.serverPath + url;
 
                 $http.post(URL, data, headers)
-                    .success(function (data) {
+                    .then(function (data) {
                         deferred.resolve(data);
-                    })
-                    .error(function (err) {
+                    },
+                    function (err) {
                         deferred.reject(err);
                     });
             }

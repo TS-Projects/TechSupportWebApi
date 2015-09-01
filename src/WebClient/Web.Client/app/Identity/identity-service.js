@@ -17,7 +17,9 @@
                 return Object.getOwnPropertyNames(currentUser).length !== 0;
             },
             setUser: function (user) {
+                
                 currentUser = user;
+                console.log("setUser:", currentUser);
                 deferred.resolve(user);
             },
             removeUser: function () {
