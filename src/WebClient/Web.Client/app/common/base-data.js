@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var baseData = function baseData($http, $q, appSettings, notifier) {
+    var baseData = function baseData($http, $q, appSettings, notifier, $cookies) {
         var headers = {
             'Content-Type': 'application/json'
         },
@@ -68,13 +68,19 @@
 
         function getDataSource() {
             var URL = appSettings.odataServerPath + '/Users';
+            var TOKEN_KEY = 'authentication';
+            var token = $cookies.get(TOKEN_KEY);
 
             var dataSource = {
                 type: "odata-v4",
                 transport: {
                     read: {
-                        url: URL
-                        
+                        url: URL,
+                        beforeSend: function (xhr) {
+                            var auth = 'Bearer ' + token;
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
+
                     },
                     update: {
                         url: function (data) {
@@ -115,5 +121,5 @@
 
     angular
         .module('techSupportApp.data')
-        .factory('data', ['$http', '$q', 'appSettings', 'notifier', baseData]);
+        .factory('data', ['$http', '$q', 'appSettings', 'notifier', '$cookies', baseData]);
 }());

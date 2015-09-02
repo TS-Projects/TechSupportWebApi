@@ -24,10 +24,6 @@
                     theBigDay.setHours(theBigDay.getHours() + 72);
 
                     $cookies.put(TOKEN_KEY, tokenValue, { expires: theBigDay });
-
-                   // var sss = $cookies.put(TOKEN_KEY, tokenValue, { expires: theBigDay });
-                    var favoriteCookie = $cookies.get(TOKEN_KEY);
-                    console.log('$cookies.put:', favoriteCookie);
                     
                     $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
 
