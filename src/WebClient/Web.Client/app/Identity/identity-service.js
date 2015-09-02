@@ -18,7 +18,7 @@
             },
             setUser: function (user) {
                 
-                currentUser = user;
+                currentUser = user.data;
                 console.log("setUser:", currentUser);
                 deferred.resolve(user);
             },

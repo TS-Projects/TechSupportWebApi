@@ -74,6 +74,7 @@
                 transport: {
                     read: {
                         url: URL
+                        
                     },
                     update: {
                         url: function (data) {

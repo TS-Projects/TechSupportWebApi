@@ -18,7 +18,7 @@
 
             $http.post(userLoginUrlApi, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                 .then(function (response) {
-                    var tokenValue = response.access_token;
+                    var tokenValue = response.data.access_token;
 
                     var theBigDay = new Date();
                     theBigDay.setHours(theBigDay.getHours() + 72);
@@ -26,9 +26,8 @@
                     $cookies.put(TOKEN_KEY, tokenValue, { expires: theBigDay });
 
                     $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
-                    console.log("before getIdentity() response:", response);
+
                     getIdentity().then(function () {
-                        console.log("after getIdentity() response:", response);
                         deferred.resolve(response);
                     });
                 },
@@ -45,10 +44,8 @@
             $http.get(userIdentityUrlApi)
                 .then(function (identityResponse) {
                     identity.setUser(identityResponse);
-                    console.log("identityResponse on succ:", identityResponse);
                     deferred.resolve(identityResponse);
                 }, function(err) {
-                    console.log('identityResponse on err: ', err);
                     deferred.reject(err);
                 });
 

@@ -19,7 +19,7 @@ namespace TechSupport.WebAPI.Api.Users.Controllers
         {
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IHttpActionResult Get()
         {

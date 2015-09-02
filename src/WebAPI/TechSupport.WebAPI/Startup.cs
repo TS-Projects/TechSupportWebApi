@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using System.Web.Http;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(TechSupport.WebAPI.Startup))]
@@ -9,7 +10,7 @@ namespace TechSupport.WebAPI
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }
