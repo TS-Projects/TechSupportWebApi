@@ -30,9 +30,8 @@
             })
             .when('/administration', {
                 templateUrl: 'app/components/administration/users-administration-view.html',
-                controller: 'UsersAdministrationController'
-                //controllerAs: CONTROLLER_VIEW_MODEL_NAME,
-                //resolve: routeResolveChecks.allUsers
+                controller: 'UsersAdministrationController',
+                resolve: routeResolveChecks.administration
             })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
@@ -63,11 +62,11 @@
             }
         });
 
-        //if (auth.isAuthenticated()) {
-        //    auth.getIdentity().then(function (identity) {
-        //        notifier.success('Welcome back, ' + identity.userName + '!');
-        //    });
-        //}
+        if (auth.isAuthenticated()) {
+            auth.getIdentity().then(function (identity) {
+                notifier.success('Welcome back, ' + identity.userName + '!');
+            });
+        }
     };
 
     // angular.module('templates', []) // used for client-side template caching

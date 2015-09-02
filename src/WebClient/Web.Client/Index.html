@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="assets/css/style.css"> <!-- custom styles -->
 </head>
 
-<body ng-app="techSupportApp" ng-cloak>
+<body ng-app="techSupportApp" ng-cloak ng-controller="MainController as vm">
 
     <div class="container">
         <nav class="navbar navbar-inverse">
@@ -59,7 +59,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="main">Nerds</a></li>
-                <li><a href="administration">Administration </a></li>
+                <li><a href="administration" login-checker>Administration </a></li>
                 <li><a href="login">Geeks</a></li>
                 <li><a href="register">Geeks</a></li>
             </ul>

@@ -7,16 +7,19 @@
                 if (!auth.isAuthenticated()) {
                     return $q.reject('not authorized');
                 }
-
                 return $q.when(true);
             }],
             latestProjects: ['homePageData', function (homePageData) {
                 return homePageData.getLatestProjects();
             }],
-            allUsers: ['$injector', 'q', 'administrationPageData', function ($injector, $q, administrationPageData) {
+            allUsers: ['$injector', '$q', 'administrationPageData', function ($injector, $q, administrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
-                return authPromise.then(function() {
+                console.log('authPromise:', authPromise);
+                return authPromise.then(function () {
+                    var sss = administrationPageData.getAllRegistersUsers();
+                    console.log('administrationPageData.getAllRegistersUsers():', sss);
                     return administrationPageData.getAllRegistersUsers();
+
                 });
             }]
             //popularProjects: ['homePageData', function (homePageData) {

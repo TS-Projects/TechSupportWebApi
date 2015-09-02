@@ -5,9 +5,6 @@
         function getAllRegistersUsers() {
             return data.getDataSource();
         }
-
-        //var getAllRegistersUsers = data.getDataSource();
-
         return {
             getAllRegistersUsers: getAllRegistersUsers
         };

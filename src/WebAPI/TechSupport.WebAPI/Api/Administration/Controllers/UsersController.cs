@@ -29,7 +29,7 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         {
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [EnableQuery]
         [ODataRoute]
