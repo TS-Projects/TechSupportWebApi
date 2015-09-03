@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNet.Identity;
 using TechSupport.Data;
 using TechSupport.Data.Models;
 using TechSupport.WebAPI.Api.Users.DataModels;
@@ -24,14 +25,13 @@ namespace TechSupport.WebAPI.Api.Users.Controllers
         public IHttpActionResult Get()
         {
             var model = this.Data.Users.All()
-                .Where(u => u.UserName == "lara@abv.bg")
+                .Where(u => u.UserName == User.Identity.Name)
                 .AsQueryable()
                 .Project()
                 .To<IdentityResponseModel>()
                 .FirstOrDefault();
 
             return this.Ok(model);
-            //return this.Ok("sss");
         }
     }
 }

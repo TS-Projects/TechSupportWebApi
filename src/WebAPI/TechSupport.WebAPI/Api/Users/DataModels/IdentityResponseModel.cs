@@ -17,7 +17,7 @@ namespace TechSupport.WebAPI.Api.Users.DataModels
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<User, IdentityResponseModel>()
-                .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.UserName));
+                .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.UserName.ToString()));
         }
     }
 }
