@@ -10,7 +10,7 @@
         function get(url, authorize) {
             var deferred = $q.defer();
 
-            if (authorize) {
+            if (authorize && !identity.isAuthenticated()) {
                 notifier.error(authorizationErrorMessage);
                 deferred.reject();
             }
@@ -47,7 +47,7 @@
         function post(url, data, authorize) {
             var deferred = $q.defer();
 
-            if (authorize) {
+            if (authorize && !identity.isAuthenticated()) {
                 notifier.error(authorizationErrorMessage);
                 deferred.reject();
             }

@@ -64,7 +64,7 @@
 
         if (auth.isAuthenticated()) {
             auth.getIdentity().then(function (identity) {
-                notifier.success('Welcome back, ' + identity.userName + '!');
+                notifier.success('Welcome back, ' + identity.UserName + '!');
             });
         }
     };
