@@ -14,10 +14,8 @@
             }],
             allUsers: ['$injector', '$q', 'administrationPageData', function ($injector, $q, administrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
-                console.log('authPromise:', authPromise);
                 return authPromise.then(function () {
                     var sss = administrationPageData.getAllRegistersUsers();
-                    console.log('administrationPageData.getAllRegistersUsers():', sss);
                     return administrationPageData.getAllRegistersUsers();
 
                 });

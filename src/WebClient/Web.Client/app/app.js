@@ -38,10 +38,10 @@
             })
             .otherwise({ redirectTo: '/notfound' });
 
-        //$locationProvider.html5Mode({
-        //    enabled: true,
-        //    requireBase: false
-        //});
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
 
         $httpProvider.interceptors.push('httpResponseInterceptor');
