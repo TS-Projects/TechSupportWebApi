@@ -88,6 +88,9 @@
     <Content Include="app\common\route-resolvers-provider.js" />
     <Content Include="app\components\customercard\customercard.html" />
     <Content Include="app\components\customercard\customerCardController.js" />
+    <Content Include="app\components\products\products-page-controller.js" />
+    <Content Include="app\components\products\products-page-data.js" />
+    <Content Include="app\components\products\products-page-view.html" />
     <Content Include="app\Identity\identity-service.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />
     <Content Include="assets\css\kendoui\Black\imagebrowser.png" />

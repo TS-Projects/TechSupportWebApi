@@ -4,7 +4,7 @@
     var homePageController = function homePageController(latestProjects) {
         var vm = this;
 
-        vm.latestProjects = latestProjects;
+        //vm.latestProjects = latestProjects;
     };
 
     angular

@@ -12,12 +12,13 @@
             latestProjects: ['homePageData', function (homePageData) {
                 return homePageData.getLatestProjects();
             }],
+            allProducts: ['productsPageData', function(productsPageData){
+                return productsPageData.getAllProducts();
+            }],
             allUsers: ['$injector', '$q', 'administrationPageData', function ($injector, $q, administrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
                 return authPromise.then(function () {
-                    var sss = administrationPageData.getAllRegistersUsers();
                     return administrationPageData.getAllRegistersUsers();
-
                 });
             }]
             //popularProjects: ['homePageData', function (homePageData) {
@@ -77,6 +78,9 @@
             },
             administration: {
                 allUsers: routeResolvers.allUsers
+            },
+            products: {
+                allProducts: routeResolvers.allProducts
             }
             //addProject: {
             //    seasonTags: routeResolvers.seasonTags,

@@ -33,6 +33,12 @@
                 controller: 'UsersAdministrationController',
                 resolve: routeResolveChecks.administration
             })
+            .when('/products', {
+                templateUrl: 'app/components/products/products-page-view.html',
+                controller: 'ProductsPageController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+                resolve: routeResolveChecks.products
+            })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
             })
