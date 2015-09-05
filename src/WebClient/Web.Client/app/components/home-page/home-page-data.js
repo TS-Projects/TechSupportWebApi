@@ -3,16 +3,12 @@
 
     var homePageData = function homePageData(data) {
         function getLatestProjects() {
-            return data.get('/projects');
+            //return data.get('/projects');
+            return null;
         }
-
-        //function getMostPopularProjects() {
-        //    return data.get('projects/popular');
-        //}
 
         return {
             getLatestProjects: getLatestProjects
-           // getMostPopularProjects: getMostPopularProjects
         };
     };
 

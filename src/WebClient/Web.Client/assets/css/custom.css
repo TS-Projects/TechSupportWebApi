@@ -1,3 +1,11 @@
 .login {
   background-color: #3d3d3d !important;
 }
+
+/*.page-header-fixed .page-container {
+    margin-top: 70px;
+}*/
+
+.page-content {
+    background-color: transparent;
+}

@@ -43,7 +43,6 @@
             requireBase: false
         });
 
-
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
