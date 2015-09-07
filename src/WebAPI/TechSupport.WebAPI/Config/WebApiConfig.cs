@@ -1,6 +1,8 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http;
+using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Routing;
+using System.Web.Mvc;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 using Elmah.Contrib.WebApi;
@@ -23,22 +25,29 @@ namespace TechSupport.WebAPI.Config
             //   new { folder = @"\d+" });
 
             //config.Routes.MapHttpRoute(
-            //    "ProjectDetails",
-            //    "api/Projects/{id}/{titleUrl}",
-            //    new { controller = "Projects", action = "Get" },
-            //    new { id = @"\d+" });
+            //    "CustomerCardsByUser",
+            //    "api/CustomerCards/User/{username}",
+            //    new {controller = "CustomerCards", action = "CustomerCardsByUser"});
 
             //config.Routes.MapHttpRoute(
-            //    "PagedComments",
-            //    "api/Comments/{id}/{page}",
-            //    new { controller = "Comments", action = "Get" },
-            //    new { id = @"\d+", page = @"\d+" });
+            //   "CustomerCards_Official",
+            //   "CustomerCard/Registration/{{action}}/{{id}}",
+            //   new { controller = "CustomerCard", action = "Registration", official = true, id = UrlParameter.Optional });
 
             //config.Routes.MapHttpRoute(
-            //    "PagedCommentsByUser",
-            //    "api/Comments/User/{username}/{page}",
-            //    new { controller = "Comments", action = "CommentsByUser" },
-            //    new { page = @"\d+" });
+            //     "CustomerCards_Not_Official",
+            //     "CustomerCard/Registration/{{action}}/{{id}}",
+            //     new { controller = "CustomerCard", action = "Registration", official = true, id = UrlParameter.Optional });
+
+            //config.Routes.MapHttpRoute(
+            //     "CustomerCards_by_category",
+            //     "CustomerCards/List/ByCategory/{id}/{category}",
+            //     new { controller = "List", action = "ByCategory", id = UrlParameter.Optional, category = UrlParameter.Optional });
+
+            //config.Routes.MapHttpRoute(
+            //    "DefaultAdministrationApi",
+            //    "Api/Administration/{controller}/{action}/{id}",
+            //    new { id = RouteParameter.Optional });
 
             //config.Routes.MapHttpRoute(
             //    "DefaultApiWithActionAndId",
@@ -79,10 +88,9 @@ namespace TechSupport.WebAPI.Config
             //    new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
             config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "api/{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-            );
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional });
         }
     }
 }
