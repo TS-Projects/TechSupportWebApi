@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TechSupport.Data.Models;
+using TechSupport.WebAPI.Config;
 
 namespace TechSupport.WebAPI.Providers
 {

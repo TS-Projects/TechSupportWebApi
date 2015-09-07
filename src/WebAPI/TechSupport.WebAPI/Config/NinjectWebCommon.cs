@@ -1,10 +1,10 @@
 using TechSupport.Data.Common;
 using TechSupport.Data.Repositories.Base;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TechSupport.WebAPI.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TechSupport.WebAPI.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TechSupport.WebAPI.Config.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TechSupport.WebAPI.Config.NinjectWebCommon), "Stop")]
 
-namespace TechSupport.WebAPI.App_Start
+namespace TechSupport.WebAPI.Config
 {
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;

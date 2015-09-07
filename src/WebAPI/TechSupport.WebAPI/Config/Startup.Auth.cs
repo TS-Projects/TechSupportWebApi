@@ -5,6 +5,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
 using TechSupport.Data;
+using TechSupport.WebAPI.Config;
 using TechSupport.WebAPI.Providers;
 
 namespace TechSupport.WebAPI

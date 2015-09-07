@@ -14,6 +14,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using TechSupport.Data.Models;
+using TechSupport.WebAPI.Config;
 using TechSupport.WebAPI.Models;
 using TechSupport.WebAPI.Providers;
 using TechSupport.WebAPI.Results;

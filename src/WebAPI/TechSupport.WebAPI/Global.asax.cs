@@ -9,6 +9,7 @@ using System.Web.OData.Formatter;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Elmah.Contrib.WebApi;
+using TechSupport.WebAPI.Config;
 using TechSupport.WebAPI.Infrastructure.Mapping;
 
 namespace TechSupport.WebAPI
@@ -18,6 +19,7 @@ namespace TechSupport.WebAPI
         protected void Application_Start()
         {
             RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
+            GlobalConfiguration.Configure(ODataConfig.Register);
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             List<ODataPayloadKind> data = new List<ODataPayloadKind>()

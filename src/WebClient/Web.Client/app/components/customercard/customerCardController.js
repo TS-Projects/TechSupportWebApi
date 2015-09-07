@@ -1,4 +1,4 @@
-﻿angular.module("CustomerCardCtrl", [])
+﻿ angular.module("CustomerCardCtrl", [])
         .controller("CustomerCardController", ['$scope', 'baseServiceUrl', function ($scope, baseServiceUrl) {
             var usersApi = baseServiceUrl + '/odata/CustomerCard';
 
@@ -47,7 +47,4 @@
                 ],
                 editable: "inline"
             };
-
-
-
         }]);

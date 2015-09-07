@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace TechSupport.WebAPI
+namespace TechSupport.WebAPI.Config
 {
     public class BundleConfig
     {
