@@ -1,4 +1,4 @@
-﻿namespace TechSupport.Data.Common
+﻿namespace TechSupport.Data.Common.Models
 {
     using System;
 
@@ -9,7 +9,5 @@
         bool PreserveCreatedOn { get; set; }
 
         DateTime? ModifiedOn { get; set; }
-
-        bool IsHidden { get; set; }
     }
 }

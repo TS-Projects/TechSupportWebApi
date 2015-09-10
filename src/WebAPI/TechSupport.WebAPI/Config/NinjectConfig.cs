@@ -1,18 +1,24 @@
-using TechSupport.Data.Common;
-using TechSupport.Data.Repositories.Base;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TechSupport.WebAPI.Config.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(TechSupport.WebAPI.Config.NinjectWebCommon), "Stop")]
 
 namespace TechSupport.WebAPI.Config
 {
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using Ninject;
-    using Ninject.Web.Common;
     using System;
     using System.Data.Entity;
     using System.Web;
+
+    using Ninject;
+    using Ninject.Extensions.Conventions;
+    using Ninject.Web.Common;
+
     using TechSupport.Data;
+    using TechSupport.Data.Common.Repositories;
+    using TechSupport.Services.Common;
+    using TechSupport.Services.Logic;
+
+    using ServerConstants = TechSupport.WebAPI.Common.Constants;
+
 
     public static class NinjectWebCommon
     {
@@ -48,6 +54,7 @@ namespace TechSupport.WebAPI.Config
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
+                ObjectFactory.Initialize(kernel);
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -64,16 +71,17 @@ namespace TechSupport.WebAPI.Config
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            RegisterDatabaseServices(kernel);
-        }
+            kernel.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
+            kernel.Bind<DbContext>().To<TechSupportDbContext>().InRequestScope();
 
-        private static void RegisterDatabaseServices(IKernel kernel)
-        {
-            kernel.Bind<DbContext>().To<TechSupportDbContext>();
-            kernel.Bind<ITechSupportDbContext>().To<TechSupportDbContext>();
-            kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
-            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
-            kernel.Bind<ITechSupportData>().To<TechSupportData>();
+            kernel.Bind(k => k
+                .From(
+                    ServerConstants.InfrastructureAssembly,
+                    ServerConstants.DataServicesAssembly,
+                    ServerConstants.LogicServicesAssembly)
+                .SelectAllClasses()
+                .InheritedFrom<IService>()
+                .BindDefaultInterface());
         }
     }
 }

@@ -5,7 +5,7 @@ using TechSupport.Data.Common.Models;
 
 namespace TechSupport.Data.Models
 {
-    public class CustomerCardCategory : DeletableEntity
+    public class CustomerCardCategory : AuditInfo
     {
         private ICollection<CustomerCardCategory> children;
 

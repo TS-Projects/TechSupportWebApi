@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Linq;
-using TechSupport.Common;
 using TechSupport.Data.Models;
 
 namespace TechSupport.Data.Seeders
@@ -10,6 +9,9 @@ namespace TechSupport.Data.Seeders
     internal static class StaticDataSeeder
     {
         private static readonly Random random = new Random();
+        public const string DefaultRole = "User";
+        public const string AdminRole = "Administrator";
+        public const string ModeratorRole = "Moderator";
 
         internal static void SeedUsers(TechSupportDbContext context)
         {
@@ -30,7 +32,7 @@ namespace TechSupport.Data.Seeders
 
                 userManager.Create(user, "qwerty");
 
-                userManager.AddToRole(user.Id, GlobalConstants.DefaultRole);
+                userManager.AddToRole(user.Id, DefaultRole);
 
                 context.SaveChanges();
             }
@@ -58,9 +60,9 @@ namespace TechSupport.Data.Seeders
             };
 
             userManager.Create(admin, AdminPassword);
-            userManager.AddToRole(admin.Id, GlobalConstants.AdminRole);
-            userManager.AddToRole(admin.Id, GlobalConstants.ModeratorRole);
-            userManager.AddToRole(admin.Id, GlobalConstants.DefaultRole);
+            userManager.AddToRole(admin.Id, AdminRole);
+            userManager.AddToRole(admin.Id, ModeratorRole);
+            userManager.AddToRole(admin.Id, DefaultRole);
 
             context.SaveChanges();
         }
@@ -88,8 +90,8 @@ namespace TechSupport.Data.Seeders
 
             userManager.Create(admin, mderatorPassword);
 
-            userManager.AddToRole(admin.Id, GlobalConstants.ModeratorRole);
-            userManager.AddToRole(admin.Id, GlobalConstants.DefaultRole);
+            userManager.AddToRole(admin.Id, ModeratorRole);
+            userManager.AddToRole(admin.Id, DefaultRole);
 
             context.SaveChanges();
         }
@@ -104,9 +106,9 @@ namespace TechSupport.Data.Seeders
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            roleManager.Create(new IdentityRole { Name = GlobalConstants.DefaultRole });
-            roleManager.Create(new IdentityRole { Name = GlobalConstants.AdminRole });
-            roleManager.Create(new IdentityRole { Name = GlobalConstants.ModeratorRole });
+            roleManager.Create(new IdentityRole { Name = DefaultRole });
+            roleManager.Create(new IdentityRole { Name = AdminRole });
+            roleManager.Create(new IdentityRole { Name = ModeratorRole });
 
             context.SaveChanges();
         }
@@ -158,9 +160,7 @@ namespace TechSupport.Data.Seeders
             var customer = new Customer()
             {
                 IsOfficial = true,
-                CreatedOn = GetDate(),
-                IsDeleted = false,
-                IsHidden = false
+                CreatedOn = GetDate()
             };
             context.Customers.Add(customer);
             context.SaveChanges();
@@ -182,8 +182,6 @@ namespace TechSupport.Data.Seeders
                 data.Warranty = true;
                 data.CustomerId = customer.Id;
                 data.CreatedOn = GetDate();
-                data.IsHidden = false;
-                data.IsDeleted = false;
                 context.CustomerCards.Add(data);
                 context.SaveChanges();
             }

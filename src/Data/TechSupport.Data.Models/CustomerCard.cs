@@ -6,7 +6,7 @@ using TechSupport.Data.Common.Models;
 
 namespace TechSupport.Data.Models
 {
-    public class CustomerCard : DeletableEntity
+    public class CustomerCard : AuditInfo
     {
         private ICollection<CustomerCardQuestion> questions;
 

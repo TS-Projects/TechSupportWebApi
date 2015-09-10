@@ -3,24 +3,22 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using TechSupport.Data.Common;
+using TechSupport.Data.Common.Models;
 using TechSupport.Data.Migrations;
 using TechSupport.Data.Models;
 
 namespace TechSupport.Data
 {
-    public class TechSupportDbContext : IdentityDbContext<User>, ITechSupportDbContext
+    public class TechSupportDbContext : IdentityDbContext<User>
     {
         public TechSupportDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
             //Database.SetInitializer(new DropCreateDatabaseAlways<TechSupportDbContext>());
-        }
-
-        public static TechSupportDbContext Create()
-        {
-            return new TechSupportDbContext();
         }
 
         public virtual IDbSet<CustomerCard> CustomerCards { get; set; }
@@ -47,21 +45,29 @@ namespace TechSupport.Data
             return base.Set<T>();
         }
 
+        public static TechSupportDbContext Create()
+        {
+            return new TechSupportDbContext();
+        }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
-            //this.ApplyDeletableEntityRules();
             return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            this.ApplyAuditInfoRules();
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         private void ApplyAuditInfoRules()
         {
-            // Approach via @julielerman: http://bit.ly/123661P
-            foreach (var entry in
-                this.ChangeTracker.Entries()
-                    .Where(
-                        e =>
-                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
+            var changedAudits = this.ChangeTracker.Entries()
+                    .Where(e => e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+
+            foreach (var entry in changedAudits)
             {
                 var entity = (IAuditInfo)entry.Entity;
 
@@ -76,30 +82,6 @@ namespace TechSupport.Data
                 {
                     entity.ModifiedOn = DateTime.Now;
                 }
-            }
-        }
-
-        //private void ApplyDeletableEntityRules()
-        //{
-        //    // Approach via @julielerman: http://bit.ly/123661P
-        //    foreach (
-        //        var entry in
-        //            this.ChangeTracker.Entries()
-        //                .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
-        //    {
-        //        var entity = (IDeletableEntity)entry.Entity;
-
-        //        entity.DeletedOn = DateTime.Now;
-        //        entity.IsDeleted = true;
-        //        entry.State = EntityState.Modified;
-        //    }
-        //}
-
-        public DbContext DbContext
-        {
-            get
-            {
-                return this;
             }
         }
     }

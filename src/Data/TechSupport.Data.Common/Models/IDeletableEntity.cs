@@ -1,4 +1,4 @@
-﻿namespace TechSupport.Data.Common
+﻿namespace TechSupport.Data.Common.Models
 {
     using System;
 

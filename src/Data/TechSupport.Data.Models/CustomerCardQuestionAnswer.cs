@@ -3,7 +3,7 @@ using TechSupport.Data.Common.Models;
 
 namespace TechSupport.Data.Models
 {
-    public class CustomerCardQuestionAnswer : DeletableEntity
+    public class CustomerCardQuestionAnswer : AuditInfo
     {
         [Key]
         public int Id { get; set; }

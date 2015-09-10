@@ -1,33 +1,29 @@
-﻿using TechSupport.Data.Common;
+﻿using System.Threading.Tasks;
+using TechSupport.Data.Common;
 
-namespace TechSupport.Data.Repositories.Base
+namespace TechSupport.Data.Common.Repositories
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
 
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class EfGenericRepository<T> : IRepository<T> where T : class
     {
-        private ITechSupportDbContext context;
-
-        public GenericRepository(ITechSupportDbContext context)
+        public EfGenericRepository(DbContext context)
         {
             if (context == null)
             {
                 throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
             }
 
-            this.context = context;
+            this.Context = context;
             this.DbSet = this.Context.Set<T>();
         }
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected ITechSupportDbContext Context
-        {
-            get { return this.context; }
-        }
+        protected DbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
@@ -99,14 +95,14 @@ namespace TechSupport.Data.Repositories.Base
             return this.Context.SaveChanges();
         }
 
+        public Task<int> SaveChangesAsync()
+        {
+            return this.Context.SaveChangesAsync();
+        }
+
         public void Dispose()
         {
             this.Context.Dispose();
-        }
-
-        public T Find(object id)
-        {
-            return this.DbSet.Find(id);
         }
     }
 }

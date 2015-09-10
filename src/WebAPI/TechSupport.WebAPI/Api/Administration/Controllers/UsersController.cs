@@ -10,6 +10,7 @@ using System.Web.OData;
 using System.Web.OData.Routing;
 using Elmah;
 using TechSupport.Data;
+using TechSupport.Services.Data.Contracts;
 using TechSupport.WebAPI.Api.Administration.DataModels;
 using TechSupport.WebAPI.Controllers;
 using DataModel = TechSupport.WebAPI.Api.Administration.DataModels.UserProfileDataModel;
@@ -17,16 +18,13 @@ using Model = TechSupport.Data.Models.User;
 
 namespace TechSupport.WebAPI.Api.Administration.Controllers
 {
-    public class UsersController : BaseOdataController
+    public class UsersController : ODataController
     {
-        public UsersController(ITechSupportData data)
-            : base(data)
-        {
-        }
+        private readonly IUsersService usersService;
 
-        public UsersController(ITechSupportData data, Model userProfile)
-            : base(data, userProfile)
+        public UsersController(IUsersService usersService)
         {
+            this.usersService = usersService;
         }
 
         [Authorize]
@@ -35,9 +33,8 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         [ODataRoute]
         public IQueryable<DataModel> Get()
         {
-            var users = this.Data
-                .Users
-                .All()
+            var users = this.usersService
+                .QueriedAllUsers()
                 .AsQueryable()
                 .Project()
                 .To<DataModel>();
@@ -121,9 +118,9 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         //    vm.Id = dm.Id;
         //    return Created(vm);
         //}
-        private bool UserExists(string userId)
-        {
-            return this.Data.Users.All().Select(u => u.Id == userId && !u.IsHidden).Any();
-        }
+        //private bool UserExists(string userId)
+        //{
+        //    return this.Data.Users.All().Select(u => u.Id == userId && !u.IsHidden).Any();
+        //}
     }
 }

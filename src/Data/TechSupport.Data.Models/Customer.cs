@@ -4,7 +4,7 @@ using TechSupport.Data.Common.Models;
 
 namespace TechSupport.Data.Models
 {
-    public class Customer : DeletableEntity
+    public class Customer : AuditInfo
     {
         private ICollection<CustomerCard> customerCards;
         private ICollection<CustomerAnswer> answers;

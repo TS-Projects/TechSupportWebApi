@@ -58,20 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITechSupportData.cs" />
-    <Compile Include="ITechSupportDbContext.cs" />
-    <Compile Include="Migrations\201508050725189_InitialCreate.cs" />
-    <Compile Include="Migrations\201508050725189_InitialCreate.Designer.cs">
-      <DependentUpon>201508050725189_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201509102032108_InitialCreate.cs" />
+    <Compile Include="Migrations\201509102032108_InitialCreate.Designer.cs">
+      <DependentUpon>201509102032108_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Base\DeletableEntityRepository.cs" />
-    <Compile Include="Repositories\Base\GenericRepository.cs" />
-    <Compile Include="Repositories\CustomersRepository.cs" />
-    <Compile Include="Repositories\Contracts\ICutomersRepository.cs" />
     <Compile Include="Seeders\StaticDataSeeder.cs" />
-    <Compile Include="TechSupportData.cs" />
     <Compile Include="TechSupportDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,10 +72,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\TechSupport.Common\TechSupport.Common.csproj">
-      <Project>{751f2711-f001-4eb7-99d6-cbbd63ada8ff}</Project>
-      <Name>TechSupport.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TechSupport.Data.Common\TechSupport.Data.Common.csproj">
       <Project>{e2431b47-04cc-48a6-adec-f559c079d331}</Project>
       <Name>TechSupport.Data.Common</Name>
@@ -93,8 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508050725189_InitialCreate.resx">
-      <DependentUpon>201508050725189_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509102032108_InitialCreate.resx">
+      <DependentUpon>201509102032108_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

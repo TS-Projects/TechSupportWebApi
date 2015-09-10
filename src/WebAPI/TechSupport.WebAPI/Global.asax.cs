@@ -21,7 +21,6 @@ namespace TechSupport.WebAPI
             RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
             GlobalConfiguration.Configure(ODataConfig.Register);
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
             List<ODataPayloadKind> data = new List<ODataPayloadKind>()
             {
                 ODataPayloadKind.Value,

@@ -9,7 +9,7 @@ namespace TechSupport.Data.Models
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    public class User : IdentityUser, IAuditInfo, IDeletableEntity
+    public class User : IdentityUser
     {
         public User()
         {

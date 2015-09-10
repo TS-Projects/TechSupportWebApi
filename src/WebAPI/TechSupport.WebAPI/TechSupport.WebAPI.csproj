@@ -155,6 +155,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.ContextPreservation, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
@@ -163,8 +175,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.WebApi.WebHost">
+    <Reference Include="Ninject.Web.WebApi.WebHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.Web.WebApi.WebHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.WebHost.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -289,12 +302,11 @@
     <Compile Include="Config\BundleConfig.cs" />
     <Compile Include="Config\FilterConfig.cs" />
     <Compile Include="Config\IdentityConfig.cs" />
-    <Compile Include="Config\NinjectWebCommon.cs" />
+    <Compile Include="Config\NinjectConfig.cs" />
     <Compile Include="Config\Startup.Auth.cs" />
     <Compile Include="Config\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseOdataController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\BaseODataController.cs" />
     <Compile Include="Api\Administration\DataModels\UserProfileDataModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -366,10 +378,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\TechSupport.Common\TechSupport.Common.csproj">
-      <Project>{751f2711-f001-4eb7-99d6-cbbd63ada8ff}</Project>
-      <Name>TechSupport.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\TechSupport.Data.Common\TechSupport.Data.Common.csproj">
       <Project>{e2431b47-04cc-48a6-adec-f559c079d331}</Project>
       <Name>TechSupport.Data.Common</Name>
@@ -381,6 +389,22 @@
     <ProjectReference Include="..\..\Data\TechSupport.Data\TechSupport.Data.csproj">
       <Project>{d10da00d-e3ec-40ec-bd6f-e0d5e7b8c417}</Project>
       <Name>TechSupport.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Common\TechSupport.Services.Common.csproj">
+      <Project>{32d29a27-268e-4000-968d-d33d2ef65381}</Project>
+      <Name>TechSupport.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Data\TechSupport.Services.Data.csproj">
+      <Project>{29aa4c3b-5ad5-43fe-ad0c-31c32763fed1}</Project>
+      <Name>TechSupport.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Logic\TechSupport.Services.Logic.csproj">
+      <Project>{ce0b4004-b794-4151-86ac-63ed55bc0096}</Project>
+      <Name>TechSupport.Services.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
+      <Project>{0603dfd5-d0ce-4c06-952c-f1dedef8e314}</Project>
+      <Name>TechSupport.WebAPI.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\TechSupport.WebAPI.Infrastructure\TechSupport.WebAPI.Infrastructure.csproj">
       <Project>{6dea00a8-55e2-4b59-883f-c808642ab0b0}</Project>

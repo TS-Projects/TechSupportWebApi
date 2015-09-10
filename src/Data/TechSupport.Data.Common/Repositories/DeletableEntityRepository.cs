@@ -1,16 +1,17 @@
 ﻿using TechSupport.Data.Common;
+using TechSupport.Data.Common.Models;
 
-namespace TechSupport.Data.Repositories.Base
+namespace TechSupport.Data.Common.Repositories
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
 
-    public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
+    public class DeletableEntityRepository<T> : EfGenericRepository<T>, IDeletableEntityRepository<T>
         where T : class, IDeletableEntity
     {
-        public DeletableEntityRepository(ITechSupportDbContext context)
+        public DeletableEntityRepository(DbContext context)
             : base(context)
         {
         }
