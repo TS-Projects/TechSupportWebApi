@@ -15,10 +15,9 @@ namespace TechSupport.Data
     public class TechSupportDbContext : IdentityDbContext<User>
     {
         public TechSupportDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
-            //Database.SetInitializer(new DropCreateDatabaseAlways<TechSupportDbContext>());
         }
 
         public virtual IDbSet<CustomerCard> CustomerCards { get; set; }

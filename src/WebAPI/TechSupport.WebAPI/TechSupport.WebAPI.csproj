@@ -292,7 +292,8 @@
     <Compile Include="Api\Administration\Controllers\CustomerCardController.cs" />
     <Compile Include="Api\Administration\Controllers\UsersController.cs" />
     <Compile Include="Config\ODataConfig.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\BaseAuthorizationController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="DataModels\AdministrationDataModel.cs" />
     <Compile Include="Api\CustomerCards\DataModels\CustomerCardCategoryDataModel.cs" />
     <Compile Include="Api\Administration\DataModels\CustomerCardAdministrationDataModel.cs" />
@@ -306,7 +307,7 @@
     <Compile Include="Config\Startup.Auth.cs" />
     <Compile Include="Config\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseODataController.cs" />
+    <Compile Include="Controllers\BaseODataAuthorizationController.cs" />
     <Compile Include="Api\Administration\DataModels\UserProfileDataModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
