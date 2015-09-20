@@ -291,7 +291,6 @@
     <Compile Include="Config\ODataConfig.cs" />
     <Compile Include="Controllers\BaseAuthorizationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Config\BundleConfig.cs" />
     <Compile Include="Config\FilterConfig.cs" />
     <Compile Include="Config\IdentityConfig.cs" />
     <Compile Include="Config\NinjectConfig.cs" />
@@ -351,7 +350,7 @@
       <Project>{ce0b4004-b794-4151-86ac-63ed55bc0096}</Project>
       <Name>TechSupport.Services.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
+    <ProjectReference Include="..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
       <Project>{0603dfd5-d0ce-4c06-952c-f1dedef8e314}</Project>
       <Name>TechSupport.WebAPI.Common</Name>
     </ProjectReference>

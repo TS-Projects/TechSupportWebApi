@@ -88,7 +88,7 @@
       <Project>{29aa4c3b-5ad5-43fe-ad0c-31c32763fed1}</Project>
       <Name>TechSupport.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
+    <ProjectReference Include="..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
       <Project>{0603dfd5-d0ce-4c06-952c-f1dedef8e314}</Project>
       <Name>TechSupport.WebAPI.Common</Name>
     </ProjectReference>

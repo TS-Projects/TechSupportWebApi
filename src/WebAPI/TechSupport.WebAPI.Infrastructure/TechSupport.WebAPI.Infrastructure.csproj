@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TechSupport.WebAPI.Infrastructure</RootNamespace>
     <AssemblyName>TechSupport.WebAPI.Infrastructure</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,32 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Caching\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\TechSupport.Data.Models\TechSupport.Data.Models.csproj">
+      <Project>{b55b5ed7-2ecc-47b1-903c-dea2317bd7aa}</Project>
+      <Name>TechSupport.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Common\TechSupport.Services.Common.csproj">
+      <Project>{32d29a27-268e-4000-968d-d33d2ef65381}</Project>
+      <Name>TechSupport.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Data\TechSupport.Services.Data.csproj">
+      <Project>{29aa4c3b-5ad5-43fe-ad0c-31c32763fed1}</Project>
+      <Name>TechSupport.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\TechSupport.Services.Logic\TechSupport.Services.Logic.csproj">
+      <Project>{ce0b4004-b794-4151-86ac-63ed55bc0096}</Project>
+      <Name>TechSupport.Services.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
+      <Project>{0603dfd5-d0ce-4c06-952c-f1dedef8e314}</Project>
+      <Name>TechSupport.WebAPI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechSupport.WebAPI.DataModels\TechSupport.WebAPI.DataModels.csproj">
+      <Project>{34ce2130-7c39-43e8-b43e-a66dfc6cbff9}</Project>
+      <Name>TechSupport.WebAPI.DataModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -38,7 +38,6 @@ namespace TechSupport.WebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             FilterConfig.RegisterHttpFilters(GlobalConfiguration.Configuration.Filters);
             GlobalConfiguration.Configuration.Filters.Add(new ElmahHandleErrorApiAttribute());
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
         }
     }
