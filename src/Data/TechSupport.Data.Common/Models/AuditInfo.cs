@@ -6,7 +6,7 @@
 
     public abstract class AuditInfo : IAuditInfo
     {
-        [Column(TypeName = "datetime2")]
+      //  [Column(TypeName = "datetime2")]
         public DateTime CreatedOn { get; set; }
 
         /// <summary>

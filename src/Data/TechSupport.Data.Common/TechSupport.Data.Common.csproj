@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
+    <Compile Include="Repositories\IDeletableRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Models\AuditInfo.cs" />
     <Compile Include="Models\IAuditInfo.cs" />
