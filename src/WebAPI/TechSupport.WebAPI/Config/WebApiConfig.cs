@@ -1,6 +1,7 @@
-﻿namespace TechSupport.WebAPI.Config
+﻿using TechSupport.WebAPI.Infrastructure.Formatters;
+
+namespace TechSupport.WebAPI.Config
 {
-    using System.Net.Http;
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
     using System.Web.Http.Routing;
@@ -14,6 +15,9 @@
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.Clear();
+           // config.Formatters.Add(new RazorFormatter());
+            config.Formatters.Add(new BrowserJsonFormatter());
             config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
 
             //config.Routes.MapHttpRoute(
