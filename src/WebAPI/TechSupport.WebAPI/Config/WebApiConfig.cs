@@ -10,8 +10,6 @@
 
     using Elmah.Contrib.WebApi;
 
-    using TechSupport.WebAPI.Api.Administration.DataModels;
-
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

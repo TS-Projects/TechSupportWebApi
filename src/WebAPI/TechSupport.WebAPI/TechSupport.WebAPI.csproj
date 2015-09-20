@@ -283,25 +283,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Users\Controllers\LoginController.cs" />
-    <Compile Include="Api\Users\DataModels\IdentityResponseModel.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardRegistrationController.cs" />
     <Compile Include="Api\CustomerCards\Controllers\CustomerCardExtensions.cs" />
-    <Compile Include="Api\CustomerCards\DataModels\CustomerCardDataModel.cs" />
-    <Compile Include="Api\CustomerCards\DataModels\CustomerDataModel.cs" />
-    <Compile Include="Api\CustomerCards\Models\CustomerCardQuestionAnswerModel.cs" />
-    <Compile Include="Api\CustomerCards\DataModels\CustomerCardQuestionDataModel.cs" />
-    <Compile Include="Api\CustomerCards\Models\CustomerCardRegistrationModel.cs" />
     <Compile Include="Api\Administration\Controllers\CustomerCardController.cs" />
     <Compile Include="Api\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\ODataConfig.cs" />
     <Compile Include="Controllers\BaseAuthorizationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="DataModels\AdministrationDataModel.cs" />
-    <Compile Include="Api\CustomerCards\DataModels\CustomerCardCategoryDataModel.cs" />
-    <Compile Include="Api\Administration\DataModels\CustomerCardAdministrationDataModel.cs" />
-    <Compile Include="Api\CustomerCards\DataModels\CustomerCardRegistrationDataModel.cs" />
-    <Compile Include="DataModels\IAdministrationDataModel.cs" />
-    <Compile Include="Api\Administration\DataModels\CustomerAdministrationDataModel.cs" />
     <Compile Include="Config\BundleConfig.cs" />
     <Compile Include="Config\FilterConfig.cs" />
     <Compile Include="Config\IdentityConfig.cs" />
@@ -310,7 +299,6 @@
     <Compile Include="Config\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseODataAuthorizationController.cs" />
-    <Compile Include="Api\Administration\DataModels\UserProfileDataModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,39 +310,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Icon.png" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="test\jquery-2.1.4.js" />
-    <Content Include="test\jquery-2.1.4.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -364,22 +320,11 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="TechSupport.WebAPI.ruleset" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Employees\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TechSupport.Data.Common\TechSupport.Data.Common.csproj">
@@ -409,6 +354,10 @@
     <ProjectReference Include="..\..\TechSupport.WebApi.Common\TechSupport.WebAPI.Common.csproj">
       <Project>{0603dfd5-d0ce-4c06-952c-f1dedef8e314}</Project>
       <Name>TechSupport.WebAPI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechSupport.WebAPI.DataModels\TechSupport.WebAPI.DataModels.csproj">
+      <Project>{34ce2130-7c39-43e8-b43e-a66dfc6cbff9}</Project>
+      <Name>TechSupport.WebAPI.DataModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\TechSupport.WebAPI.Infrastructure\TechSupport.WebAPI.Infrastructure.csproj">
       <Project>{6dea00a8-55e2-4b59-883f-c808642ab0b0}</Project>

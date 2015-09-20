@@ -8,6 +8,7 @@ namespace TechSupport.WebAPI.Common
 {
     public class Constants
     {
+        public const string DataModelsAssembly = "TechSupport.WebAPI.DataModels";
         public const string InfrastructureAssembly = "TechSupport.WebAPI.Infrastructure";
         public const string DataServicesAssembly = "TechSupport.Services.Data";
         public const string LogicServicesAssembly = "TechSupport.Services.Logic";

@@ -6,7 +6,7 @@ using System.Web.Http;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 using Microsoft.OData.Edm;
-using TechSupport.WebAPI.Api.Administration.DataModels;
+using TechSupport.WebAPI.DataModels.Administration;
 
 namespace TechSupport.WebAPI.Config
 {

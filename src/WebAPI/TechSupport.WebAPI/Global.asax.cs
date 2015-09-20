@@ -1,4 +1,6 @@
-﻿namespace TechSupport.WebAPI
+﻿
+
+namespace TechSupport.WebAPI
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +16,7 @@
     using Microsoft.OData.Core;
     
     using TechSupport.WebAPI.Config;
-    using TechSupport.WebAPI.Infrastructure.Mapping;
+    using TechSupport.WebAPI.Common;
 
     public class WebApiApplication : HttpApplication
     {
@@ -37,7 +39,7 @@
             FilterConfig.RegisterHttpFilters(GlobalConfiguration.Configuration.Filters);
             GlobalConfiguration.Configuration.Filters.Add(new ElmahHandleErrorApiAttribute());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            (new AutoMapperConfig(Assembly.GetExecutingAssembly())).Execute();
+            AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
         }
     }
 }

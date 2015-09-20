@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,7 +46,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Mapping\IMapFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Validation\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\TechSupport.Data.Common\TechSupport.Data.Common.csproj">
+      <Project>{e2431b47-04cc-48a6-adec-f559c079d331}</Project>
+      <Name>TechSupport.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\TechSupport.Data.Models\TechSupport.Data.Models.csproj">
+      <Project>{b55b5ed7-2ecc-47b1-903c-dea2317bd7aa}</Project>
+      <Name>TechSupport.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\TechSupport.Services.Data\TechSupport.Services.Data.csproj">
+      <Project>{29aa4c3b-5ad5-43fe-ad0c-31c32763fed1}</Project>
+      <Name>TechSupport.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\TechSupport.Services.Logic\TechSupport.Services.Logic.csproj">
+      <Project>{ce0b4004-b794-4151-86ac-63ed55bc0096}</Project>
+      <Name>TechSupport.Services.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

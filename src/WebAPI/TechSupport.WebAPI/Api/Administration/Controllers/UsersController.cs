@@ -11,9 +11,8 @@ using System.Web.OData.Routing;
 using Elmah;
 using TechSupport.Data;
 using TechSupport.Services.Data.Contracts;
-using TechSupport.WebAPI.Api.Administration.DataModels;
 using TechSupport.WebAPI.Controllers;
-using DataModel = TechSupport.WebAPI.Api.Administration.DataModels.UserProfileDataModel;
+using DataModel = TechSupport.WebAPI.DataModels.Administration.UserProfileDataModel;
 using Model = TechSupport.Data.Models.User;
 
 namespace TechSupport.WebAPI.Api.Administration.Controllers

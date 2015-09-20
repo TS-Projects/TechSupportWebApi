@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSupport.WebAPI.Common",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSupport.Services.Logic", "Services\TechSupport.Services.Logic\TechSupport.Services.Logic.csproj", "{CE0B4004-B794-4151-86AC-63ED55BC0096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechSupport.WebAPI.DataModels", "WebAPI\TechSupport.WebAPI.DataModels\TechSupport.WebAPI.DataModels.csproj", "{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{CE0B4004-B794-4151-86AC-63ED55BC0096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0B4004-B794-4151-86AC-63ED55BC0096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0B4004-B794-4151-86AC-63ED55BC0096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{32D29A27-268E-4000-968D-D33D2EF65381} = {2EED064D-4F4B-479B-95D8-D10AED907262}
 		{0603DFD5-D0CE-4C06-952C-F1DEDEF8E314} = {C3222EC9-DE62-4E65-8010-F5908EED549A}
 		{CE0B4004-B794-4151-86AC-63ED55BC0096} = {2EED064D-4F4B-479B-95D8-D10AED907262}
+		{34CE2130-7C39-43E8-B43E-A66DFC6CBFF9} = {C3222EC9-DE62-4E65-8010-F5908EED549A}
 	EndGlobalSection
 	GlobalSection(PhysicalSolutionFolders) = postSolution
 		NumEntries = 1

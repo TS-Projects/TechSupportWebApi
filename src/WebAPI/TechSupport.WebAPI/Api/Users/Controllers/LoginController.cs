@@ -6,7 +6,7 @@
     using AutoMapper.QueryableExtensions;
 
     using TechSupport.Services.Data.Contracts;
-    using TechSupport.WebAPI.Api.Users.DataModels;
+    using TechSupport.WebAPI.DataModels.Users;
 
     public class LoginController : ApiController
     {
