@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TechSupport.Data.Models;
-using TechSupport.WebAPI.DataModels;
-using TechSupport.WebAPI.Infrastructure.Mapping;
-
-namespace TechSupport.WebAPI.Api.CustomerCards.DataModels
+﻿namespace TechSupport.WebAPI.Api.CustomerCards.DataModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using AutoMapper;
+    using TechSupport.Data.Models;
+    using TechSupport.WebAPI.DataModels;
+    using TechSupport.WebAPI.Infrastructure.Mapping;
+
     public class CustomerCardDataModel : AdministrationDataModel, IMapFrom<CustomerCard>, IHaveCustomMappings
     {
         public int Id { get; set; }

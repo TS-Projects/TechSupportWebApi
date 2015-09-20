@@ -19,7 +19,6 @@ namespace TechSupport.WebAPI.Config
 
     using ServerConstants = TechSupport.WebAPI.Common.Constants;
 
-
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

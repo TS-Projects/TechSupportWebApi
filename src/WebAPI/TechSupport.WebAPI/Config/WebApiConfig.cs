@@ -1,21 +1,21 @@
-﻿using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
-using System.Web.Http.Routing;
-using System.Web.Mvc;
-using System.Web.OData.Builder;
-using System.Web.OData.Extensions;
-using Elmah.Contrib.WebApi;
-using TechSupport.WebAPI.Api.Administration.DataModels;
-
-namespace TechSupport.WebAPI.Config
+﻿namespace TechSupport.WebAPI.Config
 {
+    using System.Net.Http;
+    using System.Web.Http;
+    using System.Web.Http.ExceptionHandling;
+    using System.Web.Http.Routing;
+    using System.Web.Mvc;
+    using System.Web.OData.Builder;
+    using System.Web.OData.Extensions;
+
+    using Elmah.Contrib.WebApi;
+
+    using TechSupport.WebAPI.Api.Administration.DataModels;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API routes
-
             config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
 
             //config.Routes.MapHttpRoute(

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TechSupport.Data.Models;
-using TechSupport.WebAPI.Api.Administration.DataModels;
-using TechSupport.WebAPI.Infrastructure.Mapping;
-
-namespace TechSupport.WebAPI.Api.Users.DataModels
+﻿namespace TechSupport.WebAPI.Api.Users.DataModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+
+    using AutoMapper;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using TechSupport.Data.Models;
+    using TechSupport.WebAPI.Api.Administration.DataModels;
+    using TechSupport.WebAPI.Infrastructure.Mapping;
+
     public class IdentityResponseModel : IMapFrom<User>, IMapCustom
     {
         public string UserName { get; set; }

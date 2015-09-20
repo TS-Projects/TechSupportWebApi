@@ -20,7 +20,7 @@ namespace TechSupport.WebAPI.Api.Administration.DataModels
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Customer, CustomerAdministrationDataModel>()
-                .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.User.UserName)); ;
+                .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.User.UserName));
         }
     }
 }
