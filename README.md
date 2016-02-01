@@ -1,5 +1,5 @@
 # TechServiceWebApi
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/gruntjs/grunt?branch=master&svg=true)](https://ci.appveyor.com/project/NaydenKirov/techsupportwebapi)
+### Build status
 
-<image src="https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true" width="300">
+[![Build status](https://ci.appveyor.com/api/projects/status/2d0289b9dntnesh4?svg=true)](https://ci.appveyor.com/project/NaydenKirov/techsupportwebapi)
