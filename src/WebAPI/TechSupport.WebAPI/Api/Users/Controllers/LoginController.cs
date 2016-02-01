@@ -3,7 +3,9 @@
     using System.Linq;
     using System.Web.Http;
 
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
+
 
     using TechSupport.Services.Data.Contracts;
     using TechSupport.WebAPI.DataModels.Users;
@@ -25,8 +27,7 @@
                 .QueriedAllUsers()
                 .Where(u => u.UserName == this.User.Identity.Name)
                 .AsQueryable()
-                .Project()
-                .To<IdentityResponseModel>()
+                .ProjectTo<IdentityResponseModel>()
                 .FirstOrDefault();
 
             return this.Ok(model);

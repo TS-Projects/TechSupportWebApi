@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data.Entity;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.OData;
 using System.Web.OData.Routing;
+using AutoMapper.QueryableExtensions;
 using Elmah;
 using TechSupport.Data;
 using TechSupport.Services.Data.Contracts;
@@ -35,8 +35,7 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
             var users = this.usersService
                 .QueriedAllUsers()
                 .AsQueryable()
-                .Project()
-                .To<DataModel>();
+                .ProjectTo<DataModel>();
 
             return users;
         }
