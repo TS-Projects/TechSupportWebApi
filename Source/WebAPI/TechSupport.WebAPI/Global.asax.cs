@@ -1,6 +1,4 @@
-﻿
-
-namespace TechSupport.WebAPI
+﻿namespace TechSupport.WebAPI
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +9,7 @@ namespace TechSupport.WebAPI
     using System.Web.OData.Formatter;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using System.Reflection;
 
     using Elmah.Contrib.WebApi;
     using Microsoft.OData.Core;
@@ -38,7 +37,8 @@ namespace TechSupport.WebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             FilterConfig.RegisterHttpFilters(GlobalConfiguration.Configuration.Filters);
             GlobalConfiguration.Configuration.Filters.Add(new ElmahHandleErrorApiAttribute());
-            AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
+            //AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
+           // AutoMapperConfig.RegisterMappings(Assembly.Load(ass));
         }
     }
 }
