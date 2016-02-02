@@ -64,6 +64,8 @@
     <Compile Include="CustomerCardCategory.cs" />
     <Compile Include="CustomerCardQuestion.cs" />
     <Compile Include="CustomerCardQuestionAnswer.cs" />
+    <Compile Include="File.cs" />
+    <Compile Include="FileInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomerCard.cs" />

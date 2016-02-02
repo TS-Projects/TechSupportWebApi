@@ -58,7 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\FileInfoService.cs" />
+    <Compile Include="Contracts\IDownloadableFilesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
+    <Compile Include="DownloadableFilesService.cs" />
+    <Compile Include="Models\RawFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersService.cs" />
   </ItemGroup>
@@ -78,6 +82,10 @@
     <ProjectReference Include="..\TechSupport.Services.Common\TechSupport.Services.Common.csproj">
       <Project>{32d29a27-268e-4000-968d-d33d2ef65381}</Project>
       <Name>TechSupport.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TechSupport.Services.Logic\TechSupport.Services.Logic.csproj">
+      <Project>{ce0b4004-b794-4151-86ac-63ed55bc0096}</Project>
+      <Name>TechSupport.Services.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
