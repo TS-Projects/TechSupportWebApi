@@ -15,7 +15,7 @@ namespace TechSupport.Data
     public class TechSupportDbContext : IdentityDbContext<User>
     {
         public TechSupportDbContext()
-            : base("DefaultConnection")
+            : base("TechSupport")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
         }

@@ -1,4 +1,8 @@
-﻿namespace TechSupport.WebAPI
+﻿using System.Data.Entity;
+using TechSupport.Data;
+using TechSupport.Data.Migrations;
+
+namespace TechSupport.WebAPI
 {
     using System;
     using System.Collections.Generic;
@@ -37,8 +41,7 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             FilterConfig.RegisterHttpFilters(GlobalConfiguration.Configuration.Filters);
             GlobalConfiguration.Configuration.Filters.Add(new ElmahHandleErrorApiAttribute());
-            //AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
-           // AutoMapperConfig.RegisterMappings(Assembly.Load(ass));
+            AutoMapperConfig.RegisterMappings(Assembly.Load(Constants.DataModelsAssembly));
         }
     }
 }

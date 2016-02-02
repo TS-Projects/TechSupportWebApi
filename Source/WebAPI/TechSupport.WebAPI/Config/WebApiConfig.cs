@@ -1,4 +1,5 @@
-﻿using TechSupport.WebAPI.Infrastructure.Formatters;
+﻿using Microsoft.Owin.Security.OAuth;
+using TechSupport.WebAPI.Infrastructure.Formatters;
 
 namespace TechSupport.WebAPI.Config
 {
@@ -15,10 +16,9 @@ namespace TechSupport.WebAPI.Config
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Formatters.Clear();
-           // config.Formatters.Add(new RazorFormatter());
-            config.Formatters.Add(new BrowserJsonFormatter());
-            config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
+         //  config.Formatters.Add(new RazorFormatter());
+             config.Formatters.Add(new BrowserJsonFormatter());
+             config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
 
             //config.Routes.MapHttpRoute(
             //   "Files",
@@ -75,7 +75,7 @@ namespace TechSupport.WebAPI.Config
 
             //config.Routes.MapHttpRoute(
             //    "DefaultApiWithAction",
-            //    "Api/{controller}/{action}");
+            //    "api/{controller}/{action}");
 
             //config.Routes.MapHttpRoute(
             //    "DefaultApiGet",

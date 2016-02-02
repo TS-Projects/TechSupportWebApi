@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using System.Data.Entity;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(TechSupport.WebAPI.Startup))]
