@@ -39,6 +39,17 @@
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME,
                 resolve: routeResolveChecks.products
             })
+            .when('/users/:username', {
+                templateUrl: 'user-profile-page/user-profile-view.html',
+                controller: 'UserProfileController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+                resolve: routeResolveChecks.userProfile
+            })
+            .when('/register', {
+                templateUrl: 'app/Identity/register-page-view.html',
+                controller: 'RegisterPageController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
             })
@@ -85,6 +96,7 @@
         .run(['$rootScope', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
+        .value('errorHandler', function (error) { console.warn(error) })
         .constant('appSettings', {
             serverPath: 'http://localhost:13078/api',
             odataServerPath: 'http://localhost:13078/odata'

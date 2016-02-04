@@ -1,14 +1,12 @@
 (function () {
     'use strict';
 
-    var authService = function authService($http, $q, $cookies, identity, appSettings) {
+    var authService = function authService($http, $q, $cookies, identity, appSettings, errorHandler) {
 
         var userLoginUrlApi = appSettings.serverPath + '/users/login';
         var userIdentityUrlApi = appSettings.serverPath + '/login';
-        var userRegisterUrlApi = appSettings.serverPath + '/register';
-        ////'http://localhost:13078/api/users/login'
+        var userRegisterUrlApi = appSettings.serverPath + '/Account/Register';
         
-
         var TOKEN_KEY = 'authentication';
 
         var login = function login(user) {
@@ -52,23 +50,23 @@
             return deferred.promise;
         };
 
-        //var signUp = function (user) {
-        //    var deferred = $q.defer();
+        var signUp = function (user) {
+            var deferred = $q.defer();
 
-        //    $http.post(userRegisterUrlApi + '/register', user)
-        //                    .success(function () {
-        //                        deferred.resolve();
-        //                    }, function (response) {
-        //                        deferred.reject(response);
-        //                    })
-        //                    .error(errorHandler.processError);
+            $http.post(userRegisterUrlApi, user)
+                            .success(function () {
+                                deferred.resolve();
+                            }, function (response) {
+                                deferred.reject(response);
+                            })
+                            .error(errorHandler);
 
-        //    return deferred.promise;
-        //}
+            return deferred.promise;
+        }
 
         return {
             login: login,
-            //signUp: signUp,
+            signUp: signUp,
             getIdentity: getIdentity,
             isAuthenticated: function () {
                 return !!$cookies.get(TOKEN_KEY);
@@ -83,5 +81,5 @@
 
     angular
         .module('techSupportApp.services')
-        .factory('auth', ['$http', '$q', '$cookies', 'identity', 'appSettings', authService]);
+        .factory('auth', ['$http', '$q', '$cookies', 'identity', 'appSettings', 'errorHandler', authService]);
 }());

@@ -68,6 +68,10 @@
         <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) sidebar menu below. So the horizontal menu has 2 seperate versions -->
         <div class="hor-menu hidden-sm hidden-xs">
             <ul class="nav navbar-nav">
+
+                <!--<li ng-if="!vm.currentUser"><a id="open-login-btn" data-toggle="modal" data-target="#login-modal"><i class="fa fa-angle-right"></i> Login</a></li>
+                <li ng-if="vm.currentUser"><a href="/users/{{vm.currentUser.userName}}"><img width="20" height="20" class="margin-right-5 img-rounded" ng-src="{{vm.currentUser.avatarUrl}}" /> {{vm.currentUser.userName}}</a></li>
+                <li ng-if="vm.currentUser"><a ng-click="vm.logout()"><i class="fa fa-angle-right"></i> Logout</a></li>-->
                 <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
                 <li class="classic-menu-dropdown active">
                     <a href="/">
@@ -179,6 +183,19 @@
                         </li>
                     </ul>
                 </li>
+
+                <li ng-if="vm.currentUser"><a href="/users/{{vm.currentUser.userName}}"><img width="20" height="20" class="margin-right-5 img-rounded" ng-src="{{vm.currentUser.avatarUrl}}" /> {{vm.currentUser.userName}}</a></li>
+
+                <li ng-if="vm.currentUser"><a ng-click="vm.logout()"><i class="fa fa-angle-right"></i> Logout</a></li>-->
+
+                <!-- BEGIN LOGIN FORM -->
+                <li ng-if="!vm.currentUser">
+                    <a href="/demologin" class="btn">
+                        Вход
+                        <i class="fa fa-user"></i>
+                    </a>
+                </li>
+                <!-- END LOGIN FORM -->
             </ul>
         </div>
         <!-- END HORIZANTAL MENU -->
@@ -194,8 +211,8 @@
         </form>
         <!-- END HEADER SEARCH BOX -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-        </a>
+        <!--<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        </a>-->
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="top-menu">
@@ -582,9 +599,9 @@
                         <i class="icon-logout"></i>
                     </a>
                 </li>
-                <!-- END QUICK SIDEBAR TOGGLER -->
+            <!-- END QUICK SIDEBAR TOGGLER -->
             </ul>
         </div>
-        <!-- END TOP NAVIGATION MENU -->
+    <!-- END TOP NAVIGATION MENU -->
     </div>
     <!-- END HEADER INNER -->

@@ -1,16 +1,11 @@
-﻿using Microsoft.Owin.Security.OAuth;
-using TechSupport.WebAPI.Infrastructure.Formatters;
-
-namespace TechSupport.WebAPI.Config
+﻿namespace TechSupport.WebAPI.Config
 {
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
-    using System.Web.Http.Routing;
-    using System.Web.Mvc;
-    using System.Web.OData.Builder;
-    using System.Web.OData.Extensions;
 
     using Elmah.Contrib.WebApi;
+
+    using TechSupport.WebAPI.Infrastructure.Formatters;
 
     public static class WebApiConfig
     {
