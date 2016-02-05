@@ -67,7 +67,7 @@
             //profile: ['$route', 'userProfileData', function ($route, userProfileData) {
             //    var routeParams = $route.current.params;
             //    return userProfileData.getProfile(routeParams.username.toLowerCase());
-            //}],
+            //}]
         };
 
         var routeResolveChecks = {

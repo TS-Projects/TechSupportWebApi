@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -332,7 +333,30 @@ namespace TechSupport.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new User() { UserName = model.Email, Email = model.Email };
+            string genUser = GenerateUsername(model.Email);
+            var identityResult = await UserManager.FindByNameAsync(genUser);
+
+            if (identityResult != null)
+            {
+                Random rng = new Random();
+                for (int i = 1; i < int.MaxValue; i++)
+                {
+                    int rand = rng.Next(0, 9);
+                    string altCandidate = identityResult.UserName + "." + rand + i.ToString();
+                    var existCandidate = await UserManager.FindByNameAsync(altCandidate);
+                    if (existCandidate == null)
+                    {
+                        genUser = altCandidate;
+                        break;
+                    }
+                }
+            }
+
+            var user = new User()
+            {
+                UserName = genUser,
+                Email = model.Email
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -342,6 +366,14 @@ namespace TechSupport.WebAPI.Controllers
             }
 
             return Ok();
+        }
+
+        private string GenerateUsername(string email)
+        {
+            int startIndex = email.IndexOf('@');
+            string username = email.Remove(startIndex);
+
+            return username;
         }
 
         // POST api/Account/RegisterExternal

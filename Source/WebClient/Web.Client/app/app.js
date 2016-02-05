@@ -39,16 +39,15 @@
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME,
                 resolve: routeResolveChecks.products
             })
-            .when('/users/:username', {
-                templateUrl: 'user-profile-page/user-profile-view.html',
-                controller: 'UserProfileController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
-                resolve: routeResolveChecks.userProfile
-            })
             .when('/register', {
                 templateUrl: 'app/Identity/register-page-view.html',
                 controller: 'RegisterPageController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            })
+           .when('/users', {
+               templateUrl: 'app/components/user-profile-page/user-profile-view.html',
+               controller: 'UserProfileController',
+               controllerAs: CONTROLLER_VIEW_MODEL_NAME
             })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'

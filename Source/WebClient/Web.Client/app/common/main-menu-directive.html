@@ -36,8 +36,6 @@
     </nav>
 </div>-->
 
-
-
 <!--<div class="container">
     <nav class="navbar navbar-inverse">
         <div class="navbar-header">
@@ -91,7 +89,6 @@
                         </span>
                     </a>
                 </li>
-
                 <li class="classic-menu-dropdown">
                     <a data-toggle="dropdown" href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true" class="hover-initialized">
                         Classic <i class="fa fa-angle-down"></i>
@@ -183,11 +180,16 @@
                         </li>
                     </ul>
                 </li>
-
-                <li ng-if="vm.currentUser"><a href="/users/{{vm.currentUser.userName}}"><img width="20" height="20" class="margin-right-5 img-rounded" ng-src="{{vm.currentUser.avatarUrl}}" /> {{vm.currentUser.userName}}</a></li>
-
-                <li ng-if="vm.currentUser"><a ng-click="vm.logout()"><i class="fa fa-angle-right"></i> Logout</a></li>-->
-
+                <li ng-if="vm.currentUser">
+                    <a href="/users/{{vm.currentUser.data.UserName}}">
+                        <img width="20" height="20" class="margin-right-5 img-rounded" ng-src="{{vm.currentUser.avatarUrl}}"/> {{vm.currentUser.userName}}
+                    </a>
+                </li>
+                <li ng-if="vm.currentUser">
+                    <a ng-click="vm.logout()">
+                        <i class="fa fa-angle-right"></i> Logout
+                    </a>
+                </li>
                 <!-- BEGIN LOGIN FORM -->
                 <li ng-if="!vm.currentUser">
                     <a href="/demologin" class="btn">

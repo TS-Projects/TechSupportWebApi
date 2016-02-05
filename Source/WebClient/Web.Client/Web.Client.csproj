@@ -91,6 +91,9 @@
     <Content Include="app\components\products\products-page-controller.js" />
     <Content Include="app\components\products\products-page-data.js" />
     <Content Include="app\components\products\products-page-view.html" />
+    <Content Include="app\components\user-profile-page\user-profile-controller.js" />
+    <Content Include="app\components\user-profile-page\user-profile-data.js" />
+    <Content Include="app\components\user-profile-page\user-profile-view.html" />
     <Content Include="app\Identity\forgot-password-page-view.html" />
     <Content Include="app\Identity\identity-service.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />

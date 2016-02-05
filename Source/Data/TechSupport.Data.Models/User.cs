@@ -54,5 +54,10 @@ namespace TechSupport.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public static implicit operator IdentityResult(User v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
