@@ -1,4 +1,6 @@
-﻿namespace TechSupport.Services.Data.Contracts
+﻿using System.Threading.Tasks;
+
+namespace TechSupport.Services.Data.Contracts
 {
     using System.Linq;
     using TechSupport.Data.Models;
@@ -9,5 +11,7 @@
         IQueryable<User> ByUsername(string username);
 
         IQueryable<User> QueriedAllUsers();
+
+        Task<User> Account(string email, string password);
     }
 }

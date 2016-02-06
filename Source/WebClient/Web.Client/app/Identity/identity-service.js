@@ -19,7 +19,7 @@
             setUser: function (user) {
                 
                 currentUser = user.data;
-                console.log("setUser:", currentUser);
+                console.log("currentUser:", user);
                 deferred.resolve(user);
             },
             removeUser: function () {

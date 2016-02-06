@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using TechSupport.Data;
 using TechSupport.Data.Models;
+using TechSupport.Services.Data.Contracts;
 
 namespace TechSupport.WebAPI.Config
 {
@@ -19,7 +22,6 @@ namespace TechSupport.WebAPI.Config
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<User>(context.Get<TechSupportDbContext>()));
-
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {

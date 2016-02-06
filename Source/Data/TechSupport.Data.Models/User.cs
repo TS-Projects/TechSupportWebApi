@@ -27,6 +27,10 @@ namespace TechSupport.Data.Models
 
         [MaxLength(100)]
         [MinLength(2)]
+        public string SubUserName { get; set; }
+
+        [MaxLength(100)]
+        [MinLength(2)]
         public string FirstName { get; set; }
 
         [MaxLength(100)]
@@ -54,10 +58,5 @@ namespace TechSupport.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
-
-        public static implicit operator IdentityResult(User v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -6,7 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -14,6 +16,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Kendo.Mvc.Extensions;
 using TechSupport.Data.Models;
 using TechSupport.WebAPI.Config;
 using TechSupport.WebAPI.Models;
@@ -333,28 +336,12 @@ namespace TechSupport.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            string genUser = GenerateUsername(model.Email);
-            var identityResult = await UserManager.FindByNameAsync(genUser);
-
-            if (identityResult != null)
-            {
-                Random rng = new Random();
-                for (int i = 1; i < int.MaxValue; i++)
-                {
-                    int rand = rng.Next(0, 9);
-                    string altCandidate = identityResult.UserName + "." + rand + i.ToString();
-                    var existCandidate = await UserManager.FindByNameAsync(altCandidate);
-                    if (existCandidate == null)
-                    {
-                        genUser = altCandidate;
-                        break;
-                    }
-                }
-            }
+            string subUserName = SubUserNameGenerator(model.Email);
 
             var user = new User()
             {
-                UserName = genUser,
+                SubUserName = subUserName,
+                UserName = model.Email,
                 Email = model.Email
             };
 
@@ -368,12 +355,30 @@ namespace TechSupport.WebAPI.Controllers
             return Ok();
         }
 
-        private string GenerateUsername(string email)
+        private string SubUserNameGenerator(string email)
         {
             int startIndex = email.IndexOf('@');
-            string username = email.Remove(startIndex);
+            string subUserName = email.Remove(startIndex);
 
-            return username;
+            Random rng = new Random();
+            int i = 0;
+            while (true)
+            {
+                int rand = rng.Next(0, 99);
+
+                i++;
+                var newSubUserName = subUserName + "." + rand + i;
+
+                var isExistAccount = UserManager.Users.Any(u => u.SubUserName == newSubUserName);
+
+                if (!isExistAccount)
+                {
+                    subUserName = newSubUserName;
+                    break;
+                }
+            }
+
+            return subUserName;
         }
 
         // POST api/Account/RegisterExternal

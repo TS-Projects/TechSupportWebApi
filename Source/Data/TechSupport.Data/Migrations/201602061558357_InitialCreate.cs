@@ -118,6 +118,7 @@ namespace TechSupport.Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        SubUserName = c.String(maxLength: 100),
                         FirstName = c.String(maxLength: 100),
                         LastName = c.String(maxLength: 100),
                         City = c.String(maxLength: 100),

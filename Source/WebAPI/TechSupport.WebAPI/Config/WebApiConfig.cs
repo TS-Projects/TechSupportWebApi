@@ -84,10 +84,15 @@
             //    new { action = "Post" },
             //    new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+            //config.Routes.MapHttpRoute(
+            //    name: "LoginApi",
+            //    routeTemplate: "api/users/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional });
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional });
         }
     }
 }
