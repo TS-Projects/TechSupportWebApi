@@ -20,7 +20,7 @@
                 return authPromise.then(function () {
                     return administrationPageData.getAllRegistersUsers();
                 });
-            }]
+            }],
             //popularProjects: ['homePageData', function (homePageData) {
             //    return homePageData.getMostPopularProjects();
             //}],
@@ -60,14 +60,12 @@
             //    var routeParams = $route.current.params;
             //    return projectDetailsData.getProject(routeParams.id, routeParams.title);
             //}],
-            //user: ['$route', 'userProfileData', function ($route, userProfileData) {
-            //    var routeParams = $route.current.params;
-            //    return userProfileData.getUser(routeParams.username.toLowerCase());
-            //}],
-            //profile: ['$route', 'userProfileData', function ($route, userProfileData) {
-            //    var routeParams = $route.current.params;
-            //    return userProfileData.getProfile(routeParams.username.toLowerCase());
-            //}]
+            user: ['$route', 'userProfileData', function ($route, userProfileData) {
+                var routeParams = $route.current.params;
+                console.log("routeParams: ", routeParams);
+                console.log("$route: ", $route);
+                return userProfileData.getUser(routeParams.username.toLowerCase());
+            }]
         };
 
         var routeResolveChecks = {
@@ -81,7 +79,7 @@
             },
             products: {
                 allProducts: routeResolvers.allProducts
-            }
+            },
             //addProject: {
             //    seasonTags: routeResolvers.seasonTags,
             //    languageAndTechnologyTags: routeResolvers.languageAndTechnologyTags
@@ -92,10 +90,9 @@
             //projectDetails: {
             //    project: routeResolvers.project
             //},
-            //userProfile: {
-            //    user: routeResolvers.user,
-            //    profile: routeResolvers.profile
-            //}
+            userProfile: {
+                user: routeResolvers.user
+            }
         };
 
         return {

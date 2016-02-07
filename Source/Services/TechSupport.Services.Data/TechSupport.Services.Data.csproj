@@ -60,10 +60,8 @@
   <ItemGroup>
     <Compile Include="Base\FileInfoService.cs" />
     <Compile Include="Contracts\IDownloadableFilesService.cs" />
-    <Compile Include="Contracts\IIdentityService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="DownloadableFilesService.cs" />
-    <Compile Include="IdentityService.cs" />
     <Compile Include="Models\RawFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersService.cs" />

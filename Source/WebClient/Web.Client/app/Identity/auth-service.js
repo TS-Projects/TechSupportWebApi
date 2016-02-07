@@ -3,9 +3,9 @@
 
     var authService = function authService($http, $q, $cookies, identity, appSettings, errorHandler) {
 
-        var userLoginUrlApi = appSettings.serverPath + '/users/login';
-        var userIdentityUrlApi = appSettings.serverPath + '/login';
-        var userRegisterUrlApi = appSettings.serverPath + '/Account/Register';
+        var userLoginUrlApi = appSettings.serverPath + '/api/users/login';
+        var userIdentityUrlApi = appSettings.serverPath + '/api/users/identity';
+        var userRegisterUrlApi = appSettings.serverPath + '/api/Account/Register';
         
         var TOKEN_KEY = 'authentication';
 
@@ -41,6 +41,7 @@
 
             $http.get(userIdentityUrlApi)
                 .then(function (identityResponse) {
+                    console.log("naka: {0} ", identityResponse);
                     identity.setUser(identityResponse);
                     deferred.resolve(identityResponse);
                 }, function(err) {

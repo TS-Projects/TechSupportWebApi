@@ -3,7 +3,7 @@
     using TechSupport.Data.Models;
     using TechSupport.WebApi.Common.Mapping;
 
-    public class UserProfileDataModel : IMapFrom<User>
+    public class CustomersDataModel : IMapFrom<User>
     {
         public string Id { get; set; }
 

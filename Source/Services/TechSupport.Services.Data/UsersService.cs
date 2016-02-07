@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace TechSupport.Services.Data
             return query;
         }
 
-        public async Task<User> Account(string email, string password)
+        public async Task<User> Account(string emailOrUser, string password)
         {
             //var remoteUser = await this.remoteData.Login(username, password);
             //if (remoteUser == null)
@@ -39,7 +40,8 @@ namespace TechSupport.Services.Data
             //    return null;
             //}
 
-            var localUser = await this.GetLocalAccount(email);
+            var localUser = await this.GetLocalAccount(emailOrUser);
+
             //if (localUser == null)
             //{
             //    localUser = new User
@@ -62,11 +64,11 @@ namespace TechSupport.Services.Data
             return localUser;
         }
 
-        private async Task<User> GetLocalAccount(string email)
+        private async Task<User> GetLocalAccount(string emailOrUserName)
         {
             return await this.users
                 .All()
-                .FirstOrDefaultAsync(u => u.Email == email);
+                .FirstOrDefaultAsync(u => u.Email == emailOrUserName || u.UserName == emailOrUserName);
         }
     }
 }

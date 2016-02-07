@@ -14,11 +14,13 @@
                 return deferred.promise;
             },
             isAuthenticated: function () {
+                console.log("ëiei", Object.getOwnPropertyNames(currentUser).length !== 0);
+                console.log("isAuthenticated currentUser", currentUser);
                 return Object.getOwnPropertyNames(currentUser).length !== 0;
             },
             setUser: function (user) {
                 
-                currentUser = user.data;
+                currentUser = user;
                 console.log("currentUser:", user);
                 deferred.resolve(user);
             },

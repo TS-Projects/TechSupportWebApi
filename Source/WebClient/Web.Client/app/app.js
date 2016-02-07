@@ -23,7 +23,7 @@
             //    controllerAs: CONTROLLER_VIEW_MODEL_NAME,
             //    reloadOnSearch: false
             //})
-            .when('/demologin', {
+            .when('/login', {
                 templateUrl: 'app/Identity/login-page-view.html',
                 controller: 'LoginPageController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
@@ -44,10 +44,11 @@
                 controller: 'RegisterPageController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
             })
-           .when('/users', {
+           .when('/users/:username', {
                templateUrl: 'app/components/user-profile-page/user-profile-view.html',
                controller: 'UserProfileController',
-               controllerAs: CONTROLLER_VIEW_MODEL_NAME
+               controllerAs: CONTROLLER_VIEW_MODEL_NAME,
+               resolve: routeResolveChecks.userProfile
             })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
@@ -79,6 +80,7 @@
 
         if (auth.isAuthenticated()) {
             auth.getIdentity().then(function (identity) {
+                console.log("auth.getIdentity() :", identity);
                 notifier.success('Welcome back, ' + identity.UserName + '!');
             });
         }
@@ -97,7 +99,7 @@
         .value('toastr', toastr)
         .value('errorHandler', function (error) { console.warn(error) })
         .constant('appSettings', {
-            serverPath: 'http://localhost:13078/api',
+            serverPath: 'http://localhost:13078',
             odataServerPath: 'http://localhost:13078/odata'
         });
 }());

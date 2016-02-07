@@ -1,4 +1,7 @@
-﻿namespace TechSupport.WebAPI.Config
+﻿using System.Net.Http;
+using System.Web.Http.Routing;
+
+namespace TechSupport.WebAPI.Config
 {
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
@@ -11,15 +14,15 @@
     {
         public static void Register(HttpConfiguration config)
         {
-         //  config.Formatters.Add(new RazorFormatter());
-             config.Formatters.Add(new BrowserJsonFormatter());
-             config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
+            //  config.Formatters.Add(new RazorFormatter());
+            config.Formatters.Add(new BrowserJsonFormatter());
+            config.Services.Add(typeof(IExceptionLogger), new ElmahExceptionLogger());
 
-            //config.Routes.MapHttpRoute(
-            //   "Files",
-            //   "Files/{folder}/{file}",
-            //   new { controller = "Files", action = "Get" },
-            //   new { folder = @"\d+" });
+            config.Routes.MapHttpRoute(
+               "Files",
+               "Files/{folder}/{file}",
+               new { controller = "Files", action = "Get" },
+               new { folder = @"\d+" });
 
             //config.Routes.MapHttpRoute(
             //    "CustomerCardsByUser",
@@ -46,53 +49,53 @@
             //    "Api/Administration/{controller}/{action}/{id}",
             //    new { id = RouteParameter.Optional });
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiWithActionAndId",
-            //    "Api/{controller}/{action}/{id}",
-            //    null,
-            //    new { id = @"\d+" });
+            config.Routes.MapHttpRoute(
+                "DefaultApiWithActionAndId",
+                "Api/{controller}/{action}/{id}",
+                null,
+                new { id = @"\d+" });
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiWithActionAndUsername",
-            //    "Api/{controller}/{action}/{username}");
+            config.Routes.MapHttpRoute(
+                "DefaultApiWithActionAndUsername",
+                "Api/{controller}/{action}/{username}");
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiGetWithId",
-            //    "Api/{controller}/{id}",
-            //    new { action = "Get" },
-            //    new { id = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            config.Routes.MapHttpRoute(
+                "DefaultApiGetWithId",
+                "Api/{controller}/{id}",
+                new { action = "Get" },
+                new { id = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiPostWithId",
-            //    "Api/{controller}/{id}",
-            //    new { action = "Post" },
-            //    new { id = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+            config.Routes.MapHttpRoute(
+                "DefaultApiPostWithId",
+                "Api/{controller}/{id}",
+                new { action = "Post" },
+                new { id = @"\d+", httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiWithAction",
-            //    "api/{controller}/{action}");
+            config.Routes.MapHttpRoute(
+                "DefaultApiWithAction",
+                "api/{controller}/{action}");
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiGet",
-            //    "Api/{controller}",
-            //    new { action = "Get" },
-            //    new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            config.Routes.MapHttpRoute(
+                "DefaultApiGet",
+                "Api/{controller}",
+                new { action = "Get" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
-            //config.Routes.MapHttpRoute(
-            //    "DefaultApiPost",
-            //    "Api/{controller}",
-            //    new { action = "Post" },
-            //    new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+            config.Routes.MapHttpRoute(
+                "DefaultApiPost",
+                "Api/{controller}",
+                new { action = "Post" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
-            //config.Routes.MapHttpRoute(
-            //    name: "LoginApi",
-            //    routeTemplate: "api/users/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute(
+                "LoginApi",
+                "api/users/{controller}/{id}",
+                new { id = RouteParameter.Optional });
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute(
+                "DefaultApi",
+                "api/{controller}/{id}",
+                new { id = RouteParameter.Optional });
         }
     }
 }

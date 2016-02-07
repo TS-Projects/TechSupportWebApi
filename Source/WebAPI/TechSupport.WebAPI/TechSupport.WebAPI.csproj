@@ -288,22 +288,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Users\Controllers\LoginController.cs" />
-    <Compile Include="Api\CustomerCards\Controllers\CustomerCardRegistrationController.cs" />
-    <Compile Include="Api\CustomerCards\Controllers\CustomerCardExtensions.cs" />
-    <Compile Include="Api\Administration\Controllers\CustomerCardController.cs" />
-    <Compile Include="Api\Administration\Controllers\UsersController.cs" />
-    <Compile Include="Api\AutoMapperConfig.cs" />
+    <Compile Include="Controllers\Base\BaseAuthorizationController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\Base\BaseoDataAuthorizationController.cs" />
+    <Compile Include="Controllers\CrawlersController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\CustomerCardRegistrationController.cs" />
+    <Compile Include="Controllers\CustomerCardExtensions.cs" />
+    <Compile Include="Controllers\CustomerCardController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\ODataConfig.cs" />
-    <Compile Include="Controllers\BaseAuthorizationController.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Config\FilterConfig.cs" />
     <Compile Include="Config\IdentityConfig.cs" />
     <Compile Include="Config\NinjectConfig.cs" />
     <Compile Include="Config\Startup.Auth.cs" />
     <Compile Include="Config\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseODataAuthorizationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -396,6 +398,7 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

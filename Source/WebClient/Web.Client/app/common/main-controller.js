@@ -19,6 +19,7 @@
 
         function waitForLogin() {
             identity.getUser().then(function (user) {
+
                 vm.currentUser = user;
             });
         }

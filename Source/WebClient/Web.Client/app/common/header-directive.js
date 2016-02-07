@@ -1,15 +1,15 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    var headerDirective = function headerDirective() {
-        return {
-            restrict: 'A',
-            scope: false,
-            templateUrl: 'app/common/header-directive.html'
-        };
-    };
+//    var headerDirective = function headerDirective() {
+//        return {
+//            restrict: 'A',
+//            scope: false,
+//            templateUrl: 'app/common/header-directive.html'
+//        };
+//    };
 
-    angular
-        .module('techSupportApp.directives')
-        .directive('tsHeader', [headerDirective]);
-}());
+//    angular
+//        .module('techSupportApp.directives')
+//        .directive('tsHeader', [headerDirective]);
+//}());

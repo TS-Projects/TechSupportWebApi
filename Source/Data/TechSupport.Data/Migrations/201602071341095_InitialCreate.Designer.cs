@@ -13,7 +13,7 @@ namespace TechSupport.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602061558357_InitialCreate"; }
+            get { return "201602071341095_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

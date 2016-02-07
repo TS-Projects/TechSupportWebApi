@@ -12,6 +12,6 @@ namespace TechSupport.Services.Data.Contracts
 
         IQueryable<User> QueriedAllUsers();
 
-        Task<User> Account(string email, string password);
+        Task<User> Account(string emailOrUserName, string password);
     }
 }

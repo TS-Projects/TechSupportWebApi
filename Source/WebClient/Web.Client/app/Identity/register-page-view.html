@@ -309,9 +309,13 @@
                     <option value="ZW">Zimbabwe</option>
                 </select>
             </div>-->
-            <p class="hint"> Enter your account details below: </p>
+        <p class="hint"> Enter your account details below: </p>
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">Username</label>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="UserName" ng-pattern="emailPattern" ng-model="user.UserName" required="required">
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">Email</label>
                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="E-Mail" ng-pattern="emailPattern" ng-model="user.Email" required="required">
             </div>
             <div class="form-group">

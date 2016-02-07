@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Administration\CustomerAdministrationDataModel.cs" />
     <Compile Include="Administration\CustomerCardAdministrationDataModel.cs" />
-    <Compile Include="Administration\UserProfileDataModel.cs" />
+    <Compile Include="Administration\CustomersDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardCategoryDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardQuestionDataModel.cs" />
@@ -73,7 +73,7 @@
     <Compile Include="CustomerCards\Model\CustomerCardQuestionAnswerModel.cs" />
     <Compile Include="CustomerCards\Model\CustomerCardRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users\IdentityResponseModel.cs" />
+    <Compile Include="Users\UserResponseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TechSupport.Data.Common\TechSupport.Data.Common.csproj">

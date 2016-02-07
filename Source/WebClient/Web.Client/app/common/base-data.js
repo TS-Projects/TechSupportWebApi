@@ -9,7 +9,6 @@
 
         function get(url, authorize) {
             var deferred = $q.defer();
-
             if (authorize && !identity.isAuthenticated()) {
                 notifier.error(authorizationErrorMessage);
                 deferred.reject();
@@ -19,6 +18,7 @@
 
                 $http.get(URL)
                     .then(function (data) {
+                            console.log("data.get: ", data);
                         deferred.resolve(data);
                     },
                     function (err) {
@@ -67,7 +67,7 @@
         }
 
         function getDataSource() {
-            var URL = appSettings.odataServerPath + '/Users';
+            var URL = appSettings.odataServerPath + '/Customers';
             var TOKEN_KEY = 'authentication';
             var token = $cookies.get(TOKEN_KEY);
 

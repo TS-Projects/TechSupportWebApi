@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using System.Web.Http;
-using TechSupport.Data;
-using TechSupport.Data.Models;
-using TechSupport.Services.Data.Contracts;
-
-namespace TechSupport.WebAPI.Controllers
+﻿namespace TechSupport.WebAPI.Controllers.Base
 {
+    using System.Linq;
+
+    using TechSupport.Data.Models;
+    using TechSupport.Services.Data.Contracts;
+
     public class BaseAuthorizationController : BaseController
     {
         public BaseAuthorizationController(IUsersService usersService)
@@ -21,6 +20,7 @@ namespace TechSupport.WebAPI.Controllers
         private void SetCurrentUser()
         {
             var username = this.User.Identity.Name;
+
             if (username != null)
             {
                 this.CurrentUser = this.UsersService

@@ -24,10 +24,7 @@ namespace TechSupport.Data.Models
             // Add custom user claims here
             return userIdentity;
         }
-
-        [MaxLength(100)]
-        [MinLength(2)]
-        public string SubUserName { get; set; }
+        public bool IsAdmin { get; set; }
 
         [MaxLength(100)]
         [MinLength(2)]

@@ -336,12 +336,9 @@ namespace TechSupport.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            string subUserName = SubUserNameGenerator(model.Email);
-
             var user = new User()
             {
-                SubUserName = subUserName,
-                UserName = model.Email,
+                UserName = model.UserName,
                 Email = model.Email
             };
 
@@ -353,32 +350,6 @@ namespace TechSupport.WebAPI.Controllers
             }
 
             return Ok();
-        }
-
-        private string SubUserNameGenerator(string email)
-        {
-            int startIndex = email.IndexOf('@');
-            string subUserName = email.Remove(startIndex);
-
-            Random rng = new Random();
-            int i = 0;
-            while (true)
-            {
-                int rand = rng.Next(0, 99);
-
-                i++;
-                var newSubUserName = subUserName + "." + rand + i;
-
-                var isExistAccount = UserManager.Users.Any(u => u.SubUserName == newSubUserName);
-
-                if (!isExistAccount)
-                {
-                    subUserName = newSubUserName;
-                    break;
-                }
-            }
-
-            return subUserName;
         }
 
         // POST api/Account/RegisterExternal

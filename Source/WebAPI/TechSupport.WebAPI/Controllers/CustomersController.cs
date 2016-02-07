@@ -12,16 +12,16 @@ using Elmah;
 using TechSupport.Data;
 using TechSupport.Services.Data.Contracts;
 using TechSupport.WebAPI.Controllers;
-using DataModel = TechSupport.WebAPI.DataModels.Administration.UserProfileDataModel;
+using DataModel = TechSupport.WebAPI.DataModels.Administration.CustomersDataModel;
 using Model = TechSupport.Data.Models.User;
 
-namespace TechSupport.WebAPI.Api.Administration.Controllers
+namespace TechSupport.WebAPI.Controllers
 {
-    public class UsersController : ODataController
+    public class CustomersController : ODataController
     {
         private readonly IUsersService usersService;
 
-        public UsersController(IUsersService usersService)
+        public CustomersController(IUsersService usersService)
         {
             this.usersService = usersService;
         }
@@ -44,7 +44,7 @@ namespace TechSupport.WebAPI.Api.Administration.Controllers
         // [AllowAnonymous]
         // [HttpPut]
         // PUT odata/Users(5)
-        
+
         public IHttpActionResult Put([FromODataUri] string key, [FromBody]DataModel user)
         {
             var customEx = new Exception("Hello I am testing Elmah", new NotSupportedException());

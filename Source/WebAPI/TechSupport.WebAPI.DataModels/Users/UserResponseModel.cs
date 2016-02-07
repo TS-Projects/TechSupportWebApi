@@ -8,7 +8,7 @@
     using TechSupport.Data.Models;
     using TechSupport.WebApi.Common.Mapping;
 
-    public class IdentityResponseModel : IMapFrom<User>, IHaveCustomMappings
+    public class UserResponseModel : IMapFrom<User>, IHaveCustomMappings
     {
         public string Email { get; set; }
 
@@ -16,7 +16,7 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<User, IdentityResponseModel>()
+            configuration.CreateMap<User, UserResponseModel>()
                 .ForMember(m => m.Email, opt => opt.MapFrom(c => c.Email.ToString()))
                 .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.UserName.ToString()));
         }

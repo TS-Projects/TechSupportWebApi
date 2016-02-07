@@ -1,4 +1,4 @@
-﻿namespace TechSupport.WebAPI.Controllers
+﻿namespace TechSupport.WebAPI.Controllers.Base
 {
     using System.Web.Http;
 

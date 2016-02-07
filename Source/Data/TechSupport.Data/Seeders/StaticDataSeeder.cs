@@ -23,9 +23,8 @@ namespace TechSupport.Data.Seeders
             {
                 var user = new User()
                 {
-                    UserName = string.Format("FakeUser{0}@FakeEmail.com", i + 1),
+                    UserName = string.Format("FakeUser{0}", i + 1),
                     Email = string.Format("FakeUser{0}@FakeEmail.com", i + 1),
-                    SubUserName = string.Format("FakeUser{0}", i + 1),
                     Address = string.Format("Karlovo{0}", i + 1),
                     FirstName = names[i].Substring(0, names[i].IndexOf(" ")),
                     LastName = names[i].Substring(names[i].IndexOf(" ") + 1)
@@ -44,8 +43,7 @@ namespace TechSupport.Data.Seeders
         {
             const string AdminEmail = "qwe@qwe.com";
             const string AdminPassword = "qweqwe";
-            const string SubUserName = "qwe";
-
+            const string AdminUserName = "qwe";
 
             if (context.Users.Any(u => u.Email == AdminEmail))
             {
@@ -60,8 +58,7 @@ namespace TechSupport.Data.Seeders
                 LastName = "Admina",
                 Email = AdminEmail,
                 Address = "Sopot",
-                UserName = AdminEmail,
-                SubUserName = SubUserName
+                UserName = AdminUserName
             };
 
             userManager.Create(admin, AdminPassword);
@@ -75,8 +72,8 @@ namespace TechSupport.Data.Seeders
         internal static void SeedModerator(TechSupportDbContext context)
         {
             const string moderatorEmail = "moderator@moderator.com";
+            const string moderatorUserName = "moderator";
             const string mderatorPassword = "moderator123456";
-            const string SubUserName = "moderator";
 
             if (context.Users.Any(u => u.Email == moderatorEmail))
             {
@@ -91,8 +88,7 @@ namespace TechSupport.Data.Seeders
                 LastName = "Moderatora",
                 Email = moderatorEmail,
                 Address = "Sopot",
-                UserName = moderatorEmail,
-                SubUserName = SubUserName
+                UserName = moderatorUserName
             };
 
             userManager.Create(admin, mderatorPassword);
