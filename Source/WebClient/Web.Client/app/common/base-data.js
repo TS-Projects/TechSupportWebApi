@@ -18,7 +18,6 @@
 
                 $http.get(URL)
                     .then(function (data) {
-                            console.log("data.get: ", data);
                         deferred.resolve(data);
                     },
                     function (err) {
@@ -84,7 +83,6 @@
                     },
                     update: {
                         url: function (data) {
-                            console.log(data);
                             return URL + "('" + data.Id + "')";
                         }
                     },

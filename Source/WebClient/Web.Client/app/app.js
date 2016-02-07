@@ -5,8 +5,7 @@
 
         var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
-
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         var routeResolveChecks = routeResolversProvider.$get();
 
@@ -44,7 +43,7 @@
                 controller: 'RegisterPageController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
             })
-           .when('/users/:username', {
+            .when('/users/:username', {
                templateUrl: 'app/components/user-profile-page/user-profile-view.html',
                controller: 'UserProfileController',
                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
@@ -54,11 +53,6 @@
                 templateUrl: 'not-found-page/not-found-view.html'
             })
             .otherwise({ redirectTo: '/notfound' });
-
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
 
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
@@ -80,11 +74,11 @@
 
         if (auth.isAuthenticated()) {
             auth.getIdentity().then(function (identity) {
-                console.log("auth.getIdentity() :", identity);
-                notifier.success('Welcome back, ' + identity.UserName + '!');
+                notifier.success('Welcome back, ' + identity.userName + '!');
             });
         }
     };
+
 
     // angular.module('templates', []) // used for client-side template caching
     angular.module('techSupportApp.data', []);

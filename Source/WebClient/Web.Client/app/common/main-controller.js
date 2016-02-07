@@ -3,7 +3,7 @@
 
     var mainController = function mainController($location, auth, identity) {
         var vm = this;
-
+        
         waitForLogin();
 
         vm.logout = function logout() {
@@ -19,7 +19,6 @@
 
         function waitForLogin() {
             identity.getUser().then(function (user) {
-
                 vm.currentUser = user;
             });
         }

@@ -62,8 +62,6 @@
             //}],
             user: ['$route', 'userProfileData', function ($route, userProfileData) {
                 var routeParams = $route.current.params;
-                console.log("routeParams: ", routeParams);
-                console.log("$route: ", $route);
                 return userProfileData.getUser(routeParams.username.toLowerCase());
             }]
         };

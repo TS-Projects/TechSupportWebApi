@@ -41,7 +41,6 @@
 
             $http.get(userIdentityUrlApi)
                 .then(function (identityResponse) {
-                    console.log("naka: {0} ", identityResponse);
                     identity.setUser(identityResponse);
                     deferred.resolve(identityResponse);
                 }, function(err) {
