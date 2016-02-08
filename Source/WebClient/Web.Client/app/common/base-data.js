@@ -8,6 +8,7 @@
             authorizationErrorMessage = 'You must be logged in to do that';
 
         function get(url, authorize) {
+            debugger;
             var deferred = $q.defer();
             if (authorize && !identity.isAuthenticated()) {
                 notifier.error(authorizationErrorMessage);

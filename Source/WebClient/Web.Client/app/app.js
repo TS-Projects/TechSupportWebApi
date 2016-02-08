@@ -57,7 +57,7 @@
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
-    var run = function run($rootScope, $location, auth, notifier) {
+    var run = function run($rootScope, $http, $cookies, $location, auth, notifier) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('Please log into your account first!');
@@ -71,8 +71,9 @@
                 //    .attr('data-current-route', current.$$route.originalPath);
             }
         });
-
+        
         if (auth.isAuthenticated()) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('authentication');
             auth.getIdentity().then(function (identity) {
                 notifier.success('Welcome back, ' + identity.userName + '!');
             });
@@ -88,7 +89,7 @@
 
     angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', config])
-        .run(['$rootScope', '$location', 'auth', 'notifier', run])
+        .run(['$rootScope', '$http', '$cookies', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
         .value('errorHandler', function (error) { console.warn(error) })

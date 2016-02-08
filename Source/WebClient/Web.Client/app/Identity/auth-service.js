@@ -22,14 +22,14 @@
                     theBigDay.setHours(theBigDay.getHours() + 72);
 
                     $cookies.put(TOKEN_KEY, tokenValue, { expires: theBigDay });
-                    
+                    console.log("tokenValue:", tokenValue);
                     $http.defaults.headers.common.Authorization = 'Bearer ' + tokenValue;
-
+                    console.log("$http.defaults.headers:", $http.defaults.headers);
+                    console.log("$http.defaults.headers.common.Authorization:", $http.defaults.headers.common.Authorization);
                     getIdentity().then(function () {
                         deferred.resolve(response);
                     });
-                },
-                function (err) {
+                }, function (err) {
                     deferred.reject(err);
                 });
 
@@ -41,9 +41,11 @@
 
             $http.get(userIdentityUrlApi)
                 .then(function (identityResponse) {
-                    identity.setUser(identityResponse);
-                    deferred.resolve(identityResponse);
-                }, function(err) {
+                    console.log("identityResponse: ", identityResponse);
+                    identity.setUser(identityResponse.data);
+                    deferred.resolve(identityResponse.data);
+                }, function (err) {
+                    console.log("err: ", err);
                     deferred.reject(err);
                 });
 

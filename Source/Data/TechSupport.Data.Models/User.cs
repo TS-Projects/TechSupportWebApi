@@ -1,15 +1,17 @@
-﻿using TechSupport.Data.Common;
-
-namespace TechSupport.Data.Models
+﻿namespace TechSupport.Data.Models
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TechSupport.Data.Common;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using TechSupport.Data.Common.Models;
 
-    public class User : IdentityUser
+
+    public class User : IdentityUser, IDeletableEntity
     {
         public User()
         {
@@ -24,6 +26,18 @@ namespace TechSupport.Data.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        //[Required]
+        //[MaxLength(80)]
+        //[EmailAddress]
+        //[Index(IsUnique = true)]
+        //public string Email { get; set; }
+
+        //[Required]
+        //[StringLength(ValidationConstants.MaxUserUserNameLength)]
+        //[Index(IsUnique = true)]
+        //public string UserName { get; set; }
+
         public bool IsAdmin { get; set; }
 
         [MaxLength(100)]
