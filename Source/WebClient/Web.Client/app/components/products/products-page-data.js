@@ -3,8 +3,8 @@
 
     var productsPageData = function productsPageData(data) {
         function getAllProducts() {
-            var student = { name: 'Ivaylo', age: 1}
-            //return data.get('/projects');
+            var student = { name: 'Ivaylo', age: 1 }
+
 
             return student;
         }
