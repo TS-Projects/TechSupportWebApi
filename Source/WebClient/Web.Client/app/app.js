@@ -49,6 +49,16 @@
                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
                resolve: routeResolveChecks.userProfile
             })
+            .when('/contacts', {
+                templateUrl: 'app/components/contacts/contacts-page-view.html',
+                controller: 'ContactsPageController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            })
+            .when('/about', {
+                templateUrl: 'app/components/about/about-page-view.html',
+                controller: 'AboutUsPageController',
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+            })
             .when('/notfound', {
                 templateUrl: 'not-found-page/not-found-view.html'
             })

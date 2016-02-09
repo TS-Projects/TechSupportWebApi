@@ -9,3 +9,61 @@
 .page-content {
     background-color: transparent;
 }
+
+.page-container-bg-solid .page-content {
+    background: #eef1f5;
+}
+
+.profile-sidebar {
+    float: left;
+    width: 300px;
+    margin-right: 20px;
+}
+
+.profile-content {
+    overflow: hidden;
+}
+
+.c-content-contact-1 {
+    width: 100%;
+    position: relative;
+    margin-bottom: 70px;
+}
+
+.c-content-contact-1>.row .c-body {
+    position: relative;
+    z-index: 100;
+    background: #fff;
+    margin: 40px 40px 40px 0;
+    padding: 60px 40px;
+}
+
+.c-content-contact-1-gmap {
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #c2cad8;
+}
+
+.c-content-feedback-1>.row>div .c-content-title-1>h3 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+element.style {
+    height: 615px;
+    overflow: hidden;
+    transform: translateZ(0px);
+    background-color: rgb(229, 227, 223);
+}

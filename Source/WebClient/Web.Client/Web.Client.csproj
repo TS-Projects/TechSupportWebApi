@@ -86,6 +86,8 @@
     <Content Include="app\common\main-menu-directive.js" />
     <Content Include="app\common\notifier-service.js" />
     <Content Include="app\common\route-resolvers-provider.js" />
+    <Content Include="app\components\about\about-page-view.html" />
+    <Content Include="app\components\contacts\contacts-page-view.html" />
     <Content Include="app\components\customercard\customercard.html" />
     <Content Include="app\components\customercard\customerCardController.js" />
     <Content Include="app\components\products\products-page-controller.js" />
@@ -5680,6 +5682,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\about\about-us-page-controller.js" />
+    <Content Include="app\components\contacts\contacts-page-controller.js" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
