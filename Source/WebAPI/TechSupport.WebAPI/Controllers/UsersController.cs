@@ -21,36 +21,21 @@
         {
         }
 
-        [HttpGet]
-        public async Task<IHttpActionResult> Profile(string username)
-        {
-            string visitorUsername = null;
-            string visitorEmail = null;
-            var isAdmin = false;
-            if (this.CurrentUser != null)
-            {
-                visitorUsername = this.CurrentUser.UserName;
-                visitorEmail = this.CurrentUser.Email;
-                isAdmin = this.CurrentUser.IsAdmin;
-            }
-
-            var model = await this.UsersService
-                .ByUsername(username)
-                .ProjectTo<UserResponseModel>(new { username, visitorEmail, visitorUsername, isAdmin })
-                .FirstOrDefaultAsync();
-
-            return this.Data(model);
-        }
-
-
-
         [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> Identity()
         {
+            //bool isAdmin = false == !User.IsInRole("Administrator");
+            bool isAdmin = false;
+
+            if (User.IsInRole("Administrator"))
+            {
+                isAdmin = true;
+            }
+
             var model = await this.UsersService
                 .ByUsername(this.CurrentUser.UserName)
-                .ProjectTo<UserResponseModel>()
+                .ProjectTo<IdentityResponseModel>(new { isAdmin })
                 .FirstOrDefaultAsync();
 
             return this.Data(model);

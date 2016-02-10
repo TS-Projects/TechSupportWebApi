@@ -13,5 +13,7 @@ namespace TechSupport.Services.Data.Contracts
         IQueryable<User> QueriedAllUsers();
 
         Task<User> Account(string emailOrUserName, string password);
+
+        Task<bool> UserIsAdmin(string username);
     }
 }

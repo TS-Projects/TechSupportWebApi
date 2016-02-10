@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using TechSupport.Data.Models;
-using TechSupport.Services.Data.Contracts;
-using TechSupport.Services.Logic;
 using TechSupport.WebAPI.Config;
 
 namespace TechSupport.WebAPI.Providers
@@ -16,7 +17,6 @@ namespace TechSupport.WebAPI.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-        private readonly IUsersService usersService;
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -28,86 +28,27 @@ namespace TechSupport.WebAPI.Providers
             _publicClientId = publicClientId;
         }
 
-        public ApplicationOAuthProvider(string publicClientId, IUsersService usersService)
-             : this(publicClientId)
-        {
-            this.usersService = usersService;
-        }
-
-        protected IUsersService UsersService
-        {
-            get { return this.usersService ?? ObjectFactory.Get<IUsersService>(); }
-        }
-
-        public static AuthenticationProperties CreateProperties()
-        {
-            return new AuthenticationProperties();
-        }
-
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var user = await this.GetUserFromContext(context);
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            if (user != null)
-            {
-                var oauthIdentity = ClaimsIdentityFactory.Create(user, OAuthDefaults.AuthenticationType);
-                var cookiesIdentity = ClaimsIdentityFactory.Create(user, CookieAuthenticationDefaults.AuthenticationType);
- 
-                AuthenticationProperties properties = CreateProperties();
-                AuthenticationTicket ticket = new AuthenticationTicket(oauthIdentity, properties);
-                context.Validated(ticket);
-                context.Request.Context.Authentication.SignIn(cookiesIdentity);
-            }
+            User user = await userManager.FindByNameOrEmailAsync(context.UserName, context.Password);
 
-
-        }
-
-        private async Task<User> GetUserFromContext(OAuthGrantResourceOwnerCredentialsContext context)
-        {
-            User user = null;
-
-            if (this.IsValidContext(context))
-            {
-                user = await this.LoginUser(context);
-            }
-
-            return user;
-        }
-
-        private async Task<User> LoginUser(OAuthGrantResourceOwnerCredentialsContext context)
-        {
-            var user = await this.UsersService.Account(context.UserName, context.Password);
-
-            // Check if remote login credentials are correct
             if (user == null)
             {
-                context.SetError("invalid_grant", "Information is not valid");
-                return null;
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
             }
 
-            return user;
-        }
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                CookieAuthenticationDefaults.AuthenticationType);
 
-        private bool IsValidContext(OAuthGrantResourceOwnerCredentialsContext context)
-        {
-            var isValid = true;
-
-            if (context == null)
-            {
-                isValid = false;
-            }
-            else if (string.IsNullOrEmpty(context.UserName) || string.IsNullOrWhiteSpace(context.UserName))
-            {
-                context.SetError("invalid_grant", "Information is not valid");
-                isValid = false;
-            }
-            else if (string.IsNullOrEmpty(context.Password) || string.IsNullOrWhiteSpace(context.Password))
-            {
-                context.SetError("invalid_grant", "Information is not valid");
-                isValid = false;
-            }
-
-            return isValid;
+            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            context.Validated(ticket);
+            context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

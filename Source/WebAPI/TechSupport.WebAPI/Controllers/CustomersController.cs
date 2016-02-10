@@ -26,7 +26,7 @@ namespace TechSupport.WebAPI.Controllers
             this.usersService = usersService;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         [EnableQuery]
         [ODataRoute]
