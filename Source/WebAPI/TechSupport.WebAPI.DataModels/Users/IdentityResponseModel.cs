@@ -14,7 +14,8 @@
 
         public string UserName { get; set; }
 
-        public string IsAdmin { get; set; }
+        [IgnoreMap]
+        public bool IsAdmin = false;
 
         public void CreateMappings(IConfiguration configuration)
         {

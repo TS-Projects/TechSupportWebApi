@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Security;
 using Kendo.Mvc.Extensions;
 using TechSupport.Data.Models;
 using TechSupport.WebAPI.Config;
@@ -272,7 +273,7 @@ namespace TechSupport.WebAPI.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, oAuthIdentity);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -340,14 +341,19 @@ namespace TechSupport.WebAPI.Controllers
             {
                 UserName = model.UserName,
                 Email = model.Email
+                
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+
+            //Custom added. Add user to User role.
+            await UserManager.AddToRoleAsync(user.Id, "User");
 
             return Ok();
         }

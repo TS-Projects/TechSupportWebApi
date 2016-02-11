@@ -25,18 +25,10 @@
         [HttpGet]
         public async Task<IHttpActionResult> Identity()
         {
-            //bool isAdmin = false == !User.IsInRole("Administrator");
-            bool isAdmin = false;
-
-            if (User.IsInRole("Administrator"))
-            {
-                isAdmin = true;
-            }
-
             var model = await this.UsersService
-                .ByUsername(this.CurrentUser.UserName)
-                .ProjectTo<IdentityResponseModel>(new { isAdmin })
-                .FirstOrDefaultAsync();
+                 .ByUsername(this.CurrentUser.UserName)
+                 .ProjectTo<IdentityResponseModel>()
+                 .FirstOrDefaultAsync();
 
             return this.Data(model);
         }

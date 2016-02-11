@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -45,7 +46,7 @@ namespace TechSupport.WebAPI.Providers
             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationProperties properties = CreateProperties(user.UserName, oAuthIdentity);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -87,11 +88,14 @@ namespace TechSupport.WebAPI.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        //Custom added roles. It`s return roles properties at login.  
+        public static AuthenticationProperties CreateProperties(string userName, ClaimsIdentity oAuthIdentity)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                { "roles",string.Join(",",oAuthIdentity.Claims.Where(c=> c.Type == ClaimTypes.Role).Select(c => c.Value).ToArray())}
+
             };
             return new AuthenticationProperties(data);
         }

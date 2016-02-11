@@ -48,8 +48,6 @@
         [MinLength(2)]
         public string LastName { get; set; }
 
-        public bool IsAdmin { get; set; }
-
         [MaxLength(100)]
         [MinLength(2)]
         public string City { get; set; }

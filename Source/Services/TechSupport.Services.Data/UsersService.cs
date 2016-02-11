@@ -24,15 +24,6 @@ namespace TechSupport.Services.Data
                 .Where(u => u.UserName == username);
         }
 
-        public async Task<bool> UserIsAdmin(string username)
-        {
-            return await this.users
-                .All()
-                .Where(u => u.UserName == username)
-                .Select(u => u.IsAdmin)
-                .FirstOrDefaultAsync();
-        }
-
         public IQueryable<User> QueriedAllUsers()
         {
             var query = this.users
