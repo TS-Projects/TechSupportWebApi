@@ -23,6 +23,7 @@ using TechSupport.WebAPI.Config;
 using TechSupport.WebAPI.Models;
 using TechSupport.WebAPI.Providers;
 using TechSupport.WebAPI.Results;
+using Constants = TechSupport.WebAPI.Common.Constants;
 
 namespace TechSupport.WebAPI.Controllers
 {
@@ -353,7 +354,7 @@ namespace TechSupport.WebAPI.Controllers
             }
 
             //Custom added. Add user to User role.
-            await UserManager.AddToRoleAsync(user.Id, "User");
+            await UserManager.AddToRoleAsync(user.Id, Constants.AutomaticAddedExistSpecificRoleOnRegisterUser);
 
             return Ok();
         }

@@ -22,5 +22,7 @@ namespace TechSupport.WebAPI.Common
         public const string RequestedResourceWasNotFound = "The requested resource was not found";
         public const string NotAuthorized = "You are not authorized for this operation";
         public const string InvalidPageNumber = "Invalid page number";
+
+        public const string AutomaticAddedExistSpecificRoleOnRegisterUser = "User";
     }
 }
