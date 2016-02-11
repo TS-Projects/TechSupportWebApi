@@ -97,7 +97,8 @@
     <Content Include="app\components\user-profile-page\user-profile-data.js" />
     <Content Include="app\components\user-profile-page\user-profile-view.html" />
     <Content Include="app\Identity\forgot-password-page-view.html" />
-    <Content Include="app\Identity\identity-service.js" />
+    <Content Include="app\Identity\identity.js" />
+    <Content Include="app\Identity\authorization.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />
     <Content Include="assets\css\kendoui\Black\imagebrowser.png" />
     <Content Include="assets\css\kendoui\Black\indeterminate.gif" />
@@ -1469,7 +1470,7 @@
     <Content Include="app\components\administration\users-administration-controller.js" />
     <Content Include="app\components\administration\users-administration-data.js" />
     <Content Include="app\components\administration\users-administration-view.html" />
-    <Content Include="app\Identity\auth-service.js" />
+    <Content Include="app\Identity\auth.js" />
     <Content Include="app\Identity\login-page-view.html" />
     <Content Include="app\Identity\login-page-controller.js" />
     <Content Include="app\Identity\register-page-view.html" />

@@ -24,8 +24,7 @@
             //})
             .when('/login', {
                 templateUrl: 'app/Identity/login-page-view.html',
-                controller: 'LoginPageController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME
+                controller: 'LoginPageController'
             })
             .when('/administration', {
                 templateUrl: 'app/components/administration/users-administration-view.html',
@@ -67,7 +66,7 @@
         $httpProvider.interceptors.push('httpResponseInterceptor');
     };
 
-    var run = function run($rootScope, $http, $cookies, $location, auth, notifier) {
+    var run = function run($rootScope, $http, $cookies, $location, auth, identity, notifier) {
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('Please log into your account first!');
@@ -81,12 +80,10 @@
                 //    .attr('data-current-route', current.$$route.originalPath);
             }
         });
-        
-        if (auth.isAuthenticated()) {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get('authentication');
-            auth.getIdentity().then(function (identity) {
-                notifier.success('Welcome back, ' + identity.userName + '!');
-            });
+
+        if (identity.isAuthenticated()) {
+            var user = identity.getCurrentUser();
+            notifier.success('Welcome back, ' + user.userName + '!');
         }
     };
 
@@ -99,7 +96,7 @@
 
     angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', config])
-        .run(['$rootScope', '$http', '$cookies', '$location', 'auth', 'notifier', run])
+        .run(['$rootScope', '$http', '$cookies', '$location', 'auth', 'identity', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
         .value('errorHandler', function (error) { console.warn(error) })
