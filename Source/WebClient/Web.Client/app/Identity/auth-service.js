@@ -18,6 +18,12 @@
                 .then(function (response) {
                     var tokenValue = response.data.access_token;
 
+                    var allRoles = response.data.roles;
+
+                    var role = allRoles.split(',')[0];
+
+                    console.log("isAdmin role: ", role);
+
                     var theBigDay = new Date();
                     theBigDay.setHours(theBigDay.getHours() + 72);
 

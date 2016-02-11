@@ -14,9 +14,6 @@
 
         public string UserName { get; set; }
 
-        [IgnoreMap]
-        public bool IsAdmin = false;
-
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<User, IdentityResponseModel>()
