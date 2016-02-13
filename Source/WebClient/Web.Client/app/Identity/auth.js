@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var authService = function authService($http, $q, $cookieStore, identity, appSettings, errorHandler) {
+    var authService = function authService($http, $q, $cookies, identity, appSettings, errorHandler) {
 
         var userLoginUrlApi = appSettings.serverPath + '/api/users/login';
         var userRegisterUrlApi = appSettings.serverPath + '/api/Account/Register';
@@ -58,10 +58,10 @@
             signUp: signUp,
             getIdentity: getIdentity,
             isAuthenticated: function () {
-                return !!$cookieStore.get(cookieStorageUserKey);
+                return !!$cookies.getObject(cookieStorageUserKey);
             },
             logout: function () {
-                $cookieStore.remove(cookieStorageUserKey);
+                $cookies.remove(cookieStorageUserKey);
                 $http.defaults.headers.common.Authorization = null;
                 identity.removeUser();
             }
@@ -70,5 +70,5 @@
 
     angular
         .module('techSupportApp.services')
-        .factory('auth', ['$http', '$q', '$cookieStore', 'identity', 'appSettings', 'errorHandler', authService]);
+        .factory('auth', ['$http', '$q', '$cookies', 'identity', 'appSettings', 'errorHandler', authService]);
 }());

@@ -1,14 +1,14 @@
 ﻿(function () {
     'use strict';
 
-    var identityService = function identityService($q, $cookieStore) {
+    var identityService = function identityService($q, $cookies) {
         var currentUser = {};
         var cookieStorageUserKey = 'currentApplicationUser';
         var deferred = $q.defer();
 
         return {
             getUser: function () {
-                var savedUser = $cookieStore.get(cookieStorageUserKey);
+                var savedUser = $cookies.getObject(cookieStorageUserKey);
                 if (savedUser) {
                     return $q.resolve(savedUser);
                 }
@@ -20,10 +20,10 @@
             },
             setUser: function (user) {
                 if (user) {
-                    $cookieStore.put(cookieStorageUserKey, user);
+                    $cookies.putObject(cookieStorageUserKey, user);
                 }
                 else {
-                    $cookieStore.remove(cookieStorageUserKey);
+                    $cookies.remove(cookieStorageUserKey);
                 }
 
                 currentUser = user;
@@ -38,5 +38,5 @@
 
     angular
         .module('techSupportApp.services')
-        .factory('identity', ['$q', '$cookieStore', identityService]);
+        .factory('identity', ['$q', '$cookies', identityService]);
 }());
