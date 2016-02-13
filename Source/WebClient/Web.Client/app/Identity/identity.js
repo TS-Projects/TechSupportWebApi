@@ -15,7 +15,8 @@
                 return deferred.promise;
             },
             isAuthenticated: function () {
-                return !!this.getUser();
+                //return !!this.getUser();
+                return Object.getOwnPropertyNames(currentUser).length !== 0;
             },
             setUser: function (user) {
                 if (user) {
