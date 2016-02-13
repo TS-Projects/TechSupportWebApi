@@ -10,12 +10,12 @@
                 }
 
                 return {
-                    'Authorization': 'Bearer ' + identity.getCurrentUser()['access_token']
+                    'Authorization': 'Bearer ' + identity.getUser()['access_token']
                 }
             }
         }
     }
 
-    angular.module('techSupportApp.services')
+    angular.module('techSupportApp.data')
         .factory('authorization', ['identity', authorization]);
 }());

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var registerPageController = function registerPageController($scope, $location, notifier, auth) {
+    var registerPageController = function registerPageController($location, notifier, auth) {
         var vm = this;
 
         vm.emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -18,5 +18,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('RegisterPageController', ['$scope', '$location', 'notifier', 'auth', registerPageController]);
+        .controller('RegisterPageController', ['$location', 'notifier', 'auth', registerPageController]);
 }());

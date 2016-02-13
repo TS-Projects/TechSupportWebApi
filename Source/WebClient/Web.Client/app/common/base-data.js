@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var baseData = function baseData($http, $q, appSettings, authorization, notifier,identity, $cookies) {
+    var baseData = function baseData($http, $q, appSettings, notifier, identity, $cookieStore, authorization) {
         var headers = {
             'Content-Type': 'application/json'
         },
@@ -67,11 +67,8 @@
 
         function getDataSource() {
             var URL = appSettings.odataServerPath + '/Customers';
-            //var TOKEN_KEY = 'authentication';
-            //var token = $cookies.get(TOKEN_KEY);
-            //var authHeader = authorization.getAuthorizationHeader();
-            //'Authorization': 'Bearer ' + identity.getCurrentUser()['access_token']
-            var token = identity.getCurrentUser()['access_token'];
+            var TOKEN_KEY = 'currentApplicationUser';
+            var token = $cookieStore.get(TOKEN_KEY)['access_token'];
 
             var dataSource = {
                 type: "odata-v4",
@@ -122,5 +119,5 @@
 
     angular
         .module('techSupportApp.data')
-        .factory('data', ['$http', '$q', 'appSettings', 'authorization', 'notifier', 'identity', '$cookies', baseData]);
+        .factory('data', ['$http', '$q', 'appSettings', 'notifier', 'identity', '$cookieStore', 'authorization', baseData]);
 }());

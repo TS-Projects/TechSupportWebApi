@@ -78,6 +78,7 @@
     <Content Include="app\common\base-data.js" />
     <Content Include="app\common\header-directive.html" />
     <Content Include="app\common\header-directive.js" />
+    <Content Include="app\Identity\authorization.js" />
     <Content Include="app\common\login-checker-directive.html" />
     <Content Include="app\common\login-checker-directive.js" />
     <Content Include="app\common\http-response-interceptor.js" />
@@ -98,7 +99,6 @@
     <Content Include="app\components\user-profile-page\user-profile-view.html" />
     <Content Include="app\Identity\forgot-password-page-view.html" />
     <Content Include="app\Identity\identity.js" />
-    <Content Include="app\Identity\authorization.js" />
     <Content Include="assets\css\kendoui\Black\editor.png" />
     <Content Include="assets\css\kendoui\Black\imagebrowser.png" />
     <Content Include="assets\css\kendoui\Black\indeterminate.gif" />

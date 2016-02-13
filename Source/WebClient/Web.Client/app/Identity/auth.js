@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var authService = function authService($http, $q, $cookies, identity, appSettings, authorization, errorHandler) {
+    var authService = function authService($http, $q, $cookieStore, identity, appSettings, errorHandler) {
 
         var userLoginUrlApi = appSettings.serverPath + '/api/users/login';
-        var userIdentityUrlApi = appSettings.serverPath + '/api/users/identity';
         var userRegisterUrlApi = appSettings.serverPath + '/api/Account/Register';
-        var userLogoutUrlApi = appSettings.serverPath + '/api/Account/Logout';
+
+        var cookieStorageUserKey = 'currentApplicationUser';
 
         var login = function login(user) {
             var deferred = $q.defer();
@@ -15,67 +15,60 @@
 
             $http.post(userLoginUrlApi, data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                 .then(function (response) {
-                    if (response.data["access_token"]) {
-                        identity.setCurrentUser(response.data);
-
-                        var allRoles = response.data.roles;
-
-                        var role = allRoles.split(',')[0];
-
-                        console.log("isAdmin role: ", role);
-
-                        deferred.resolve(true);
-                    }
-                    else {
-                        deferred.resolve(false);
-                    }
+                    identity.setUser(response.data);
+                    getIdentity().then(function () {
+                        deferred.resolve(response);
+                    });
+                }, function (err) {
+                    deferred.reject(err);
                 });
 
             return deferred.promise;
         };
-        var signUp = function(user) {
+
+        var getIdentity = function () {
+            var deferred = $q.defer();
+            identity.getUser()
+                .then(function (identityResponse) {
+                    identity.setUser(identityResponse);
+                    deferred.resolve(identityResponse);
+                }, function (err) {
+                    deferred.reject(err);
+                });
+
+            return deferred.promise;
+        };
+
+        var signUp = function (user) {
             var deferred = $q.defer();
 
             $http.post(userRegisterUrlApi, user)
-                .success(function() {
-                    deferred.resolve();
-                }, function(response) {
-                    deferred.reject(response);
-                })
-                .error(errorHandler);
+                            .success(function () {
+                                deferred.resolve();
+                            }, function (response) {
+                                deferred.reject(response);
+                            })
+                            .error(errorHandler);
 
             return deferred.promise;
-        };
-        var logout = function() {
-            var deferred = $q.defer();
-
-            var headers = authorization.getAuthorizationHeader();
-            console.log("logout header: ", headers);
-            $http.post(userLogoutUrlApi, {}, { headers: headers })
-                .then(function() {
-                    identity.setCurrentUser(undefined);
-                    deferred.resolve();
-                });
-
-            return deferred.promise;
-        };
-        var isAuthenticated = function() {
-            if (identity.isAuthenticated()) {
-                return true;
-            } else {
-                return $q.reject('not authorized');
-            }
-        };
+        }
 
         return {
             login: login,
             signUp: signUp,
-            logout: logout,
-            isAuthenticated: isAuthenticated
+            getIdentity: getIdentity,
+            isAuthenticated: function () {
+                return !!$cookieStore.get(cookieStorageUserKey);
+            },
+            logout: function () {
+                $cookieStore.remove(cookieStorageUserKey);
+                $http.defaults.headers.common.Authorization = null;
+                identity.removeUser();
+            }
         };
     };
 
     angular
         .module('techSupportApp.services')
-        .factory('auth', ['$http', '$q', '$cookies', 'identity', 'appSettings', 'authorization', 'errorHandler', authService]);
+        .factory('auth', ['$http', '$q', '$cookieStore', 'identity', 'appSettings', 'errorHandler', authService]);
 }());

@@ -1,63 +1,38 @@
 ﻿(function () {
     'use strict';
 
-    var mainController = function mainController($location, notifier, auth, identity) {
+    var mainController = function mainController($location, auth, identity) {
         var vm = this;
 
         waitForLogin();
 
-        //vm.logout = function logout() {
-        //    auth.logout();
-        //    vm.currentUser = undefined;
-        //    waitForLogin();
-        //    $location.path('/');
-        //};
-
-        //vm.logout  = function () {
-        //    auth.logout().then(function() {
-        //        //notifier.success('Successful logout!');
-        //        //if (vm.user) {
-        //        //    vm.user.email = '';
-        //        //    vm.user.username = '';
-        //        //    vm.user.password = '';
-        //        //}
-        //        waitForLogin();
-        //        //vm.loginForm.$setPristine();
-        //        $location.path('/');
-        //    });
-
-        vm.logout = function() {
-            auth.logout().then(function () {
-                notifier.success('Successful logout!');
-                vm.currentUser = undefined;
-                $location.path('/');
-            });
-        };
-
-        function waitForLogin() {
-            if (identity.isAuthenticated()) {
-                console.log("identity.isAuthenticated: ", identity.isAuthenticated());
-                console.log("auth.isAuthenticated: ", auth.isAuthenticated());
-                var user = identity.getCurrentUser();
-                console.log("ei mainController: ", user);
-                vm.currentUser = user;
-            }
+        vm.logout = function logout() {
+            auth.logout();
+            vm.currentUser = undefined;
+            vm.isAdmin = false;
+            waitForLogin();
+            $location.path('/');
         };
 
         //vm.search = function (searchTerm) {
         //    $location.path('/projects/search').search('term', searchTerm);
         //};
 
-        //function waitForLogin() {
-        //    identity.getUser().then(function (user) {
-        //        vm.currentUser = user;
-        //    });
-        //}
+        function waitForLogin() {
+            identity.getUser().then(function (user) {
+                var allRoles = user.roles;
+                var role = allRoles.split(',')[0];
+                vm.isAdmin = false;
+                if (role === "Administrator") {
+                    vm.isAdmin = true;
+                }
 
-
+                vm.currentUser = user;
+            });
+        }
     };
 
     angular
         .module('techSupportApp.controllers')
-        .controller('MainController', ['$location', 'notifier', 'auth', 'identity', mainController]);
+        .controller('MainController', ['$location', 'auth', 'identity', mainController]);
 }());

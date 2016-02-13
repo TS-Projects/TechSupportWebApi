@@ -1,35 +1,18 @@
 (function () {
     'use strict';
 
-    var loginPageController = function loginPageController($scope, $location, notifier, auth) {
-       
-        //vm.login = function (user) {
-        //    auth.login(user).then(function () {
-        //        notifier.success('Successful login!');
-        //        $location.path('/');
-        //    });
-        //}
+    var loginPageController = function loginPageController($location, notifier, auth) {
+        var vm = this;
 
-
-        $scope.login = function (user) {
-            if ($scope.loginForm.$valid) {
-                auth.login(user).then(function (success) {
-                    if (success) {
-                        notifier.success('Successful login!');
-                        $location.path('/');
-                    }
-                    else {
-                        notifier.error('Username/Password combination is not valid!');
-                    }
-                });
-            }
-            else {
-                notifier.error('Username and password are required fields!');
-            }
+        vm.login = function (user) {
+            auth.login(user).then(function () {
+                notifier.success('Successful login!');
+                $location.path('/');
+            });
         }
     }
 
     angular
         .module('techSupportApp.controllers')
-        .controller('LoginPageController', ['$scope', '$location', 'notifier', 'auth', loginPageController]);
+        .controller('LoginPageController', ['$location', 'notifier', 'auth', loginPageController]);
 }());

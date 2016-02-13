@@ -13,7 +13,7 @@
                 <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Парола" name="password" required ng-model="user.password">
             </div>
             <div class="form-actions">
-                <button type="submit" class="btn green uppercase" ng-click="login(user, loginForm)">Вход</button>
+                <button type="submit" class="btn green uppercase" ng-disabled="loginForm.$invalid"  ng-click="vm.login(user)">Вход</button>
                 <label class="rememberme check">
                     <div class="checker"><span><input type="checkbox" name="remember" value="1"></span></div>Remember
                 </label>
