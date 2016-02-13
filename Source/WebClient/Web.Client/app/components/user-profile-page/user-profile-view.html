@@ -101,7 +101,7 @@
                         <!-- END SIDEBAR USERPIC -->
                         <!-- SIDEBAR USER TITLE -->
                         <div class="profile-usertitle">
-                            <div class="profile-usertitle-name"> Marcus Doe </div>
+                            <div class="profile-usertitle-name"> {{vm.fullname}} </div>
                             <div class="profile-usertitle-job"> Developer </div>
                         </div>
                         <!-- END SIDEBAR USER TITLE -->
@@ -204,32 +204,24 @@
                                             <div class="tab-pane active" id="tab_1_1">
                                                 <form role="form" action="#">
                                                     <div class="form-group">
-                                                        <label class="control-label">First Name</label>
-                                                        <input type="text" placeholder="John" class="form-control">
+                                                        <label class="control-label">Име на български</label>
+                                                        <input ng-model="vm.profile.firstName" type="text" placeholder="Въведете име на български" class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">Last Name</label>
-                                                        <input type="text" placeholder="Doe" class="form-control">
+                                                        <label type="text" class="control-label">Фамилия на български</label>
+                                                        <input ng-model="vm.profile.lastName" type="text" placeholder="Въведете фамилия на фамилия" class="form-control">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">Mobile Number</label>
-                                                        <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control">
+                                                        <label type="text" class="control-label">Град</label>
+                                                        <input ng-model="vm.profile.lastName" type="text" placeholder="Въведете фамилия на фамилия" class="form-control">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">Interests</label>
-                                                        <input type="text" placeholder="Design, Web etc." class="form-control">
+                                                        <label class="control-label">Мобилен телефон</label>
+                                                        <input ng-model="vm.profile.phone" ng-pattern="/^$|^(0|([\+]359))[8-9][1-9]{1}[0-9]{7}$/" type="text" placeholder="Моля въведете валиден мобилен телефон (пример: 0888123456 или +359888123456)." class="form-control">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label">Occupation</label>
-                                                        <input type="text" placeholder="Web Developer" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">About</label>
-                                                        <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="control-label">Website Url</label>
-                                                        <input type="text" placeholder="http://www.mywebsite.com" class="form-control">
+                                                        <label class="control-label">За мен</label>
+                                                        <input ng-model="vm.profile.about" type="text" placeholder="Попълнете с информация за вас" class="form-control">
                                                     </div>
                                                     <div class="margiv-top-10">
                                                         <a href="javascript:;" class="btn green"> Save Changes </a>

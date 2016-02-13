@@ -12,7 +12,6 @@
 
             var URL = appSettings.serverPath + url;
             var authHeader = authorization.getAuthorizationHeader();
-            console.log("authHeader: ", authHeader);
 
             $http.get(URL, { params: queryParams, headers: authHeader })
                 .then(function (response) {

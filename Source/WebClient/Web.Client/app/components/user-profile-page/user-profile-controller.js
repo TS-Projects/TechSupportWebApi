@@ -9,8 +9,16 @@
         vm.username = vm.user.userName.toLowerCase();
 
         userProfileData.getProfileData(vm.username)
-            .then(function(response) {
-                console.log('response: ', response[0].email);
+            .then(function (response) {
+                console.log('response: ', response);
+                vm.profile = response;
+
+                if (response.firstName && response.lastName) {
+                    //vm.profile.firstName = response.firstName;
+                    //vm.profile.lastName = response.firstName;
+                    vm.fullname = response.firstName + " " + response.lastName;
+                }
+
             });
 
         //    identity.getUser()

@@ -21,7 +21,9 @@ namespace TechSupport.WebAPI.DataModels.Users
 
         public string City { get; set; }
 
-        public string Address { get; set; }
+        public string Phone { get; set; }
+
+        public string About { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {

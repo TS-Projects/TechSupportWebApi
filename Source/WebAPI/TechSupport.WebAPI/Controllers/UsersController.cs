@@ -39,7 +39,7 @@
             var model = await this.UsersService
                 .ByUsername(username)
                 .ProjectTo<UserResponseModel>()
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
             return this.Data(model);
         }

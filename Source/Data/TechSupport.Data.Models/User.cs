@@ -54,7 +54,11 @@
 
         [MaxLength(100)]
         [MinLength(2)]
-        public string Address { get; set; }
+        public string Phone { get; set; }
+
+        [MaxLength(100)]
+        [MinLength(2)]
+        public string About { get; set; }
 
         // IAuditInfo
         public DateTime CreatedOn { get; set; }
