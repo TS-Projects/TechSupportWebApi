@@ -288,7 +288,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Base\BaseAuthorizationController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CrawlersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />

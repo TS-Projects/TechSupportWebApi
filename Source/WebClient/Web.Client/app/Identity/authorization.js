@@ -1,7 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    function authorization(identity) {
+    function authorization(identity, $cookies) {
+        var TOKEN_KEY = 'currentApplicationUser';
+
         return {
             getAuthorizationHeader: function () {
 
@@ -10,12 +12,12 @@
                 }
 
                 return {
-                    'Authorization': 'Bearer ' + identity.getUser()['access_token']
+                    'Authorization': 'Bearer ' + $cookies.getObject(TOKEN_KEY)['access_token']
                 }
             }
         }
     }
 
     angular.module('techSupportApp.data')
-        .factory('authorization', ['identity', authorization]);
+        .factory('authorization', ['identity','$cookies', authorization]);
 }());

@@ -6,7 +6,12 @@
         var vm = this;
 
         vm.user = user;
-        vm.username = vm.user.data.userName.toLowerCase();
+        vm.username = vm.user.userName.toLowerCase();
+
+        userProfileData.getProfileData(vm.username)
+            .then(function(response) {
+                console.log('response: ', response[0].email);
+            });
 
         //    identity.getUser()
         //     .then(function (user) {

@@ -159,10 +159,11 @@
 (function () {
     'use strict';
 
-    var usersAdministrationController = function usersAdministrationController($scope, allUsers) {
+    var usersAdministrationController = function usersAdministrationController($scope, allUsers, administrationPageData) {
         //var vm = this;
 
         //  var usersApi = appSettings.odataServerPath + '/Users';
+
 
 
         $scope.mainGridOptions = {
@@ -185,5 +186,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UsersAdministrationController', ['$scope', 'allUsers', usersAdministrationController]);
+        .controller('UsersAdministrationController', ['$scope', 'allUsers', 'administrationPageData', usersAdministrationController]);
 }());

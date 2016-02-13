@@ -12,7 +12,7 @@
     using TechSupport.WebAPI.Infrastructure.Extensions;
     using TechSupport.Services.Data.Contracts;
 
-    public class UsersController : BaseAuthorizationController
+    public class UsersController : BaseController
     {
         private const int MinimumCharactersForUsernameSearch = 3;
 
@@ -21,14 +21,25 @@
         {
         }
 
-        [Authorize]
         [HttpGet]
-        public async Task<IHttpActionResult> Identity()
+        public async Task<IHttpActionResult> Profile(string username)
         {
             var model = await this.UsersService
-                 .ByUsername(this.CurrentUser.UserName)
-                 .ProjectTo<IdentityResponseModel>()
-                 .FirstOrDefaultAsync();
+                .ByUsername(username)
+                .ProjectTo<UserNameModel>()
+                .FirstOrDefaultAsync();
+
+            return this.Data(model);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IHttpActionResult> ProfileData(string username)
+        {
+            var model = await this.UsersService
+                .ByUsername(username)
+                .ProjectTo<UserResponseModel>()
+                .ToListAsync();
 
             return this.Data(model);
         }

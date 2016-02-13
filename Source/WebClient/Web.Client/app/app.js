@@ -47,7 +47,7 @@
                templateUrl: 'app/components/user-profile-page/user-profile-view.html',
                controller: 'UserProfileController',
                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
-               resolve: routeResolveChecks.userProfile
+               resolve: routeResolveChecks.profile
             })
             .when('/contacts', {
                 templateUrl: 'app/components/contacts/contacts-page-view.html',

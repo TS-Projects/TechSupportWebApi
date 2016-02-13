@@ -2,68 +2,121 @@
     'use strict';
 
     var baseData = function baseData($http, $q, appSettings, notifier, identity, $cookies, authorization) {
-        var headers = {
-            'Content-Type': 'application/json'
-        },
-            authorizationErrorMessage = 'You must be logged in to do that';
+        //var headers = {
+        //    'Content-Type': 'application/json'
+        //},
+        //    authorizationErrorMessage = 'You must be logged in to do that';
 
-        function get(url, authorize) {
-            var deferred = $q.defer();
-            if (authorize && !identity.isAuthenticated()) {
-                notifier.error(authorizationErrorMessage);
-                deferred.reject();
-            }
-            else {
-                var URL = appSettings.serverPath + url;
+        function get(url, queryParams) {
+            var defered = $q.defer();
 
-                $http.get(URL)
-                    .then(function (data) {
-                        deferred.resolve(data);
-                    },
-                    function (err) {
-                        deferred.reject(err);
-                    });
-            }
+            var URL = appSettings.serverPath + url;
+            var authHeader = authorization.getAuthorizationHeader();
+            console.log("authHeader: ", authHeader);
 
-            return deferred.promise;
-        }
-
-        function getOData(url, authorize) {
-            var deferred = $q.defer();
-            var URL = appSettings.odataServerPath + url;
-
-            $http.get(URL)
-                .then(function (data) {
-                    deferred.resolve(data);
-                },
-                function (err) {
-                    deferred.reject(err);
+            $http.get(URL, { params: queryParams, headers: authHeader })
+                .then(function (response) {
+                    defered.resolve(response.data);
+                }, function (error) {
+                    error = getErrorMessage(error);
+                    notifier.error(error);
+                    defered.reject(error);
                 });
 
-            return deferred.promise;
+            return defered.promise;
         }
 
-        function post(url, data, authorize) {
-            var deferred = $q.defer();
+        function post(url, postData) {
+            var defered = $q.defer();
 
-            if (authorize && !identity.isAuthenticated()) {
-                notifier.error(authorizationErrorMessage);
-                deferred.reject();
+            var URL = appSettings.serverPath + url;
+            var authHeader = authorization.getAuthorizationHeader();
+
+            $http.post(URL, postData, { headers: authHeader })
+                .then(function (response) {
+                    defered.resolve(response.data);
+                }, function (error) {
+                    error = getErrorMessage(error);
+                    notifier.error(error);
+                    defered.reject(error);
+                });
+
+            return defered.promise;
+        }
+
+        function put() {
+            throw new Error('Not implemented!');
+        }
+
+        function getErrorMessage(response) {
+            var error = response.data.modelState;
+            if (error && error[Object.keys(error)[0]][0]) {
+                error = error[Object.keys(error)[0]][0];
             }
             else {
-                var URL = appSettings.serverPath + url;
-
-                $http.post(URL, data, headers)
-                    .then(function (data) {
-                        deferred.resolve(data);
-                    },
-                    function (err) {
-                        deferred.reject(err);
-                    });
+                error = response.data.message;
             }
 
-            return deferred.promise;
+            return error;
         }
+
+        //function get(url, authorize) {
+        //    var deferred = $q.defer();
+        //    if (authorize && !identity.isAuthenticated()) {
+        //        notifier.error(authorizationErrorMessage);
+        //        deferred.reject();
+        //    }
+        //    else {
+        //        var URL = appSettings.serverPath + url;
+
+        //        $http.get(URL)
+        //            .then(function (data) {
+        //                deferred.resolve(data);
+        //            },
+        //            function (err) {
+        //                deferred.reject(err);
+        //            });
+        //    }
+
+        //    return deferred.promise;
+        //}
+
+        //function getOData(url, authorize) {
+        //    var deferred = $q.defer();
+        //    var URL = appSettings.odataServerPath + url;
+
+        //    $http.get(URL)
+        //        .then(function (data) {
+        //            deferred.resolve(data);
+        //        },
+        //        function (err) {
+        //            deferred.reject(err);
+        //        });
+
+        //    return deferred.promise;
+        //}
+
+        //function post(url, data, authorize) {
+        //    var deferred = $q.defer();
+
+        //    if (authorize && !identity.isAuthenticated()) {
+        //        notifier.error(authorizationErrorMessage);
+        //        deferred.reject();
+        //    }
+        //    else {
+        //        var URL = appSettings.serverPath + url;
+
+        //        $http.post(URL, data, headers)
+        //            .then(function (data) {
+        //                deferred.resolve(data);
+        //            },
+        //            function (err) {
+        //                deferred.reject(err);
+        //            });
+        //    }
+
+        //    return deferred.promise;
+        //}
 
         function getDataSource() {
             var URL = appSettings.odataServerPath + '/Customers';
@@ -111,7 +164,6 @@
 
         return {
             get: get,
-            getOData: getOData,
             post: post,
             getDataSource: getDataSource
         };

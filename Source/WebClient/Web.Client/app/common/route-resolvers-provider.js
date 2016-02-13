@@ -21,6 +21,12 @@
                     return administrationPageData.getAllRegistersUsers();
                 });
             }],
+            //userProfile: ['$injector', '$q', 'userProfileData', function ($injector, $q, userProfileData) {
+            //    var authPromise = $injector.invoke(routeResolvers.authenticated);
+            //    return authPromise.then(function () {
+            //        return userProfileData.getProfile();
+            //    });
+            //}],
             //popularProjects: ['homePageData', function (homePageData) {
             //    return homePageData.getMostPopularProjects();
             //}],
@@ -62,7 +68,7 @@
             //}],
             user: ['$route', 'userProfileData', function ($route, userProfileData) {
                 var routeParams = $route.current.params;
-                return userProfileData.getUser(routeParams.username.toLowerCase());
+                return userProfileData.getProfile(routeParams.username.toLowerCase());
             }]
         };
 
@@ -88,8 +94,9 @@
             //projectDetails: {
             //    project: routeResolvers.project
             //},
-            userProfile: {
+            profile: {
                 user: routeResolvers.user
+                //userProfile: routeResolvers.userProfile
             }
         };
 
