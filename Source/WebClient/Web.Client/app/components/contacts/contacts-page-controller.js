@@ -3,13 +3,11 @@
 
     var contactsPageController = function contactsPageController(uiGmapGoogleMapApi) {
         var vm = this;
-        vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 }
 
         uiGmapGoogleMapApi.then(function (maps) {
-            vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 }
+            vm.map = { center: { latitude: 42.643343, longitude: 24.8061749 }, zoom: 15 };
 
         });
-
     };
 
     angular
