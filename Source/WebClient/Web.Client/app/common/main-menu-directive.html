@@ -15,19 +15,31 @@
                 <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
                 <li class="classic-menu-dropdown active">
                     <a href="/">
-                        Home <span class="selected">
+                        Начало <span class="selected">
+                        </span>
+                    </a>
+                </li>
+                <li class="classic-menu-dropdown">
+                    <a href="/about">
+                        За нас <span class="selected">
+                        </span>
+                    </a>
+                </li>
+                <li class="classic-menu-dropdown">
+                    <a href="/contacts">
+                        За Контакти <span class="selected">
                         </span>
                     </a>
                 </li>
                 <li ng-if="vm.isAdmin" class="classic-menu-dropdown">
                     <a href="/administration">
-                        Administration <span class="selected">
+                        Администрация <span class="selected">
                         </span>
                     </a>
                 </li>
                 <li class="classic-menu-dropdown">
                     <a href="/products">
-                        Products <span class="selected">
+                        Продукти <span class="selected">
                         </span>
                     </a>
                 </li>
@@ -162,14 +174,14 @@
                   <ul class="dropdown-menu dropdown-menu-default">
                     <li>
                         <a href="/users/{{vm.currentUser.userName}}">
-                            <i class="icon-user"></i> My Profile
+                            <i class="icon-user"></i> Моя профил
                         </a>
                     </li>
                     <li class="divider">
                     </li>
                     <li>
                         <a ng-click="vm.logout()">
-                            <i class="fa fa-angle-right"></i> Logout
+                            <i class="fa fa-angle-right"></i> Изход
                         </a>
                     </li>
                 </ul>

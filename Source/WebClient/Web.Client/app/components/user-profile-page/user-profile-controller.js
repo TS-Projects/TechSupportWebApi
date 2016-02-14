@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var userProfileController = function userProfileController(userProfileData, identity, user) {
+    var userProfileController = function userProfileController(userProfileData, identity, user, notifier) {
 
         var vm = this;
 
@@ -19,7 +19,24 @@
                     vm.fullname = response.firstName + " " + response.lastName;
                 }
 
+                vm.submitProfileInfo = function (profile) {
+                    userProfileData.postProfileData()
+                        .then(function () {
+                            notifier.success('Registration successful!');
+                            $location.path('/');
+                        }, function (error) {
+                            notifier.error(error);
+                        });
+                }
+
+                vm.submitChangePassword = function () {
+
+                }
+
             });
+
+
+
 
         //    identity.getUser()
         //     .then(function (user) {
@@ -40,5 +57,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UserProfileController', ['userProfileData', 'identity','user', userProfileController]);
+        .controller('UserProfileController', ['userProfileData', 'identity', 'user', 'notifier', userProfileController]);
 }());

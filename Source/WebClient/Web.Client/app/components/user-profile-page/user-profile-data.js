@@ -10,6 +10,11 @@
             return data.get('/api/users/profiledata/' + username + '/');
         }
 
+        function postProfileData(profile) {
+            return data.post(
+                )
+        }
+
         return {
             getProfile: getProfile,
             getProfileData: getProfileData

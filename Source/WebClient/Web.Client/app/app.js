@@ -95,8 +95,8 @@
     angular.module('techSupportApp.controllers', ['techSupportApp.data', 'techSupportApp.services']);
     angular.module('techSupportApp.directives', []);
 
-    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives'])
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', config])
+    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps'])
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', 'uiGmapGoogleMapApiProvider', config])
         .run(['$rootScope', '$http', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)
