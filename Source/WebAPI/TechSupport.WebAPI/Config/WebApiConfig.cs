@@ -45,9 +45,14 @@ namespace TechSupport.WebAPI.Config
             //     new { controller = "List", action = "ByCategory", id = UrlParameter.Optional, category = UrlParameter.Optional });
 
             //config.Routes.MapHttpRoute(
-            //    "DefaultAdministrationApi",
-            //    "Api/Administration/{controller}/{action}/{id}",
-            //    new { id = RouteParameter.Optional });
+            //     "UserProfileApi",
+            //     "Api/Users/{controller}/{action}/{id}",
+            //     new { id = RouteParameter.Optional });
+
+            config.Routes.MapHttpRoute(
+                "DefaultAdministrationApi",
+                "Api/Administration/{controller}/{action}/{id}",
+                new { id = RouteParameter.Optional });
 
             config.Routes.MapHttpRoute(
                 "DefaultApiWithActionAndId",
@@ -56,8 +61,14 @@ namespace TechSupport.WebAPI.Config
                 new { id = @"\d+" });
 
             config.Routes.MapHttpRoute(
-                "DefaultApiWithActionAndUsername",
-                "Api/{controller}/{action}/{username}");
+                "UsersApiWithActionAndUsername",
+                "Api/Users/{controller}/{username}");
+
+            config.Routes.MapHttpRoute(
+                 "ProfileUpdate",
+                 "Api/Users/{controller}",
+                 new { action = "Post" },
+                 new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
             config.Routes.MapHttpRoute(
                 "DefaultApiGetWithId",
@@ -87,15 +98,15 @@ namespace TechSupport.WebAPI.Config
                 new { action = "Post" },
                 new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
-            config.Routes.MapHttpRoute(
-                "LoginApi",
-                "api/users/{controller}/{id}",
-                new { id = RouteParameter.Optional });
+            //config.Routes.MapHttpRoute(
+            //    "LoginApi",
+            //    "api/users/{controller}/{id}",
+            //    new { id = RouteParameter.Optional });
 
-            config.Routes.MapHttpRoute(
-                "DefaultApi",
-                "api/{controller}/{id}",
-                new { id = RouteParameter.Optional });
+            //config.Routes.MapHttpRoute(
+            //    "DefaultApi",
+            //    "api/{controller}/{id}",
+            //    new { id = RouteParameter.Optional });
         }
     }
 }

@@ -21,27 +21,6 @@
         {
         }
 
-        [HttpGet]
-        public async Task<IHttpActionResult> Profile(string username)
-        {
-            var model = await this.UsersService
-                .ByUsername(username)
-                .ProjectTo<UserNameModel>()
-                .FirstOrDefaultAsync();
 
-            return this.Data(model);
-        }
-
-        [Authorize]
-        [HttpGet]
-        public async Task<IHttpActionResult> ProfileData(string username)
-        {
-            var model = await this.UsersService
-                .ByUsername(username)
-                .ProjectTo<UserResponseModel>()
-                .FirstOrDefaultAsync();
-
-            return this.Data(model);
-        }
     }
 }

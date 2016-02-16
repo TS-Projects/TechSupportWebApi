@@ -295,6 +295,7 @@
     <Compile Include="Controllers\CustomerCardRegistrationController.cs" />
     <Compile Include="Controllers\CustomerCardExtensions.cs" />
     <Compile Include="Controllers\CustomerCardController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\ODataConfig.cs" />

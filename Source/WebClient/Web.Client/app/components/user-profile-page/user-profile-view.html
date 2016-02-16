@@ -213,7 +213,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label type="text" class="control-label">Град</label>
-                                                        <input ng-model="vm.profile.lastName" type="text" placeholder="Въведете фамилия на фамилия" class="form-control">
+                                                        <input ng-model="vm.profile.city" type="text" placeholder="Въведете фамилия на фамилия" class="form-control">
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label">Мобилен телефон</label>
@@ -224,7 +224,7 @@
                                                         <input ng-model="vm.profile.about" type="text" placeholder="Попълнете с информация за вас" class="form-control">
                                                     </div>
                                                     <div class="margiv-top-10">
-                                                        <a href="javascript:;" class="btn green"> Save Changes </a>
+                                                        <a ng-click="vm.submitProfileUpdate(vm.profile)" ng-disabled="createTripForm.$invalid" class="btn green"> Save Changes </a>
                                                         <a href="javascript:;" class="btn default"> Cancel </a>
                                                     </div>
                                                 </form>

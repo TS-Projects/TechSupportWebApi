@@ -8,7 +8,7 @@
         vm.user = user;
         vm.username = vm.user.userName.toLowerCase();
 
-        userProfileData.getProfileData(vm.username)
+        userProfileData.getProfile(vm.username)
             .then(function (response) {
                 console.log('response: ', response);
                 vm.profile = response;
@@ -19,24 +19,27 @@
                     vm.fullname = response.firstName + " " + response.lastName;
                 }
 
-                vm.submitProfileInfo = function (profile) {
-                    userProfileData.postProfileData()
-                        .then(function () {
-                            notifier.success('Registration successful!');
-                            $location.path('/');
-                        }, function (error) {
-                            notifier.error(error);
-                        });
-                }
 
-                vm.submitChangePassword = function () {
 
-                }
+
 
             });
 
 
+        vm.submitProfileUpdate = function(newProfile) {
+            userProfileData.postProfileData(newProfile)
+                .then(function(success) {
+                    console.log("ha success: ", success);
+                    notifier.success('Update successful!');
+                    //$location.path('/');
+                }, function(error) {
+                    notifier.error(error);
+                });
+        };
 
+        //vm.submitChangePassword = function () {
+
+        //}
 
         //    identity.getUser()
         //     .then(function (user) {

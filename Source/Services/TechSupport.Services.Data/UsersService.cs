@@ -24,6 +24,25 @@ namespace TechSupport.Services.Data
                 .Where(u => u.UserName == username);
         }
 
+        public async Task UpdateUser(
+             User user,
+             string FirstName,
+             string LastName,
+             string Phone,
+             string City,
+             string About)
+        {
+
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.City = City;
+            user.Phone = Phone;
+            user.About = About;
+
+            this.users.Update(user);
+            await this.users.SaveChangesAsync();
+        }
+
         public IQueryable<User> QueriedAllUsers()
         {
             var query = this.users

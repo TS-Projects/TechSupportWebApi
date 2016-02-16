@@ -13,5 +13,15 @@ namespace TechSupport.Services.Data.Contracts
         IQueryable<User> QueriedAllUsers();
 
         Task<User> Account(string emailOrUserName, string password);
+
+
+        Task UpdateUser(
+            User user,
+            string FirstName,
+            string LastName,
+            string Phone,
+            string City,
+            string About);
+
     }
 }

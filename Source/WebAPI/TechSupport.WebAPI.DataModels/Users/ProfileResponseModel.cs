@@ -9,7 +9,7 @@ using TechSupport.WebApi.Common.Mapping;
 
 namespace TechSupport.WebAPI.DataModels.Users
 {
-    public class UserResponseModel : IMapFrom<User>, IHaveCustomMappings
+    public class ProfileResponseModel : IMapFrom<User>, IHaveCustomMappings
     {
         public string UserName { get; set; }
 
@@ -27,7 +27,7 @@ namespace TechSupport.WebAPI.DataModels.Users
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<User, UserResponseModel>()
+            configuration.CreateMap<User, ProfileResponseModel>()
                 .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.UserName.ToString()))
                 .ForMember(m => m.Email, opt => opt.MapFrom(c => c.Email.ToString()));
         }
