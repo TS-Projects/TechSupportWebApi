@@ -290,13 +290,12 @@
   <ItemGroup>
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CrawlersController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\CustomerCardRegistrationController.cs" />
     <Compile Include="Controllers\CustomerCardExtensions.cs" />
     <Compile Include="Controllers\CustomerCardController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\ODataConfig.cs" />
     <Compile Include="Config\FilterConfig.cs" />

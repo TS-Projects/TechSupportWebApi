@@ -3,7 +3,7 @@
     using TechSupport.Data.Models;
     using TechSupport.WebApi.Common.Mapping;
 
-    public class CustomersDataModel : IMapFrom<User>
+    public class UserDataModel : IMapFrom<User>
     {
         public string Id { get; set; }
 
@@ -17,6 +17,8 @@
 
         public string City { get; set; }
 
-        public string Address { get; set; }
+        public string Phone { get; set; }
+
+        public string About { get; set; }
     }
 }

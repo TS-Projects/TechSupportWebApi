@@ -1,26 +1,124 @@
-﻿namespace TechSupport.WebAPI.Controllers
+﻿using System;
+using System.Data.Entity;
+using AutoMapper;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.OData;
+using System.Web.OData.Routing;
+using AutoMapper.QueryableExtensions;
+using Elmah;
+using TechSupport.Data;
+using TechSupport.Services.Data.Contracts;
+using TechSupport.WebAPI.Controllers;
+using ResponseDataModel = TechSupport.WebAPI.DataModels.Administration.UserDataModel;
+using Model = TechSupport.Data.Models.User;
+
+namespace TechSupport.WebAPI.Controllers
 {
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web.Http;
-
-    using AutoMapper.QueryableExtensions;
-
-    using TechSupport.WebAPI.Controllers.Base;
-    using TechSupport.WebAPI.DataModels.Users;
-    using TechSupport.WebAPI.Infrastructure.Extensions;
-    using TechSupport.Services.Data.Contracts;
-
-    public class UsersController : BaseController
+    public class UsersController : ODataController
     {
-        private const int MinimumCharactersForUsernameSearch = 3;
+        private readonly IUsersService usersService;
 
         public UsersController(IUsersService usersService)
-            : base(usersService)
         {
+            this.usersService = usersService;
         }
 
+        [Authorize(Roles = "Administrator")]
+        [HttpGet]
+        [EnableQuery]
+        [ODataRoute]
+        public IQueryable<ResponseDataModel> Get()
+        {
+            var users = this.usersService
+                .QueriedAllUsers()
+                .AsQueryable()
+                .ProjectTo<ResponseDataModel>();
 
+            return users;
+        }
+
+        // [ODataRoute()]
+        // [AllowAnonymous]
+        // [HttpPut]
+        // PUT odata/Users(5)
+
+        public IHttpActionResult Put([FromODataUri] string key, [FromBody]ResponseDataModel user)
+        {
+            var customEx = new Exception("Hello I am testing Elmah", new NotSupportedException());
+            ErrorSignal.FromCurrentContext().Raise(customEx);
+            throw new Exception();
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+
+            //if (key != user.Id)
+            //{
+            //    return BadRequest();
+            //}
+
+            ////if (this.data.GetUserProfile(user.Id) == null)
+            ////{
+            ////    return NotFound();
+            ////}
+
+            //var dbModel = this.Data.Users.GetById(user.Id);
+            //Mapper.Map<DataModel, Model>(user, dbModel);
+            //// _dataService.Save(customer);
+            //this.Data.Users.Update(dbModel);
+
+            //try
+            ////await db.SaveChangesAsync();
+            //{
+            //    this.Data.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserExists(key))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return this.Updated(user);
+        }
+
+        //public IHttpActionResult Post(UserAdministrationDataModel vm)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var dm = Mapper.Map<Model>(vm);
+        //    this.Data.Create(dm);
+
+        //    try
+
+        //    {
+        //        this.Data.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (UserExists(vm.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        throw;
+        //    }
+        //    vm.Id = dm.Id;
+        //    return Created(vm);
+        //}
+        //private bool UserExists(string userId)
+        //{
+        //    return this.Data.Users.All().Select(u => u.Id == userId && !u.IsHidden).Any();
+        //}
     }
 }

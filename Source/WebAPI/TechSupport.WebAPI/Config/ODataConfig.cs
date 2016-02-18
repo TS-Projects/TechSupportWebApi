@@ -25,7 +25,7 @@ namespace TechSupport.WebAPI.Config
         private static IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<CustomersDataModel>("Customers");
+            builder.EntitySet<UserDataModel>("Users");
             builder.EntitySet<CustomerCardAdministrationDataModel>("CustomerCard");
             return builder.GetEdmModel();
         }

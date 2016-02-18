@@ -118,7 +118,7 @@
         //}
 
         function getDataSource() {
-            var URL = appSettings.odataServerPath + '/Customers';
+            var URL = appSettings.odataServerPath + '/Users';
             var TOKEN_KEY = 'currentApplicationUser';
             var token = $cookies.getObject(TOKEN_KEY)['access_token'];
 
@@ -147,9 +147,13 @@
                         id: "Id",
                         fields: {
                             Id: { type: "string" },
+                            UserName: { type: "string" },
+                            Email: { type: "string" },
                             FirstName: { type: "string" },
                             LastName: { type: "string" },
-                            Address: { type: "string" }
+                            City: { type: "string" },
+                            Phone: { type: "string" },
+                            About: { type: "string" }
                         }
                     }
                 },
