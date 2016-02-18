@@ -26,14 +26,15 @@
             });
 
 
-        vm.submitProfileUpdate = function (newProfile) {
+        vm.submitProfileUpdate = function (newProfile, profileForm) {
+            if (profileForm.$valid) {
                 userProfileData.postProfileData(newProfile)
                     .then(function() {
                         notifier.success('Вашите настройки бяха успешно записани!');
-                        //$location.path('/');
-                    }, function(error) {
-                        notifier.error(error);
                     });
+            } else {
+                notifier.error('Вашите настройки не бяха записани!');
+            }
         };
 
         //vm.submitChangePassword = function () {

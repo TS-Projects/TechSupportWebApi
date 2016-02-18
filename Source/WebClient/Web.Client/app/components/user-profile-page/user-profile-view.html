@@ -207,8 +207,6 @@
                                                   action="#"
                                                   name="profileForm"
                                                   novalidate>
-                                                <div class="text-center error"
-                                                     ng-show="profileForm.$invalid && profileForm.$dirty">Form is not valid!</div>
                                                 <div class="form-group">
                                                     <label type="text" 
                                                            class="control-label">Име на български</label>
@@ -255,9 +253,10 @@
                                                            placeholder="Моля въведете валиден мобилен телефон (пример: 0888123456 или +359888123456)."
                                                            s class="form-control">
                                                     <div ng-messages="profileForm.phoneNumber.$error"
+                                                         ng-if="profileForm.phoneNumber.$touched"
                                                          class="error-messages"
                                                          role="alert">
-                                                        <div ng-message="pattern" ng-if="profileForm.phoneNumber.$touched">Моля въведете валиден мобилен телефон (пример: 0888123456 или +359888123456).</div>
+                                                        <div ng-message="pattern" >Моля въведете валиден мобилен телефон (пример: 0888123456 или +359888123456).</div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -268,7 +267,7 @@
                                                            class="form-control">
                                                 </div>
                                                 <div class="margiv-top-10">
-                                                    <a ng-click="vm.submitProfileUpdate(vm.profile)"
+                                                    <a ng-click="vm.submitProfileUpdate(vm.profile, profileForm)"
                                                        class="btn green">Save Changes</a>
                                                     <a href="javascript:;"
                                                        class="btn default">Cancel</a>

@@ -44,20 +44,12 @@
         [MinLength(2)]
         public string FirstName { get; set; }
 
-        [MaxLength(100)]
-        [MinLength(2)]
         public string LastName { get; set; }
 
-        [MaxLength(100)]
-        [MinLength(2)]
         public string City { get; set; }
 
-        [MaxLength(100)]
-        [MinLength(2)]
         public string Phone { get; set; }
 
-        [MaxLength(100)]
-        [MinLength(2)]
         public string About { get; set; }
 
         // IAuditInfo
