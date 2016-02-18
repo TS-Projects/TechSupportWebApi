@@ -167,10 +167,6 @@
 
         $scope.lang = "en-US";
 
-        $scope.calendarOptions = {
-            culture: "en-US"
-        }
-
         $scope.dropDownOptions = {
             dataValueField: "value",
             dataTextField: "text",
@@ -195,9 +191,6 @@
 
                         /* we use dummy language option in order to force the Grid to rebind */
                         $scope.mainGridOptions.language = $scope.lang;
-
-                        /* we change the calendar widget culture option in order to force the Calendar to rebind */
-                        $scope.calendarOptions.culture = $scope.lang;
 
                     });
                 });

@@ -1,5 +1,5 @@
 (function () {
-    'use strict';
+    'use strict'
 
     var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider, GoogleMapApi, $translateProvider) {
 
@@ -13,17 +13,17 @@
         //GoogleMapApi.configure( {
         //});
 
-        $translateProvider.translations('en-US', {
-            'TITLE': 'Hello',
-            'FOO': 'This is a paragraph'
-        });
+        //$translateProvider.translations('en-US', {
+        //    'TITLE': 'Hello',
+        //    'FOO': 'This is a paragraph'
+        //});
 
-        $translateProvider.translations('de-DE', {
-            'TITLE': 'Hallo',
-            'FOO': 'Dies ist ein Paragraph'
-        });
+        //$translateProvider.translations('de-DE', {
+        //    'TITLE': 'Hallo',
+        //    'FOO': 'Dies ist ein Paragraph'
+        //});
 
-        $translateProvider.preferredLanguage('en-US');
+        //$translateProvider.preferredLanguage('en-US');
 
         $routeProvider
             .when('/', {
