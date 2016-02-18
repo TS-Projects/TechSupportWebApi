@@ -15,10 +15,10 @@
             allProducts: ['productsPageData', function(productsPageData){
                 return productsPageData.getAllProducts();
             }],
-            allUsers: ['$injector', '$q', 'administrationPageData', function ($injector, $q, administrationPageData) {
+            allUsers: ['$injector', '$q', 'usersAdministrationPageData', function ($injector, $q, usersAdministrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
                 return authPromise.then(function () {
-                    return administrationPageData.getAllRegistersUsers();
+                    return usersAdministrationPageData.getAllRegistersUsers();
                 });
             }],
             //userProfile: ['$injector', '$q', 'userProfileData', function ($injector, $q, userProfileData) {

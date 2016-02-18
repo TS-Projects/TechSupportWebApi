@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var administrationPageData = function administrationPageData(data) {
+    var UsersAdministrationPageData = function UsersAdministrationPageData(data) {
         function getAllRegistersUsers() {
             return data.getDataSource();
         }
@@ -11,5 +11,5 @@
     };
 
     angular.module('techSupportApp.data')
-        .factory('administrationPageData', ['data', administrationPageData]);
+        .factory('usersAdministrationPageData', ['data', UsersAdministrationPageData]);
 }());

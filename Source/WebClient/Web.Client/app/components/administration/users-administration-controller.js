@@ -159,7 +159,7 @@
 (function () {
     'use strict';
 
-    var usersAdministrationController = function usersAdministrationController($scope, allUsers, administrationPageData, $translate) {
+    var usersAdministrationController = function usersAdministrationController($scope, allUsers, usersAdministrationPageData, $translate) {
         //var vm = this;
 
         //  var usersApi = appSettings.odataServerPath + '/Users';
@@ -229,5 +229,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UsersAdministrationController', ['$scope', 'allUsers', 'administrationPageData', '$translate', usersAdministrationController]);
+        .controller('UsersAdministrationController', ['$scope', 'allUsers', 'usersAdministrationPageData', '$translate', usersAdministrationController]);
 }());
