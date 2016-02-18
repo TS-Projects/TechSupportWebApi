@@ -88,13 +88,6 @@
             if (rejection === 'not authorized') {
                 notifier.warning('Please log into your account first!');
                 $location.path('/');
-                //angular
-                //    .element('#open-login-btn')
-                //    .trigger('click');
-
-                //angular.element('#login-modal')
-                //    .attr('data-previous-route', previous.$$route.originalPath)
-                //    .attr('data-current-route', current.$$route.originalPath);
             }
         });
         if (auth.isAuthenticated()) {

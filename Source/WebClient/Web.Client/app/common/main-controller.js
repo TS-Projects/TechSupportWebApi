@@ -3,6 +3,7 @@
 
     var mainController = function mainController($location, auth, identity) {
         var vm = this;
+        var administratorRole = "Administrator";
 
         waitForLogin();
 
@@ -21,10 +22,10 @@
         function waitForLogin() {
             identity.getUser().then(function (user) {
                 var allRoles = user.roles;
-                var role = allRoles.split(',')[0];
+                var rolesArr = allRoles.split(',');
                 vm.isAdmin = false;
-                if (role === "Administrator") {
-                    vm.isAdmin = true;
+                if (rolesArr.indexOf(administratorRole) > -1) {
+                        vm.isAdmin = true;
                 }
 
                 vm.currentUser = user;

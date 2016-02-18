@@ -21,113 +21,62 @@
                 </li>
                 <li class="classic-menu-dropdown">
                     <a href="/about">
-                        За нас <span class="selected">
-                        </span>
+                        За нас
                     </a>
                 </li>
                 <li class="classic-menu-dropdown">
                     <a href="/contacts">
-                        За Контакти <span class="selected">
-                        </span>
-                    </a>
-                </li>
-                <li ng-if="vm.isAdmin" class="classic-menu-dropdown">
-                    <a href="/administration/users">
-                        Администрация <span class="selected">
-                        </span>
+                        За Контакти
                     </a>
                 </li>
                 <li class="classic-menu-dropdown">
                     <a href="/products">
-                        Продукти <span class="selected">
-                        </span>
+                        Продукти
                     </a>
                 </li>
-                <li class="classic-menu-dropdown">
-                    <a data-toggle="dropdown" href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true" class="hover-initialized">
-                        Classic <i class="fa fa-angle-down"></i>
+                <li ng-if="vm.isAdmin" 
+                    class="classic-menu-dropdown">
+                    <a data-toggle="dropdown"
+                       href="javascript:;"
+                       data-hover="megamenu-dropdown"
+                       data-close-others="true" 
+                       class="hover-initialized">
+                       Администрация <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu pull-left">
+                        <li class="dropdown-header">Сервиз</li>
                         <li>
                             <a href="javascript:;">
-                                <i class="fa fa-bookmark-o"></i> Section 1
+                                <i class="fa fa-bookmark-o"></i> Клиентски карти
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <i class="fa fa-user"></i> Section 2
+                                <i class="fa fa-user"></i> Категории
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <i class="fa fa-puzzle-piece"></i> Section 3
+                                <i class="fa fa-puzzle-piece"></i> Клиенти
                             </a>
                         </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Потребители</li>
                         <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-gift"></i> Section 4
+                            <a href="/administration/users">
+                                <i class="fa fa-gift"></i> Потребители
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-table"></i> Section 5
-                            </a>
-                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Склад</li>
                         <li class="dropdown-submenu">
                             <a href="javascript:;">
-                                <i class="fa fa-envelope-o"></i> More options
+                                <i class="fa fa-envelope-o"></i> Склад
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="javascript:;">
-                                        Second level link
-                                    </a>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="javascript:;">
-                                        More options
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="index.html">
-                                                Third level link
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index.html">
-                                                Third level link
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index.html">
-                                                Third level link
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index.html">
-                                                Third level link
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="index.html">
-                                                Third level link
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="index.html">
-                                        Second level link
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.html">
-                                        Second level link
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.html">
-                                        Second level link
+                                        Хардуер
                                     </a>
                                 </li>
                             </ul>
@@ -167,7 +116,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
                     <!--<img width="20" height="20" class="margin-right-5 img-rounded" ng-src="{{vm.currentUser.data.avatarUrl}}"/>-->
                     <span class="username username-hide-on-mobile">
-                        {{vm.currentUser.userName}}
+                        Здравей, {{vm.currentUser.userName}}!
                     </span>
                     <i class="fa fa-angle-down"></i>
                   </a>
