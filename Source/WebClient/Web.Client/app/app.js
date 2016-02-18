@@ -48,6 +48,36 @@
                 controller: 'UsersAdministrationController',
                 resolve: routeResolveChecks.administration
             })
+            //.when('/administration/service/customers', {
+            //    templateUrl: 'app/components/administration/service/customers-administration-view.html',
+            //    controller: 'CustomersAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
+            //.when('/administration/service/customercards', {
+            //    templateUrl: 'app/components/administration/service/customercards-administration-view.html',
+            //    controller: 'CustomerCardsAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
+            //.when('/administration/service/customercardcategories', {
+            //    templateUrl: 'app/components/administration/service/customercardcategories-administration-view.html',
+            //    controller: 'CustomerCardCategoriesAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
+            //.when('/administration/storage/computers', {
+            //    templateUrl: 'app/components/administration/storage/computers-administration-view.html',
+            //    controller: 'ComputersAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
+            //.when('/administration/storage/notebooks', {
+            //    templateUrl: 'app/components/administration/storage/notebooks-administration-view.html',
+            //    controller: 'NotebooksAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
+            //.when('/administration/storage/printers', {
+            //    templateUrl: 'app/components/administration/storage/printers-administration-view.html',
+            //    controller: 'PrintersAdministrationController',
+            //    resolve: routeResolveChecks.administration
+            //})
             .when('/products', {
                 templateUrl: 'app/components/products/products-page-view.html',
                 controller: 'ProductsPageController',
