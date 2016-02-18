@@ -207,11 +207,22 @@
                 buttonCount: 5
             },
             language: "english",
-            columns: [{
-                field: "Id"
-            },
-            "UserName", "Email", "FirstName", "LastName", "City", "Phone", "About", { command: "edit" }
+            columns: [
+                   { field: "Id", title: "ID" },
+                   { field: "UserName", title: "Потребителско име" },
+                   { field: "Email", title: "Имейл" },
+                   { field: "FirstName", title: "Име" },
+                   { field: "LastName", title: "Фамилия" },
+                   { field: "City", title: "Град" },
+                   { field: "Phone", title: "Мобилен номер" },
+                   { field: "About", title: "За нас" },
+                   { command: "edit" }
             ],
+            //columns: [{
+            //    field: "Id"
+            //},
+            //"UserName", "Email", "FirstName", "LastName", "City", "Phone", "About", { command: "edit" }
+            //],
             editable: "inline"
         };
     };
