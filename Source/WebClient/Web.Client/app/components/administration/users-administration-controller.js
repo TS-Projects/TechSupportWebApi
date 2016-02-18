@@ -178,7 +178,7 @@
             columns: [{
                 field: "Id"
             },
-            "UserName", "Email", "Име", "LastName", "City", "Phone", "About", { command: "edit" }
+            "UserName", "Email", "FirstName", "LastName", "City", "Phone", "About", { command: "edit" }
             ],
             editable: "inline"
         };
