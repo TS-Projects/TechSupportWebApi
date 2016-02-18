@@ -18,7 +18,7 @@ namespace TechSupport.WebAPI.Config
 
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
-                routePrefix: "odata",
+                routePrefix: "administration",
                 model: GetEdmModel());
         }
 

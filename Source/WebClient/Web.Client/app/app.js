@@ -43,7 +43,7 @@
                 controller: 'LoginPageController',
                 controllerAs: CONTROLLER_VIEW_MODEL_NAME
             })
-            .when('/administration', {
+            .when('/administration/users', {
                 templateUrl: 'app/components/administration/users-administration-view.html',
                 controller: 'UsersAdministrationController',
                 resolve: routeResolveChecks.administration
@@ -119,6 +119,6 @@
         .value('errorHandler', function (error) { console.warn(error) })
         .constant('appSettings', {
             serverPath: 'http://localhost:13078',
-            odataServerPath: 'http://localhost:13078/odata'
+            odataServerPath: 'http://localhost:13078/administration'
         });
 }());
