@@ -159,12 +159,50 @@
 (function () {
     'use strict';
 
-    var usersAdministrationController = function usersAdministrationController($scope, allUsers, administrationPageData) {
+    var usersAdministrationController = function usersAdministrationController($scope, allUsers, administrationPageData, $translate) {
         //var vm = this;
 
         //  var usersApi = appSettings.odataServerPath + '/Users';
 
 
+        $scope.lang = "en-US";
+
+        $scope.calendarOptions = {
+            culture: "en-US"
+        }
+
+        $scope.dropDownOptions = {
+            dataValueField: "value",
+            dataTextField: "text",
+            dataSource: {
+                data: [{ value: "en-US", text: "English" }, { value: "bg-BG", text: "Bulgarian" }]
+            },
+            change: function () {
+
+                /* The kendo.culture.xx-XX.js files can be pre-loaded in the <head> section of the document,
+                        but the kendo.messages.xx-XX.js file should be loaded on demand when the language is about to change */
+
+                /* We are using the jQuery.getScript method to load the messages file 
+                        and use the callback function to change the kendo culture, kendo messages and angular-translate language */
+
+                $.getScript("http://cdn.kendostatic.com/2014.2.903/js/messages/kendo.messages." + $scope.lang + ".min.js", function () {
+
+                    /* $scope.$apply should be used in order to notify the $scope for language change */
+                    $scope.$apply(function() {
+
+                        $translate.use($scope.lang); //change angular-translate language
+                        kendo.culture($scope.lang); //change kendo culture
+
+                        /* we use dummy language option in order to force the Grid to rebind */
+                        $scope.mainGridOptions.language = $scope.lang;
+
+                        /* we change the calendar widget culture option in order to force the Calendar to rebind */
+                        $scope.calendarOptions.culture = $scope.lang;
+
+                    });
+                });
+            }
+        }
 
         $scope.mainGridOptions = {
             dataSource: allUsers,
@@ -175,6 +213,7 @@
                 pageSizes: true,
                 buttonCount: 5
             },
+            language: "english",
             columns: [{
                 field: "Id"
             },
@@ -186,5 +225,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UsersAdministrationController', ['$scope', 'allUsers', 'administrationPageData', usersAdministrationController]);
+        .controller('UsersAdministrationController', ['$scope', 'allUsers', 'administrationPageData', '$translate', usersAdministrationController]);
 }());

@@ -1,13 +1,29 @@
 (function () {
     'use strict';
 
-    var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider) {
+    var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider, GoogleMapApi, $translateProvider) {
 
         var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
         $locationProvider.html5Mode(true);
 
         var routeResolveChecks = routeResolversProvider.$get();
+
+
+        //GoogleMapApi.configure( {
+        //});
+
+        $translateProvider.translations('en-US', {
+            'TITLE': 'Hello',
+            'FOO': 'This is a paragraph'
+        });
+
+        $translateProvider.translations('de-DE', {
+            'TITLE': 'Hallo',
+            'FOO': 'Dies ist ein Paragraph'
+        });
+
+        $translateProvider.preferredLanguage('en-US');
 
         $routeProvider
             .when('/', {
@@ -95,8 +111,8 @@
     angular.module('techSupportApp.controllers', ['techSupportApp.data', 'techSupportApp.services']);
     angular.module('techSupportApp.directives', []);
 
-    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps', 'ui.bootstrap', 'ngMessages', 'ngAnimate'])
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', 'uiGmapGoogleMapApiProvider', config])
+    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps', 'ui.bootstrap', 'ngMessages', 'ngAnimate', 'pascalprecht.translate'])
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', 'uiGmapGoogleMapApiProvider', '$translateProvider', config])
         .run(['$rootScope', '$http', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
         .value('toastr', toastr)

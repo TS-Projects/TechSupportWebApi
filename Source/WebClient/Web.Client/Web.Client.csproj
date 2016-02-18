@@ -453,6 +453,8 @@
     <Content Include="assets\libs\bower_components\angular-simple-logger\dist\browser.js" />
     <Content Include="assets\libs\bower_components\angular-simple-logger\dist\index.js" />
     <Content Include="assets\libs\bower_components\angular-simple-logger\dist\index.light.js" />
+    <Content Include="assets\libs\bower_components\angular-translate\angular-translate.js" />
+    <Content Include="assets\libs\bower_components\angular-translate\angular-translate.min.js" />
     <Content Include="assets\libs\bower_components\angular\.bower.json" />
     <Content Include="assets\libs\bower_components\angular\angular.min.js.gzip" />
     <Content Include="assets\libs\bower_components\angular\angular.min.js.map" />
@@ -1664,6 +1666,9 @@
     <Content Include="assets\libs\bower_components\angular-messages\bower.json" />
     <Content Include="assets\libs\bower_components\angular-messages\package.json" />
     <Content Include="assets\libs\bower_components\angular-messages\README.md" />
+    <Content Include="assets\libs\bower_components\angular-translate\.bower.json" />
+    <Content Include="assets\libs\bower_components\angular-translate\bower.json" />
+    <Content Include="assets\libs\bower_components\angular-translate\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

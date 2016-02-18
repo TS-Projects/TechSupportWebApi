@@ -1,5 +1,11 @@
+<p>{{ 'TITLE' | translate }}</p>
+<p>{{ 'FOO' | translate }}</p>
+
 <div class="page-content" style="min-height: 230px">
-    <kendo-grid options="mainGridOptions">
+    <p>
+        <kendo-dropdownlist options="dropDownOptions" ng-model="lang"></kendo-dropdownlist>
+    </p>
+    <kendo-grid options="mainGridOptions" k-rebind="mainGridOptions.language">
     </kendo-grid>
 </div>
 
