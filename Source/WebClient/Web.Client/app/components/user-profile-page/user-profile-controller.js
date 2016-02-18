@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var userProfileController = function userProfileController(userProfileData, identity, user, notifier) {
+    var userProfileController = function userProfileController($scope, userProfileData, identity, user, notifier) {
 
         var vm = this;
 
@@ -26,15 +26,14 @@
             });
 
 
-        vm.submitProfileUpdate = function(newProfile) {
-            userProfileData.postProfileData(newProfile)
-                .then(function(success) {
-                    console.log("ha success: ", success);
-                    notifier.success('Update successful!');
-                    //$location.path('/');
-                }, function(error) {
-                    notifier.error(error);
-                });
+        vm.submitProfileUpdate = function (newProfile) {
+                userProfileData.postProfileData(newProfile)
+                    .then(function() {
+                        notifier.success('Вашите настройки бяха успешно записани!');
+                        //$location.path('/');
+                    }, function(error) {
+                        notifier.error(error);
+                    });
         };
 
         //vm.submitChangePassword = function () {
@@ -60,5 +59,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('UserProfileController', ['userProfileData', 'identity', 'user', 'notifier', userProfileController]);
+        .controller('UserProfileController', ['$scope', 'userProfileData', 'identity', 'user', 'notifier', userProfileController]);
 }());

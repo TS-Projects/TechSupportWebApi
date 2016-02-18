@@ -66,8 +66,8 @@ namespace TechSupport.WebAPI.Controllers
                 newAbout
                 );
 
-            //return this.Ok(this.mappingService.Map<ProfileResponseModel>(existingProfile));
-            return this.Ok(this.Get(User.Identity.Name));
+            return this.Ok(this.mappingService.Map<ProfileResponseModel>(existingProfile));
+            //return this.Ok(this.Get(User.Identity.Name));
         }
 
         //private void UpdateUser(User model, ProfileDataModel viewModel)

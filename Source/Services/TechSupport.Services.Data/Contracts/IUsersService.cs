@@ -19,8 +19,8 @@ namespace TechSupport.Services.Data.Contracts
             User user,
             string FirstName,
             string LastName,
-            string Phone,
             string City,
+            string Phone,
             string About);
 
     }

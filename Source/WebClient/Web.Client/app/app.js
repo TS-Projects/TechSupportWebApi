@@ -95,7 +95,7 @@
     angular.module('techSupportApp.controllers', ['techSupportApp.data', 'techSupportApp.services']);
     angular.module('techSupportApp.directives', []);
 
-    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps'])
+    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps', 'ui.bootstrap', 'ngMessages', 'ngAnimate'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', 'uiGmapGoogleMapApiProvider', config])
         .run(['$rootScope', '$http', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)

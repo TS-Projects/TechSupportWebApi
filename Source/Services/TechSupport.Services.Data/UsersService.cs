@@ -28,8 +28,8 @@ namespace TechSupport.Services.Data
              User user,
              string FirstName,
              string LastName,
-             string Phone,
              string City,
+             string Phone,
              string About)
         {
 
