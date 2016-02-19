@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Administration\CustomerAdministrationDataModel.cs" />
     <Compile Include="Administration\CustomerCardAdministrationDataModel.cs" />
-    <Compile Include="Administration\UserDataModel.cs" />
+    <Compile Include="Administration\ResponseDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardCategoryDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardQuestionDataModel.cs" />

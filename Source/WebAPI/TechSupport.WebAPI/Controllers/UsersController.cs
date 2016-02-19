@@ -3,6 +3,8 @@ using System.Data.Entity;
 using AutoMapper;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.OData;
@@ -12,11 +14,12 @@ using Elmah;
 using TechSupport.Data;
 using TechSupport.Services.Data.Contracts;
 using TechSupport.WebAPI.Controllers;
-using ResponseDataModel = TechSupport.WebAPI.DataModels.Administration.UserDataModel;
+using ResponseDataModel = TechSupport.WebAPI.DataModels.Administration.ResponseDataModel;
 using Model = TechSupport.Data.Models.User;
 
 namespace TechSupport.WebAPI.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class UsersController : ODataController
     {
         private readonly IUsersService usersService;
@@ -120,5 +123,40 @@ namespace TechSupport.WebAPI.Controllers
         //{
         //    return this.Data.Users.All().Select(u => u.Id == userId && !u.IsHidden).Any();
         //}
+
+        //public IHttpActionResult Delete([FromODataUri] string key)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var user = this.usersService
+        //        .QueriedAllUsers()
+        //        .AsQueryable()
+        //        .FirstOrDefault(u => u.Id == key);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+
+        //    return Content(HttpStatusCode.NoContent, "Deleted");
+        //}
+
+        [ODataRoute]
+        [AllowAnonymous]
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete([FromODataUri] string key)
+        {
+            var product = await usersService.FindAsync(key);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            await usersService.DeleteUser(product);
+            return StatusCode(HttpStatusCode.NoContent);
+        }
     }
 }

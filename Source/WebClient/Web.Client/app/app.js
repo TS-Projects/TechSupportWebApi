@@ -48,11 +48,11 @@
                 controller: 'UsersAdministrationController',
                 resolve: routeResolveChecks.administration
             })
-            //.when('/administration/service/customers', {
-            //    templateUrl: 'app/components/administration/service/customers-administration-view.html',
-            //    controller: 'CustomersAdministrationController',
-            //    resolve: routeResolveChecks.administration
-            //})
+            .when('/administration/service/customers', {
+                templateUrl: 'app/components/administration/service/customers-administration-view.html',
+                controller: 'CustomersAdministrationController',
+                resolve: routeResolveChecks.administration
+            })
             //.when('/administration/service/customercards', {
             //    templateUrl: 'app/components/administration/service/customercards-administration-view.html',
             //    controller: 'CustomerCardsAdministrationController',

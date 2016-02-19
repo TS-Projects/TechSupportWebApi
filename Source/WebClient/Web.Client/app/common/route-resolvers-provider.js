@@ -21,6 +21,14 @@
                     return usersAdministrationPageData.getAllRegistersUsers();
                 });
             }],
+            allCustomers: ['$injector', '$q', 'customersAdministrationPageData', function ($injector, $q, customersAdministrationPageData) {
+                var authPromise = $injector.invoke(routeResolvers.authenticated);
+                return authPromise.then(function () {
+                    return customersAdministrationPageData.getAllRegistersUsers();
+                });
+            }],
+            
+
             //userProfile: ['$injector', '$q', 'userProfileData', function ($injector, $q, userProfileData) {
             //    var authPromise = $injector.invoke(routeResolvers.authenticated);
             //    return authPromise.then(function () {
@@ -79,7 +87,8 @@
                 //statistics: routeResolvers.statistics
             },
             administration: {
-                allUsers: routeResolvers.allUsers
+                allUsers: routeResolvers.allUsers,
+                allCustomers: routeResolvers.allCustomers
             },
             products: {
                 allProducts: routeResolvers.allProducts

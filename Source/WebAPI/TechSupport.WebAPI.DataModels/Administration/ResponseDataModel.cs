@@ -3,7 +3,7 @@
     using TechSupport.Data.Models;
     using TechSupport.WebApi.Common.Mapping;
 
-    public class UserDataModel : IMapFrom<User>
+    public class ResponseDataModel : IMapFrom<User>
     {
         public string Id { get; set; }
 

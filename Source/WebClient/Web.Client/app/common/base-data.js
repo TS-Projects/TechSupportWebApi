@@ -117,6 +117,55 @@
         //    return deferred.promise;
         //}
 
+        //function GenericGetDataSource(URL, auth, model) {
+        //    var URL = appSettings.odataServerPath + '/Users';
+        //    var TOKEN_KEY = 'currentApplicationUser';
+        //    var token = $cookies.getObject(TOKEN_KEY)['access_token'];
+
+        //    var dataSource = {
+        //        type: "odata-v4",
+        //        transport: {
+        //            read: {
+        //                url: URL,   //URL
+        //                beforeSend: function (xhr) {
+        //                    var auth = 'Bearer ' + token;
+        //                    xhr.setRequestHeader('Authorization', auth);  //auth
+        //                }
+
+        //            },
+        //            update: {
+        //                url: function (data) {
+        //                    return URL + "('" + data.Id + "')";
+        //                }
+        //            },
+        //            create: {
+        //                url: URL
+        //            }
+        //        },
+        //        schema: {
+        //            model: {                                //model
+        //                id: "Id",
+        //                fields: {
+        //                    Id: { type: "string" },
+        //                    UserName: { type: "string" },
+        //                    Email: { type: "string" },
+        //                    FirstName: { type: "string" },
+        //                    LastName: { type: "string" },
+        //                    City: { type: "string" },
+        //                    Phone: { type: "string" },
+        //                    About: { type: "string" }
+        //                }
+        //            }
+        //        },
+        //        pageSize: 5,
+        //        serverPaging: true,
+        //        serverSorting: true
+        //    }
+
+        //    return dataSource;
+        //}
+
+
         function getDataSource() {
             var URL = appSettings.odataServerPath + '/Users';
             var TOKEN_KEY = 'currentApplicationUser';
@@ -140,6 +189,11 @@
                     },
                     create: {
                         url: URL
+                    },
+                    destroy: {
+                        url: function (data) {
+                            return URL + "('" + data.Id + "')";
+                        }
                     }
                 },
                 schema: {

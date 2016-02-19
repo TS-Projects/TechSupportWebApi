@@ -43,12 +43,25 @@ namespace TechSupport.Services.Data
             await this.users.SaveChangesAsync();
         }
 
+        public async Task DeleteUser(User user)
+        {
+            this.users.Delete(user);
+            await this.users.SaveChangesAsync();
+        }
+
         public IQueryable<User> QueriedAllUsers()
         {
             var query = this.users
                 .All()
                 .Where(p => !p.IsHidden);
             return query;
+        }
+
+        public async Task<User> FindAsync(string key)
+        {
+            return await this.users
+                .All()
+                .FirstOrDefaultAsync(k => k.Id == key);
         }
 
         public async Task<User> Account(string emailOrUser, string password)
