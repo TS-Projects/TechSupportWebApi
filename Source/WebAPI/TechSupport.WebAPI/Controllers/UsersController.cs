@@ -146,7 +146,7 @@ namespace TechSupport.WebAPI.Controllers
         //}
 
         [ODataRoute]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete([FromODataUri] string key)
         {

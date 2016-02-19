@@ -117,59 +117,57 @@
         //    return deferred.promise;
         //}
 
-        //function GenericGetDataSource(URL, auth, model) {
-        //    var URL = appSettings.odataServerPath + '/Users';
-        //    var TOKEN_KEY = 'currentApplicationUser';
-        //    var token = $cookies.getObject(TOKEN_KEY)['access_token'];
+        function genericOdataKendo(URL, auth, newModel) {
 
-        //    var dataSource = {
-        //        type: "odata-v4",
-        //        transport: {
-        //            read: {
-        //                url: URL,   //URL
-        //                beforeSend: function (xhr) {
-        //                    var auth = 'Bearer ' + token;
-        //                    xhr.setRequestHeader('Authorization', auth);  //auth
-        //                }
+            var dataSource = {
+                type: "odata-v4",
+                transport: {
+                    read: {
+                        url: URL,
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
+                    },
+                    update: {
+                        url: function(data) {
+                            return URL + "('" + data.Id + "')";
+                        },
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
+                    },
+                    create: {
+                        url: URL,
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
+                    },
+                    destroy: {
+                        url: function(data) {
+                            return URL + "('" + data.Id + "')";
+                        },
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
+                    }
+                },
+                schema: {
+                    model: newModel
+                },
+                pageSize: 5,
+                serverPaging: true,
+                serverSorting: true
+            }
 
-        //            },
-        //            update: {
-        //                url: function (data) {
-        //                    return URL + "('" + data.Id + "')";
-        //                }
-        //            },
-        //            create: {
-        //                url: URL
-        //            }
-        //        },
-        //        schema: {
-        //            model: {                                //model
-        //                id: "Id",
-        //                fields: {
-        //                    Id: { type: "string" },
-        //                    UserName: { type: "string" },
-        //                    Email: { type: "string" },
-        //                    FirstName: { type: "string" },
-        //                    LastName: { type: "string" },
-        //                    City: { type: "string" },
-        //                    Phone: { type: "string" },
-        //                    About: { type: "string" }
-        //                }
-        //            }
-        //        },
-        //        pageSize: 5,
-        //        serverPaging: true,
-        //        serverSorting: true
-        //    }
-
-        //    return dataSource;
-        //}
+            return dataSource;
+        }
 
 
         function getDataSource() {
             var URL = appSettings.odataServerPath + '/Users';
             var TOKEN_KEY = 'currentApplicationUser';
             var token = $cookies.getObject(TOKEN_KEY)['access_token'];
+            var auth = 'Bearer ' + token;
 
             var dataSource = {
                 type: "odata-v4",
@@ -177,22 +175,30 @@
                     read: {
                         url: URL,
                         beforeSend: function (xhr) {
-                            var auth = 'Bearer ' + token;
                             xhr.setRequestHeader('Authorization', auth);
                         }
-
                     },
                     update: {
                         url: function (data) {
                             return URL + "('" + data.Id + "')";
+                        },
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
                         }
+
                     },
                     create: {
-                        url: URL
+                        url: URL,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
+                        }
                     },
                     destroy: {
                         url: function (data) {
                             return URL + "('" + data.Id + "')";
+                        },
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('Authorization', auth);
                         }
                     }
                 },
@@ -219,10 +225,12 @@
             return dataSource;
         }
 
+
         return {
             get: get,
             post: post,
-            getDataSource: getDataSource
+            getDataSource: getDataSource,
+            genericOdataKendo: genericOdataKendo
         };
     };
 
