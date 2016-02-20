@@ -290,6 +290,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CrawlersController.cs" />
+    <Compile Include="Controllers\CustomersControllers.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\CustomerCardRegistrationController.cs" />

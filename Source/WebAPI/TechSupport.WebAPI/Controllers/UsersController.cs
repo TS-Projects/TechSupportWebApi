@@ -19,7 +19,6 @@ using Model = TechSupport.Data.Models.User;
 
 namespace TechSupport.WebAPI.Controllers
 {
-    [EnableCors("*", "*", "*")]
     public class UsersController : ODataController
     {
         private readonly IUsersService usersService;
@@ -150,7 +149,7 @@ namespace TechSupport.WebAPI.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> Delete([FromODataUri] string key)
         {
-            var product = await usersService.FindAsync(key);
+            var product = await usersService.FindUserById(key);
             if (product == null)
             {
                 return NotFound();

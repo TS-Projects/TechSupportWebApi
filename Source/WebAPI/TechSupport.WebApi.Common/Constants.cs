@@ -24,5 +24,8 @@ namespace TechSupport.WebAPI.Common
         public const string InvalidPageNumber = "Invalid page number";
 
         public const string AutomaticAddedExistSpecificRoleOnRegisterUser = "User";
+
+        public const int CustomerCardCategoryNameMaxLength = 100;
+        public const int CustomerCardCategoryNameMinLength = 6;
     }
 }

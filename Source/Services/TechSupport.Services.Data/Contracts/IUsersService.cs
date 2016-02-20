@@ -14,7 +14,7 @@ namespace TechSupport.Services.Data.Contracts
 
         Task<User> Account(string emailOrUserName, string password);
 
-        Task<User> FindAsync(string key);
+        Task<User> FindUserById(string key);
 
         Task DeleteUser(User user);
 

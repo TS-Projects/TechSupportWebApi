@@ -57,7 +57,7 @@ namespace TechSupport.Services.Data
             return query;
         }
 
-        public async Task<User> FindAsync(string key)
+        public async Task<User> FindUserById(string key)
         {
             return await this.users
                 .All()

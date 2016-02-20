@@ -64,7 +64,13 @@
   <ItemGroup>
     <Compile Include="Administration\CustomerAdministrationDataModel.cs" />
     <Compile Include="Administration\CustomerCardAdministrationDataModel.cs" />
+    <Compile Include="Administration\CustomerCardCategories\CustomerCardCategoryAdministrationDataModel.cs" />
+    <Compile Include="Administration\CustomerCards\CustomerCardAdministrationDataModel.cs" />
+    <Compile Include="Administration\Customers\CustomerAdministrationDataModel.cs" />
     <Compile Include="Administration\ResponseDataModel.cs" />
+    <Compile Include="Administration\Service\ComputerAdministrationDataModel.cs" />
+    <Compile Include="Administration\Service\NotebookAdministrationDataModel.cs" />
+    <Compile Include="Administration\Service\PrinterDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardCategoryDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardDataModel.cs" />
     <Compile Include="CustomerCards\CustomerCardQuestionDataModel.cs" />
@@ -98,6 +104,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

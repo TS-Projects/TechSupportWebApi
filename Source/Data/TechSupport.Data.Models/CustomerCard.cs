@@ -28,20 +28,19 @@ namespace TechSupport.Data.Models
         [Required]
         [MaxLength(100)]
         [MinLength(2)]
-        public string CustomerFirstName { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        [MinLength(2)]
-        public string CustomerLastName { get; set; }
+        public string FirstName { get; set; }
 
         [MaxLength(100)]
         [MinLength(2)]
-        public string CustomerAddress { get; set; }
+        public string LastName { get; set; }
 
         [MaxLength(100)]
         [MinLength(2)]
-        public string CustomerPhone { get; set; }
+        public string City { get; set; }
+
+        [MaxLength(100)]
+        [MinLength(2)]
+        public string Phone { get; set; }
 
         public string Description { get; set; }
 
