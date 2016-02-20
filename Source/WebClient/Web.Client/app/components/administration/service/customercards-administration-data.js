@@ -1,15 +1,37 @@
-﻿//(function () {
-//    'use strict';
+﻿(function () {
+    'use strict';
 
-//    var customercardsAdministrationPageData = function customercardsAdministrationPageData(data) {
-//        function getAllRegistersUsers() {
-//            return data.getDataSource();
-//        }
-//        return {
-//            getAllRegistersUsers: getAllRegistersUsers
-//        };
-//    };
+    var customerCardsAdministrationPageData = function customerCardsAdministrationPageData(appSettings, data, $cookies) {
+        function getAllRegistersUsers() {
+            var TOKEN_KEY = 'currentApplicationUser';
+            var token = $cookies.getObject(TOKEN_KEY)['access_token'];
 
-//    angular.module('techSupportApp.data')
-//        .factory('customercardsAdministrationPageData', ['data', customercardsAdministrationPageData]);
-//}());
+            var URL = appSettings.odataServerPath + '/CustomerCards';
+            var auth = 'Bearer ' + token;
+            var model = {
+                id: "Id",
+                fields: {
+                    Id: { type: "string" },
+                    FirstName: { type: "string" },
+                    LastName: { type: "string" },
+                    City: { type: "string" },
+                    Phone: { type: "string" },
+                    Informed : { type: "bool" },
+                    Warranty: { type: "bool" },
+                    Description: { type: "string" },
+                    IsVisible: { type: "bool" }
+                    //EnrollmentDate: { type: "string" }
+                    //EndDate: { type: "string" }
+                }
+            };
+
+            return data.genericOdataKendo(URL, auth, model);
+        }
+        return {
+            getAllRegistersUsers: getAllRegistersUsers
+        };
+    };
+
+    angular.module('techSupportApp.data')
+        .factory('customerCardsAdministrationPageData', ['appSettings', 'data', '$cookies', customerCardsAdministrationPageData]);
+}());

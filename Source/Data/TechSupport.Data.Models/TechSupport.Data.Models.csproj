@@ -59,11 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerAnswer.cs" />
     <Compile Include="CustomerCardCategory.cs" />
-    <Compile Include="CustomerCardQuestion.cs" />
-    <Compile Include="CustomerCardQuestionAnswer.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="User.cs" />

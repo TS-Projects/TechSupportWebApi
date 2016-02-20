@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using TechSupport.Data.Models;
-using TechSupport.WebApi.Common.Mapping;
-
-namespace TechSupport.WebAPI.DataModels.Administration.CustomerCards
+﻿namespace TechSupport.WebAPI.DataModels.Administration.CustomerCards
 {
-    class CustomerCardAdministrationDataModel : IMapFrom<CustomerCard>, IHaveCustomMappings
+    using System;
+    using System.ComponentModel;
+    using AutoMapper;
+    using TechSupport.Data.Models;
+    using TechSupport.WebApi.Common.Mapping;
+
+    public class CustomerCardAdministrationDataModel : IMapFrom<CustomerCard>, IHaveCustomMappings
     {
-        [DefaultValue(null)]
-        public int? Id { get; set; }
+        //[DefaultValue(null)]
+        public string Id { get; set; }
 
         public string FirstName { get; set; }
 
@@ -28,15 +23,15 @@ namespace TechSupport.WebAPI.DataModels.Administration.CustomerCards
 
         public bool Warranty { get; set; }
 
-        public string ContestPassword { get; set; }
-
-        public string PracticePassword { get; set; }
+        public string CustomerCardPassword { get; set; }
 
         public string Description { get; set; }
 
-        public int OrderBy { get; set; }
-
         public bool IsVisible { get; set; }
+
+        public DateTime? EnrollmentDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
 
         [DefaultValue(null)]
         public int? CategoryId { get; set; }

@@ -85,9 +85,6 @@
     <Content Include="app\components\administration\service\customercards-administration-data.js" />
     <Content Include="app\components\administration\service\customercards-administration-view.html" />
     <Content Include="app\components\administration\service\customercards-administration-controller.js" />
-    <Content Include="app\components\administration\service\customers-administration-data.js" />
-    <Content Include="app\components\administration\service\customers-administration-view.html" />
-    <Content Include="app\components\administration\service\customers-administration-controller.js" />
     <Content Include="app\components\administration\storage\computers-administration-view.html" />
     <Content Include="app\components\administration\storage\computers-administration-controller.js" />
     <Content Include="app\components\administration\storage\notebooks-administration-view.html" />
@@ -105,8 +102,6 @@
     <Content Include="app\common\route-resolvers-provider.js" />
     <Content Include="app\components\about\about-page-view.html" />
     <Content Include="app\components\contacts\contacts-page-view.html" />
-    <Content Include="app\components\customercard\customercard.html" />
-    <Content Include="app\components\customercard\customerCardController.js" />
     <Content Include="app\components\products\products-page-controller.js" />
     <Content Include="app\components\products\products-page-data.js" />
     <Content Include="app\components\products\products-page-view.html" />

@@ -21,10 +21,10 @@
                     return usersAdministrationPageData.getAllRegistersUsers();
                 });
             }],
-            allCustomers: ['$injector', '$q', 'customersAdministrationPageData', function ($injector, $q, customersAdministrationPageData) {
+            allCustomerCards: ['$injector', '$q', 'customerCardsAdministrationPageData', function ($injector, $q, customerCardsAdministrationPageData) {
                 var authPromise = $injector.invoke(routeResolvers.authenticated);
                 return authPromise.then(function () {
-                    return customersAdministrationPageData.getAllRegistersUsers();
+                    return customerCardsAdministrationPageData.getAllRegistersUsers();
                 });
             }],
             
@@ -88,7 +88,7 @@
             },
             administration: {
                 allUsers: routeResolvers.allUsers,
-                allCustomers: routeResolvers.allCustomers
+                allCustomerCards: routeResolvers.allCustomerCards
             },
             products: {
                 allProducts: routeResolvers.allProducts

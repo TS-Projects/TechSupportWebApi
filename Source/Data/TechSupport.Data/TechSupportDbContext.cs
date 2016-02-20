@@ -22,15 +22,7 @@ namespace TechSupport.Data
 
         public virtual IDbSet<CustomerCard> CustomerCards { get; set; }
 
-        public virtual IDbSet<Customer> Customers { get; set; }
-
         public virtual IDbSet<CustomerCardCategory> CustomerCardCategories { get; set; }
-
-        public virtual IDbSet<CustomerCardQuestion> CustomerCardQuestions { get; set; }
-
-        public virtual IDbSet<CustomerCardQuestionAnswer> CustomerCardQuestionAnswers { get; set; }
-
-        public virtual IDbSet<CustomerAnswer> CustomerAnswers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

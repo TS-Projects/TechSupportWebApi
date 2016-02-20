@@ -1,4 +1,6 @@
-﻿namespace TechSupport.Data.Models
+﻿using System.Collections.Generic;
+
+namespace TechSupport.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -13,10 +15,13 @@
 
     public class User : IdentityUser, IDeletableEntity
     {
+        private ICollection<CustomerCard> customerCards;
+
         public User()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
+            this.customerCards = new HashSet<CustomerCard>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
@@ -27,18 +32,11 @@
             return userIdentity;
         }
 
-        //[Required]
-        //[MaxLength(80)]
-        //[EmailAddress]
-        //[Index(IsUnique = true)]
-        //public string Email { get; set; }
-
-        //[Required]
-        //[StringLength(ValidationConstants.MaxUserUserNameLength)]
-        //[Index(IsUnique = true)]
-        //public string UserName { get; set; }
-
-        //public bool IsAdmin { get; set; }
+        public virtual ICollection<CustomerCard> CustomerCards
+        {
+            get { return this.customerCards; }
+            set { this.customerCards = value; }
+        }
 
         [MaxLength(100)]
         [MinLength(2)]

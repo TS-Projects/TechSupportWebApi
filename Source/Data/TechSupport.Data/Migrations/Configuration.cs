@@ -22,8 +22,6 @@ namespace TechSupport.Data.Migrations
                 StaticDataSeeder.SeedUsers(context);
             }
             // StaticDataSeeder.SeedServiceCard(context);
-
-            StaticDataSeeder.SeedCustomerCard(context);
         }
     }
 }

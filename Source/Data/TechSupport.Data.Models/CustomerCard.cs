@@ -8,17 +8,16 @@ namespace TechSupport.Data.Models
 {
     public class CustomerCard : AuditInfo
     {
-        private ICollection<CustomerCardQuestion> questions;
+        private ICollection<User> customers;
 
         public CustomerCard()
         {
-            this.questions = new HashSet<CustomerCardQuestion>();
+            this.customers = new HashSet<User>();
         }
 
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        [Required]
         public bool IsVisible { get; set; }
 
         public int? CategoryId { get; set; }
@@ -58,27 +57,24 @@ namespace TechSupport.Data.Models
 
         public bool Warranty { get; set; }
 
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
+
+        /// <remarks>
+        /// If ContestPassword is null the contest can be competed by everyone without require a password.
+        /// If the ContestPassword is not null the contest participant should provide a valid password.
+        /// </remarks>
         [MaxLength(20)]
         public string CustomerCardPassword { get; set; }
 
-        public int CustomerId { get; set; }
-
-        [Required]
-        public virtual Customer Customer { get; set; }
-
-        public virtual ICollection<CustomerCardQuestion> Questions
-        {
-            get { return this.questions; }
-            set { this.questions = value; }
-        }
-
         [NotMapped]
-        public bool HasCustomerCardPassword
+        public bool HasCustomerCardPassword => this.CustomerCardPassword != null;
+
+        public virtual ICollection<User> Customers
         {
-            get
-            {
-                return this.CustomerCardPassword != null;
-            }
+            get { return this.customers; }
+            set { this.customers = value; }
         }
     }
 }

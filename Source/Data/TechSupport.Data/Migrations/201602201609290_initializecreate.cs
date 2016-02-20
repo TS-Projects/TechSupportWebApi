@@ -3,70 +3,10 @@ namespace TechSupport.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initializecreate : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.CustomerAnswers",
-                c => new
-                    {
-                        CustomerId = c.Int(nullable: false),
-                        CustomerCardQuestionId = c.Int(nullable: false),
-                        Answer = c.String(),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(),
-                    })
-                .PrimaryKey(t => new { t.CustomerId, t.CustomerCardQuestionId })
-                .ForeignKey("dbo.Customers", t => t.CustomerId)
-                .ForeignKey("dbo.CustomerCardQuestions", t => t.CustomerCardQuestionId)
-                .Index(t => t.CustomerId)
-                .Index(t => t.CustomerCardQuestionId);
-            
-            CreateTable(
-                "dbo.Customers",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        IsOfficial = c.Boolean(nullable: false),
-                        UserId = c.String(maxLength: 128),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.CustomerCards",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        IsVisible = c.Boolean(nullable: false),
-                        CategoryId = c.Int(),
-                        CustomerFirstName = c.String(nullable: false, maxLength: 100),
-                        CustomerLastName = c.String(nullable: false, maxLength: 100),
-                        CustomerAddress = c.String(maxLength: 100),
-                        CustomerPhone = c.String(maxLength: 100),
-                        Description = c.String(),
-                        Comment = c.String(),
-                        Summary = c.String(),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        EnrollmentDate = c.DateTime(),
-                        EndDate = c.DateTime(),
-                        Informed = c.Boolean(nullable: false),
-                        Warranty = c.Boolean(nullable: false),
-                        CustomerCardPassword = c.String(maxLength: 20),
-                        CustomerId = c.Int(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerCardCategories", t => t.CategoryId)
-                .ForeignKey("dbo.Customers", t => t.CustomerId)
-                .Index(t => t.CategoryId)
-                .Index(t => t.CustomerId);
-            
             CreateTable(
                 "dbo.CustomerCardCategories",
                 c => new
@@ -83,35 +23,37 @@ namespace TechSupport.Data.Migrations
                 .Index(t => t.ParentId);
             
             CreateTable(
-                "dbo.CustomerCardQuestions",
+                "dbo.CustomerCards",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        CustomerCardId = c.Int(nullable: false),
-                        Text = c.String(),
-                        AskOfficialCustomers = c.Boolean(nullable: false),
-                        AskPracticeCustomers = c.Boolean(nullable: false),
-                        RegularExpressionValidation = c.String(),
+                        Id = c.String(nullable: false, maxLength: 128),
+                        IsVisible = c.Boolean(nullable: false),
+                        CategoryId = c.Int(),
+                        FirstName = c.String(nullable: false, maxLength: 100),
+                        LastName = c.String(maxLength: 100),
+                        City = c.String(maxLength: 100),
+                        Phone = c.String(maxLength: 100),
+                        Description = c.String(),
+                        Comment = c.String(),
+                        Summary = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        EnrollmentDate = c.DateTime(),
+                        EndDate = c.DateTime(),
+                        Informed = c.Boolean(nullable: false),
+                        Warranty = c.Boolean(nullable: false),
+                        UserId = c.String(maxLength: 128),
+                        CustomerCardPassword = c.String(maxLength: 20),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
+                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerCards", t => t.CustomerCardId)
-                .Index(t => t.CustomerCardId);
-            
-            CreateTable(
-                "dbo.CustomerCardQuestionAnswers",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        QuestionId = c.Int(nullable: false),
-                        Text = c.String(),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerCardQuestions", t => t.QuestionId)
-                .Index(t => t.QuestionId);
+                .ForeignKey("dbo.CustomerCardCategories", t => t.CategoryId)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.CategoryId)
+                .Index(t => t.UserId)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -119,9 +61,10 @@ namespace TechSupport.Data.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(maxLength: 100),
-                        LastName = c.String(maxLength: 100),
-                        City = c.String(maxLength: 100),
-                        Address = c.String(maxLength: 100),
+                        LastName = c.String(),
+                        City = c.String(),
+                        Phone = c.String(),
+                        About = c.String(),
                         CreatedOn = c.DateTime(nullable: false),
                         PreserveCreatedOn = c.Boolean(nullable: false),
                         ModifiedOn = c.DateTime(),
@@ -139,9 +82,12 @@ namespace TechSupport.Data.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        CustomerCard_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+                .ForeignKey("dbo.CustomerCards", t => t.CustomerCard_Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
+                .Index(t => t.CustomerCard_Id);
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -196,15 +142,12 @@ namespace TechSupport.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.CustomerAnswers", "CustomerCardQuestionId", "dbo.CustomerCardQuestions");
-            DropForeignKey("dbo.CustomerAnswers", "CustomerId", "dbo.Customers");
-            DropForeignKey("dbo.Customers", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.CustomerCards", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "CustomerCard_Id", "dbo.CustomerCards");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.CustomerCards", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.CustomerCardQuestions", "CustomerCardId", "dbo.CustomerCards");
-            DropForeignKey("dbo.CustomerCardQuestionAnswers", "QuestionId", "dbo.CustomerCardQuestions");
-            DropForeignKey("dbo.CustomerCards", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.CustomerCards", "CategoryId", "dbo.CustomerCardCategories");
             DropForeignKey("dbo.CustomerCardCategories", "ParentId", "dbo.CustomerCardCategories");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
@@ -212,26 +155,19 @@ namespace TechSupport.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", new[] { "CustomerCard_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.CustomerCardQuestionAnswers", new[] { "QuestionId" });
-            DropIndex("dbo.CustomerCardQuestions", new[] { "CustomerCardId" });
-            DropIndex("dbo.CustomerCardCategories", new[] { "ParentId" });
-            DropIndex("dbo.CustomerCards", new[] { "CustomerId" });
+            DropIndex("dbo.CustomerCards", new[] { "User_Id" });
+            DropIndex("dbo.CustomerCards", new[] { "UserId" });
             DropIndex("dbo.CustomerCards", new[] { "CategoryId" });
-            DropIndex("dbo.Customers", new[] { "UserId" });
-            DropIndex("dbo.CustomerAnswers", new[] { "CustomerCardQuestionId" });
-            DropIndex("dbo.CustomerAnswers", new[] { "CustomerId" });
+            DropIndex("dbo.CustomerCardCategories", new[] { "ParentId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.CustomerCardQuestionAnswers");
-            DropTable("dbo.CustomerCardQuestions");
-            DropTable("dbo.CustomerCardCategories");
             DropTable("dbo.CustomerCards");
-            DropTable("dbo.Customers");
-            DropTable("dbo.CustomerAnswers");
+            DropTable("dbo.CustomerCardCategories");
         }
     }
 }

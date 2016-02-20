@@ -7,6 +7,7 @@ using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
 using Microsoft.OData.Edm;
 using TechSupport.WebAPI.DataModels.Administration;
+using TechSupport.WebAPI.DataModels.Administration.CustomerCards;
 
 namespace TechSupport.WebAPI.Config
 {
@@ -26,7 +27,7 @@ namespace TechSupport.WebAPI.Config
         {
             var builder = new ODataConventionModelBuilder();
             builder.EntitySet<ResponseDataModel>("Users");
-            builder.EntitySet<CustomerCardAdministrationDataModel>("CustomerCard");
+            builder.EntitySet<CustomerCardAdministrationDataModel>("CustomerCards");
             return builder.GetEdmModel();
         }
     }

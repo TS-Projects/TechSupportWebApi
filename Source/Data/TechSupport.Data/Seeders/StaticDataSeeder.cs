@@ -147,49 +147,6 @@ namespace TechSupport.Data.Seeders
             return date;
         }
 
-        public static void SeedCustomerCard(TechSupportDbContext context)
-        {
-            if (context.CustomerCards.Any())
-            {
-                return;
-            }
-            AddData(context);
-        }
-
-        private static void AddData(TechSupportDbContext context)
-        {
-            var names = GetCustomerName();
-
-            var customer = new Customer()
-            {
-                IsOfficial = true,
-                CreatedOn = GetDate()
-            };
-            context.Customers.Add(customer);
-            context.SaveChanges();
-            var data = new CustomerCard();
-
-            for (int i = 0; i < names.Length; i++)
-            {
-                data.CustomerFirstName = names[i].Substring(0, names[i].IndexOf(" "));
-                data.CustomerLastName = names[i].Substring(names[i].IndexOf(" ") + 1);
-                data.CustomerAddress = string.Format("Karlovo{0}", i + 1);
-                //data.Description = cc[i];
-                data.Price = i + 10;
-                data.IsVisible = true;
-                //data.CustomerCardPassword = "123";
-                data.Informed = false;
-                //data.Comment = cc[i];
-                //data.EnrollmentDate = DateTime.Now;
-                //data.EndDate = DateTime.Now;
-                data.Warranty = true;
-                data.CustomerId = customer.Id;
-                data.CreatedOn = GetDate();
-                context.CustomerCards.Add(data);
-                context.SaveChanges();
-            }
-        }
-
         private static string[] GetCustomerName()
         {
             return new[]
