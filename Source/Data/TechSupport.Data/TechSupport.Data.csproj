@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerCardsRepository.cs" />
+    <Compile Include="ICustomerCardsRepository.cs" />
     <Compile Include="Migrations\201602201609290_initializecreate.cs" />
     <Compile Include="Migrations\201602201609290_initializecreate.Designer.cs">
       <DependentUpon>201602201609290_initializecreate.cs</DependentUpon>

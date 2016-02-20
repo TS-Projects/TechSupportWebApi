@@ -40,6 +40,6 @@ namespace TechSupport.Data.Models
             set { this.customerCards = value; }
         }
 
-        public bool IsVisible { get; set; }
+        public bool IsAllowed { get; set; }
     }
 }
