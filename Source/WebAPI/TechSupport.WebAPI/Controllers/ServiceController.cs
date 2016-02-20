@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using TechSupport.Data;
 using TechSupport.Data.Common.Repositories;
 using TechSupport.Data.Models;
-using TechSupport.Services.Data.Contracts;
 using TechSupport.WebAPI.Api.CustomerCards.Controllers;
 using TechSupport.WebAPI.DataModels.Users;
 
@@ -18,130 +10,100 @@ namespace TechSupport.WebAPI.Controllers
 {
     public class ServiceController : ApiController
     {
-        private readonly IRepository<User> users;
-        private readonly ICustomerCardsRepository customerCard;
+        private readonly IRepository<CustomerCard> customerCards;
 
-        public ServiceController(IRepository<User> users, ICustomerCardsRepository customerCard)
+        public ServiceController(IRepository<CustomerCard> customerCards)
         {
-            this.users = users;
-            this.customerCard = this.customerCard;
+            this.customerCards = customerCards;
         }
 
-        /// <summary>
-        /// Displays user compete information: tasks, send source form, ranking, submissions, ranking, etc.
-        /// Users only.
-        /// </summary>
-        [HttpGet]
-        [Authorize]
-        public IHttpActionResult Index(string password, bool isAllowed)
+        public IHttpActionResult Get(string id, bool isAllowed)
         {
-            var customerCard = this.customerCard.All().FirstOrDefault(p => p.CustomerCardPassword == password);
-            //     ValidateContest(contest, official);
+            var customerCard = this.customerCards.All().FirstOrDefault(p => p.Id == id);
 
-            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId(), isAllowed);
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == this.User.Identity.GetUserId() && isAllowed);
+            //     ValidateContest(contest, official);
 
             if (!customerCardFound)
             {
                 if (!customerCard.ShouldShowRegistrationForm(isAllowed))
                 {
-                    this.customerCard.Add(new CustomerCard(password, this.User.Identity.GetUserId(), isAllowed));
-                    this.customerCard.SaveChanges();
+                    this.customerCards.Add(new CustomerCard(id, this.User.Identity.GetUserId(), isAllowed));
+                    this.customerCards.SaveChanges();
                 }
                 else
                 {
                     // Participant not found, the contest requires password or the contest has questions
                     // to be answered before registration. Redirect to the registration page.
                     // The registration page will take care of all security checks.
-                    return this.RedirectToRoute("Register", new { password, isAllowed });
+                    return this.RedirectToRoute("Register", new { id, isAllowed });
                 }
             }
 
-            var participant = this.customerCard.GetWithContest(password, this.User.Identity.GetUserId(), isAllowed);
+            var participant = this.customerCards.All().FirstOrDefault(p => p.Id == id && p.UserId == this.User.Identity.GetUserId() && isAllowed);
             //  var participantViewModel = new CustomerCardViewModel(participant, official);
-
+            //var customerCardViewModel = 
 
             //      return this.OK(participantViewModel);
             return this.Ok();
         }
 
-        /// <summary>
-        /// Displays form for contest registration.
-        /// Users only.
-        /// </summary>
-        [HttpGet, Authorize]
-        public IHttpActionResult Register(string password, bool isAllowed)
+        public IHttpActionResult Post(bool isAllowed, CustomerCardRegistrationModel model)
         {
-            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId(), isAllowed);
+
+
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == model.Id && p.UserId == this.User.Identity.GetUserId() && isAllowed);
+
+            if (customerCardFound == null)
+            {
+                return NotFound();
+            }
+
+            var customerCard = this.customerCards.GetById(model.Id);
+
+            if (customerCard.HasCustomerCardPassword)
+            {
+                if (string.IsNullOrEmpty(model.Password))
+                {
+                    BadRequest("Error 2");
+                }
+                else if (customerCard.CustomerCardPassword != model.Password)
+                {
+                    BadRequest("Error 3");
+                }
+            }
+
+            customerCard.UserId = this.User.Identity.GetUserId();
+            this.customerCards.Add(customerCard);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Error 4");
+               // return this.View(new ContestRegistrationViewModel(contest, registrationData, official));
+            }
+
+            this.customerCards.SaveChanges();
+
+            return this.Get(model.Id, isAllowed);
+        }
+
+        [HttpGet, Authorize]
+        public IHttpActionResult Register(string id, bool isAllowed)
+        {
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == this.User.Identity.GetUserId() && isAllowed);
+
 
             if (customerCardFound)
             {
                 // Participant exists. Redirect to index page.
-            //    return this.RedirectToAction(GlobalConstants.Index, new { id, official });
+                return this.RedirectToRoute("Index", new { password, isAllowed });
             }
 
-            var card = new CustomerCard(password, this.User.Identity.GetUserId(), isAllowed);
-            this.customerCard.Add(card);
-            this.customerCard.SaveChanges();
+            var card = new CustomerCard(id, this.User.Identity.GetUserId(), isAllowed);
+            this.customerCards.Add(card);
+            this.customerCards.SaveChanges();
 
             return this.RedirectToRoute("Index", new { password, isAllowed });
-        }
-
-        /// <summary>
-        /// Accepts form input for contest registration.
-        /// Users only.
-        /// </summary>
-        //// TODO: Refactor
-        [HttpPost, Authorize]
-        public IHttpActionResult Register(bool isAllowed, CustomerCardRegistrationModel registrationData)
-        {
-            // check if the user has already registered for participation and redirect him to the correct action
-
-            var customerCardFound = this.customerCard.Any(registrationData.Password, this.User.Identity.GetUserId(), isAllowed);
-
-            if (customerCardFound)
-            {
-                //return this.RedirectToAction(GlobalConstants.Index, new { id = registrationData.ContestId, official });
-            }
-
-            var customerCard = this.customerCard.GetById(registrationData.Id);
-
-        //    ValidateContest(contest, official);
-
-            if (isAllowed && customerCard.HasCustomerCardPassword)
-            {
-                if (string.IsNullOrEmpty(registrationData.Password))
-                {
-                 //   this.ModelState.AddModelError("Password", Resource.Views.CompeteRegister.Empty_Password);
-                }
-                else if (customerCard.CustomerCardPassword != registrationData.Password)
-                {
-                //    this.ModelState.AddModelError("Password", Resource.Views.CompeteRegister.Incorrect_password);
-                }
-            }
-
-            if (!isAllowed && customerCard.HasCustomerCardPassword)
-            {
-                if (string.IsNullOrEmpty(registrationData.Password))
-                {
-          //          this.ModelState.AddModelError("Password", Resource.Views.CompeteRegister.Empty_Password);
-                }
-                else if (customerCard.CustomerCardPassword != registrationData.Password)
-                {
-              //      this.ModelState.AddModelError("Password", Resource.Views.CompeteRegister.Incorrect_password);
-                }
-            }
-
-            var card = new CustomerCard(registrationData.Id, this.User.Identity.GetUserId(), isAllowed);
-            this.customerCard.Add(card);
-
-            if (!this.ModelState.IsValid)
-            {
-          //      return this.View(new ContestRegistrationViewModel(contest, registrationData, official));
-            }
-
-            this.customerCard.SaveChanges();
-
-            return this.RedirectToRoute("Index", new { id = registrationData.Password, isAllowed });
         }
 
     }
