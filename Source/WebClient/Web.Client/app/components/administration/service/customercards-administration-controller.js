@@ -54,6 +54,7 @@
                 { field: "Phone", title: "Мобилен номер" },
                 { field: "Informed", title: "Уведомен" },
                 { field: "Warranty", title: "Гаранция" },
+                { field: "CustomerCardPassword", title: "Парола" },
                 { field: "Description", title: "Описание" },
                 { field: "IsVisible", title: "Видима" },
                 { command: ["edit", "destroy"], title: "&nbsp;", width: "180px" }
