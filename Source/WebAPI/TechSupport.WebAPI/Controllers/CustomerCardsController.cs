@@ -136,6 +136,7 @@ namespace TechSupport.WebAPI.Controllers
                 return NotFound();
             }
             this.cutomerCards.Delete(card);
+            this.cutomerCards.SaveChanges();
             return StatusCode(HttpStatusCode.NoContent);
         }
 
