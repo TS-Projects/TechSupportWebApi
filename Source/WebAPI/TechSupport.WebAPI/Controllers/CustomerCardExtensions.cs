@@ -8,7 +8,7 @@ namespace TechSupport.WebAPI.Api.CustomerCards.Controllers
         public static bool ShouldShowRegistrationForm(this CustomerCard contest)
         {
             // Show registration form if contest password is required
-            bool showRegistrationForm = contest.HasCustomerCardPassword;
+            var showRegistrationForm = contest.HasCustomerCardPassword;
 
             // Show registration form if contest is official and questions should be asked
 

@@ -18,7 +18,7 @@
                     Phone: { type: "string" },
                     Informed : { type: "bool" },
                     Warranty: { type: "bool" },
-                    CustomerCardPassword: { type: "string" },
+                    CustomerCardPassword: { nullable: true, type: "string" },
                     Description: { type: "string" },
                     IsVisible: { type: "bool" }
                     //EnrollmentDate: { type: "string" }

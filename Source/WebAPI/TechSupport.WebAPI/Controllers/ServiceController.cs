@@ -39,6 +39,8 @@ namespace TechSupport.WebAPI.Controllers
             {
                 if (!customerCard.ShouldShowRegistrationForm())
                 {
+                    //Password at user already set in customerCard
+                    //Add currentUserId to current CustomerCard and then display card
                     customerCard.UserId = currentUserId;
                     this.customerCards.Update(customerCard);
                   //  this.customerCards.Add(new CustomerCard(id, this.User.Identity.GetUserId()));
@@ -72,12 +74,62 @@ namespace TechSupport.WebAPI.Controllers
         }
 
         /// <summary>
+        /// Displays form for contest registration.
+        /// Users only.
+        /// </summary>
+        [HttpGet, Authorize]
+        public IHttpActionResult Post(string id)
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == currentUserId);
+
+
+            if (customerCardFound)
+            {
+                // Participant exists. Redirect to index page.
+                return this.Get(id);
+            }
+
+            var customerCard = this.customerCards.All().FirstOrDefault(x => x.Id == id);
+
+            //ValidateContest(contest, official);
+
+            if (customerCard.ShouldShowRegistrationForm())
+            {
+                //var contestRegistrationModel = new ContestRegistrationViewModel(contest, official);
+
+                customerCard.UserId = currentUserId;
+                this.customerCards.Add(customerCard);
+
+                var model = this.customerCards
+                     .All()
+                     .Where(u => u.Id == id)
+                     .ProjectTo<CustomerCardRegistrationResponseModel>()
+                     .FirstOrDefault();
+
+                return this.Ok(model);
+            }
+
+            var card = this.customerCards.All().FirstOrDefault(p => p.Id == id);
+            card.UserId = currentUserId;
+            this.customerCards.Update(card);
+            this.customerCards.SaveChanges();
+
+            //var card = new CustomerCard(id, this.User.Identity.GetUserId());
+            //this.customerCards.Add(card);
+            //this.customerCards.SaveChanges();
+
+            return this.Get(id);
+        }
+
+        /// <summary>
         /// Accepts form input for contest registration.
         /// Users only.
         /// </summary>
         //// TODO: Refactor
         [HttpPost, Authorize]
-        public IHttpActionResult Post(CustomerCardRegistrationModel model)
+        public IHttpActionResult Post(CustomerCardRegistrationRequestModel model)
         {
             var currentUserId = this.User.Identity.GetUserId();
 
@@ -116,44 +168,5 @@ namespace TechSupport.WebAPI.Controllers
 
             return this.Get(model.Id);
         }
-
-        /// <summary>
-        /// Displays form for contest registration.
-        /// Users only.
-        /// </summary>
-        [HttpGet, Authorize]
-        public IHttpActionResult Post(string id)
-        {
-            var currentUserId = this.User.Identity.GetUserId();
-
-            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == currentUserId);
-
-
-            if (customerCardFound)
-            {
-                // Participant exists. Redirect to index page.
-                return this.Get(id);
-            }
-
-            //ValidateContest(contest, official);
-
-            //if (contest.ShouldShowRegistrationForm(official))
-            //{
-            //    var contestRegistrationModel = new ContestRegistrationViewModel(contest, official);
-            //    return this.View(contestRegistrationModel);
-            //}
-
-            var card = this.customerCards.All().FirstOrDefault(p => p.Id == id);
-            card.UserId = currentUserId;
-            this.customerCards.Update(card);
-            this.customerCards.SaveChanges();
-
-            //var card = new CustomerCard(id, this.User.Identity.GetUserId());
-            //this.customerCards.Add(card);
-            //this.customerCards.SaveChanges();
-
-            return this.Get(id);
-        }
-
     }
 }

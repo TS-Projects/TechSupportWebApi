@@ -90,7 +90,7 @@ namespace TechSupport.WebAPI.Controllers
         /// </summary>
         //// TODO: Refactor
         [HttpPost, Authorize]
-        public IHttpActionResult Register(bool isAllowed, CustomerCardRegistrationModel registrationData)
+        public IHttpActionResult Register(bool isAllowed, CustomerCardRegistrationRequestModel registrationData)
         {
             // check if the user has already registered for participation and redirect him to the correct action
 
