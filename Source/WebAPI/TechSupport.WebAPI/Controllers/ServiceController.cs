@@ -29,16 +29,19 @@ namespace TechSupport.WebAPI.Controllers
         [Authorize]
         public IHttpActionResult Get(string id)
         {
+            var currentUserId = this.User.Identity.GetUserId();
             var customerCard = this.customerCards.All().FirstOrDefault(p => p.Id == id);
 
-            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == this.User.Identity.GetUserId());
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == currentUserId);
             //     ValidateContest(contest, official);
 
             if (!customerCardFound)
             {
                 if (!customerCard.ShouldShowRegistrationForm())
                 {
-                    this.customerCards.Add(new CustomerCard(id, this.User.Identity.GetUserId()));
+                    customerCard.UserId = currentUserId;
+                    this.customerCards.Update(customerCard);
+                  //  this.customerCards.Add(new CustomerCard(id, this.User.Identity.GetUserId()));
                     this.customerCards.SaveChanges();
                 }
                 else
@@ -50,7 +53,7 @@ namespace TechSupport.WebAPI.Controllers
                 }
             }
 
-            var participant = this.customerCards.All().FirstOrDefault(p => p.Id == id && p.UserId == this.User.Identity.GetUserId());
+        //    var participant = this.customerCards.All().FirstOrDefault(p => p.Id == id && p.UserId == currentUserId);
             //  var participantViewModel = new CustomerCardViewModel(participant, official);
             //var customerCardViewModel = 
 
@@ -61,7 +64,7 @@ namespace TechSupport.WebAPI.Controllers
 
             var model = this.customerCards
                  .All()
-                 .Where(u => u.UserId == participant.Id)
+                 .Where(u => u.Id == id && u.UserId == currentUserId)
                  .ProjectTo<CustomerDataModel>()
                  .FirstOrDefault();
 
@@ -76,7 +79,9 @@ namespace TechSupport.WebAPI.Controllers
         [HttpPost, Authorize]
         public IHttpActionResult Post(CustomerCardRegistrationModel model)
         {
-            var customerCardFound = this.customerCards.All().Any(p => p.Id == model.Id && p.UserId == this.User.Identity.GetUserId());
+            var currentUserId = this.User.Identity.GetUserId();
+
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == model.Id && p.UserId == currentUserId);
 
             if (customerCardFound)
             {
@@ -97,8 +102,9 @@ namespace TechSupport.WebAPI.Controllers
                 }
             }
 
-            customerCard.UserId = this.User.Identity.GetUserId();
-            this.customerCards.Add(customerCard);
+            customerCard.UserId = currentUserId;
+
+            this.customerCards.Update(customerCard);
 
             if (!ModelState.IsValid)
             {
@@ -118,7 +124,9 @@ namespace TechSupport.WebAPI.Controllers
         [HttpGet, Authorize]
         public IHttpActionResult Post(string id)
         {
-            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == this.User.Identity.GetUserId());
+            var currentUserId = this.User.Identity.GetUserId();
+
+            var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == currentUserId);
 
 
             if (customerCardFound)
@@ -136,8 +144,8 @@ namespace TechSupport.WebAPI.Controllers
             //}
 
             var card = this.customerCards.All().FirstOrDefault(p => p.Id == id);
-            card.UserId = this.User.Identity.GetUserId();
-            this.customerCards.Add(card);
+            card.UserId = currentUserId;
+            this.customerCards.Update(card);
             this.customerCards.SaveChanges();
 
             //var card = new CustomerCard(id, this.User.Identity.GetUserId());
