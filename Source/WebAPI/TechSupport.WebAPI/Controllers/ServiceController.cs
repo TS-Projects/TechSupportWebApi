@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.Identity;
@@ -23,6 +25,21 @@ namespace TechSupport.WebAPI.Controllers
         }
 
         /// <summary>
+        /// Validates if a contest is correctly found. If the user wants to practice or compete in the contest
+        /// checks if the contest can be practiced or competed.
+        /// </summary>
+        /// <param name="contest">Contest to validate.</param>
+        /// <param name="official">A flag checking if the contest will be practiced or competed</param>
+        [NonAction]
+        public static void ValidateContest(CustomerCard card)
+        {
+            if (card == null)
+            {
+                throw new HttpException((int)HttpStatusCode.NotFound, "Invalid contest id was provided!");
+            }
+        }
+
+        /// <summary>
         /// Displays user compete information: tasks, send source form, ranking, submissions, ranking, etc.
         /// Users only.
         /// </summary>
@@ -33,12 +50,16 @@ namespace TechSupport.WebAPI.Controllers
             var customerCard = this.customerCards.All().FirstOrDefault(p => p.Id == id);
 
             var customerCardFound = this.customerCards.All().Any(p => p.Id == id && p.UserId == currentUserId);
-            //     ValidateContest(contest, official);
+            ValidateContest(customerCard);
 
             if (!customerCardFound)
             {
                 if (!customerCard.ShouldShowRegistrationForm())
                 {
+                    if (customerCard == null)
+                    {
+                        return NotFound();
+                    }
                     //Password at user already set in customerCard
                     //Add currentUserId to current CustomerCard and then display card
                     customerCard.UserId = currentUserId;
@@ -93,7 +114,7 @@ namespace TechSupport.WebAPI.Controllers
 
             var customerCard = this.customerCards.All().FirstOrDefault(x => x.Id == id);
 
-            //ValidateContest(contest, official);
+            ValidateContest(customerCard);
 
             if (customerCard.ShouldShowRegistrationForm())
             {
@@ -112,6 +133,10 @@ namespace TechSupport.WebAPI.Controllers
             }
 
             var card = this.customerCards.All().FirstOrDefault(p => p.Id == id);
+            if (card == null)
+            {
+                return NotFound();
+            }
             card.UserId = currentUserId;
             this.customerCards.Update(card);
             this.customerCards.SaveChanges();
@@ -141,6 +166,7 @@ namespace TechSupport.WebAPI.Controllers
             }
 
             var customerCard = this.customerCards.GetById(model.Id);
+            ValidateContest(customerCard);
 
             if (customerCard.HasCustomerCardPassword)
             {
@@ -160,7 +186,16 @@ namespace TechSupport.WebAPI.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest("Error 4");
+                customerCard.UserId = currentUserId;
+                this.customerCards.Add(customerCard);
+
+                var card = this.customerCards
+                     .All()
+                     .Where(u => u.Id == model.Id)
+                     .ProjectTo<CustomerCardRegistrationResponseModel>()
+                     .FirstOrDefault();
+
+                return this.Ok(card);
                // return this.View(new ContestRegistrationViewModel(contest, registrationData, official));
             }
 

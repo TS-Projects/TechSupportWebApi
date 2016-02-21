@@ -17,7 +17,7 @@ namespace TechSupport.Data
         public TechSupportDbContext()
             : base("TechSupport")
         {
-           Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
         }
 
         public virtual IDbSet<CustomerCard> CustomerCards { get; set; }
