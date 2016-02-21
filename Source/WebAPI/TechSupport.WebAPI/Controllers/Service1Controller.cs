@@ -36,13 +36,13 @@ namespace TechSupport.WebAPI.Controllers
             var customerCard = this.customerCard.All().FirstOrDefault(p => p.CustomerCardPassword == password);
             //     ValidateContest(contest, official);
 
-            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId(), isAllowed);
+            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId());
 
             if (!customerCardFound)
             {
-                if (!customerCard.ShouldShowRegistrationForm(isAllowed))
+                if (!customerCard.ShouldShowRegistrationForm())
                 {
-                    this.customerCard.Add(new CustomerCard(password, this.User.Identity.GetUserId(), isAllowed));
+                    this.customerCard.Add(new CustomerCard(password, this.User.Identity.GetUserId()));
                     this.customerCard.SaveChanges();
                 }
                 else
@@ -50,11 +50,11 @@ namespace TechSupport.WebAPI.Controllers
                     // Participant not found, the contest requires password or the contest has questions
                     // to be answered before registration. Redirect to the registration page.
                     // The registration page will take care of all security checks.
-                    return this.RedirectToRoute("Register", new { password, isAllowed });
+                    return this.RedirectToRoute("Register", new { password });
                 }
             }
 
-            var participant = this.customerCard.GetWithContest(password, this.User.Identity.GetUserId(), isAllowed);
+            var participant = this.customerCard.GetWithContest(password, this.User.Identity.GetUserId());
             //  var participantViewModel = new CustomerCardViewModel(participant, official);
 
 
@@ -67,9 +67,9 @@ namespace TechSupport.WebAPI.Controllers
         /// Users only.
         /// </summary>
         [HttpGet, Authorize]
-        public IHttpActionResult Register(string password, bool isAllowed)
+        public IHttpActionResult Post(string password, bool isAllowed)
         {
-            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId(), isAllowed);
+            var customerCardFound = this.customerCard.Any(password, this.User.Identity.GetUserId());
 
             if (customerCardFound)
             {
@@ -77,7 +77,7 @@ namespace TechSupport.WebAPI.Controllers
                 return this.RedirectToRoute( "Index", new { password, isAllowed });
             }
 
-            var card = new CustomerCard(password, this.User.Identity.GetUserId(), isAllowed);
+            var card = new CustomerCard(password, this.User.Identity.GetUserId());
             this.customerCard.Add(card);
             this.customerCard.SaveChanges();
 
@@ -94,11 +94,11 @@ namespace TechSupport.WebAPI.Controllers
         {
             // check if the user has already registered for participation and redirect him to the correct action
 
-            var customerCardFound = this.customerCard.Any(registrationData.Password, this.User.Identity.GetUserId(), isAllowed);
+            var customerCardFound = this.customerCard.Any(registrationData.Password, this.User.Identity.GetUserId());
 
             if (customerCardFound)
             {
-                return this.RedirectToRoute( "Index", new { id = registrationData.Password, isAllowed });
+                return this.RedirectToRoute( "Index", new { id = registrationData.Password});
             }
 
             var customerCard = this.customerCard.GetById(registrationData.Id);
@@ -129,7 +129,7 @@ namespace TechSupport.WebAPI.Controllers
                 }
             }
 
-            var card = new CustomerCard(registrationData.Id, this.User.Identity.GetUserId(), isAllowed);
+            var card = new CustomerCard(registrationData.Id, this.User.Identity.GetUserId());
             this.customerCard.Add(card);
 
             if (!this.ModelState.IsValid)

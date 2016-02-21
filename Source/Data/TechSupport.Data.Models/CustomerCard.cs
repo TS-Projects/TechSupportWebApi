@@ -15,18 +15,15 @@ namespace TechSupport.Data.Models
             this.customers = new HashSet<User>();
         }
 
-        public CustomerCard(string password, string userId, bool isAllowed)
+        public CustomerCard(string password, string userId)
             : this()
         {
             this.CustomerCardPassword = password;
             this.UserId = userId;
-            this.IsAllowed = isAllowed;
         }
 
         [Key]
         public string Id { get; set; }
-
-        public bool IsAllowed { get; set; }
 
         public int? CategoryId { get; set; }
 

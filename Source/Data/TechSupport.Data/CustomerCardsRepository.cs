@@ -17,19 +17,19 @@ namespace TechSupport.Data
 
         }
 
-        public CustomerCard GetWithContest(string password, string userId, bool isAllowed)
+        public CustomerCard GetWithContest(string password, string userId)
         {
             return
                 this.All()
                     .Include(x => x.User)
-                    .FirstOrDefault(x => x.CustomerCardPassword == password && x.UserId == userId && x.IsAllowed == isAllowed);
+                    .FirstOrDefault(x => x.CustomerCardPassword == password && x.UserId == userId);
         }
 
         public bool Any(string password, string userId, bool isAllowed)
         {
             return
                 this.All()
-                    .Any(x => x.CustomerCardPassword == password && x.UserId == userId && x.IsAllowed == isAllowed);
+                    .Any(x => x.CustomerCardPassword == password && x.UserId == userId);
         }
     }
 }

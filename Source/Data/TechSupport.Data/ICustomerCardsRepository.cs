@@ -10,8 +10,8 @@ namespace TechSupport.Data
 {
     public interface ICustomerCardsRepository : IRepository<CustomerCard>
     {
-        CustomerCard GetWithContest(string password, string userId, bool isAllowed);
+        CustomerCard GetWithContest(string password, string userId);
 
-        bool Any(string password, string userId, bool isAllowed);
+        bool Any(string password, string userId);
     }
 }
