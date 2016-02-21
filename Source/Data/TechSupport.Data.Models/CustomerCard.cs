@@ -8,20 +8,6 @@ namespace TechSupport.Data.Models
 {
     public class CustomerCard : AuditInfo
     {
-        private ICollection<User> customers;
-
-        public CustomerCard()
-        {
-            this.customers = new HashSet<User>();
-        }
-
-        public CustomerCard(string password, string userId)
-            : this()
-        {
-            this.CustomerCardPassword = password;
-            this.UserId = userId;
-        }
-
         [Key]
         public string Id { get; set; }
 
@@ -75,11 +61,5 @@ namespace TechSupport.Data.Models
 
         [NotMapped]
         public bool HasCustomerCardPassword => this.CustomerCardPassword != null;
-
-        public virtual ICollection<User> Customers
-        {
-            get { return this.customers; }
-            set { this.customers = value; }
-        }
     }
 }

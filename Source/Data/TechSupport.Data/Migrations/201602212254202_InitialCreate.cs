@@ -3,7 +3,7 @@ namespace TechSupport.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initializecreate : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,7 @@ namespace TechSupport.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         ParentId = c.Int(),
-                        IsVisible = c.Boolean(nullable: false),
+                        IsAllowed = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
                     })
@@ -27,7 +27,6 @@ namespace TechSupport.Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        IsVisible = c.Boolean(nullable: false),
                         CategoryId = c.Int(),
                         FirstName = c.String(nullable: false, maxLength: 100),
                         LastName = c.String(maxLength: 100),
@@ -45,15 +44,12 @@ namespace TechSupport.Data.Migrations
                         CustomerCardPassword = c.String(maxLength: 20),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
-                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CustomerCardCategories", t => t.CategoryId)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.CategoryId)
-                .Index(t => t.UserId)
-                .Index(t => t.User_Id);
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -82,12 +78,9 @@ namespace TechSupport.Data.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        CustomerCard_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerCards", t => t.CustomerCard_Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
-                .Index(t => t.CustomerCard_Id);
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -142,11 +135,9 @@ namespace TechSupport.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.CustomerCards", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUsers", "CustomerCard_Id", "dbo.CustomerCards");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.CustomerCards", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.CustomerCards", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.CustomerCards", "CategoryId", "dbo.CustomerCardCategories");
             DropForeignKey("dbo.CustomerCardCategories", "ParentId", "dbo.CustomerCardCategories");
@@ -155,9 +146,7 @@ namespace TechSupport.Data.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "CustomerCard_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.CustomerCards", new[] { "User_Id" });
             DropIndex("dbo.CustomerCards", new[] { "UserId" });
             DropIndex("dbo.CustomerCards", new[] { "CategoryId" });
             DropIndex("dbo.CustomerCardCategories", new[] { "ParentId" });

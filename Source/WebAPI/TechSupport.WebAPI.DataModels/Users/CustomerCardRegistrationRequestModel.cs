@@ -13,14 +13,11 @@ namespace TechSupport.WebAPI.DataModels.Users
     {
         public string Id { get; set; }
 
-        public string UserName { get; set; }
-
         public string Password { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<CustomerCard, CustomerCardRegistrationRequestModel>()
-                .ForMember(m => m.UserName, opt => opt.MapFrom(c => c.User.UserName.ToString()))
                 .ForMember(m => m.Password, opt => opt.MapFrom(c => c.CustomerCardPassword));
         }
     }

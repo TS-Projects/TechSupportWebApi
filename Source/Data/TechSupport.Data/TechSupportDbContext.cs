@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using TechSupport.Data.Common;
 using TechSupport.Data.Common.Models;
-using TechSupport.Data.Migrations;
 using TechSupport.Data.Models;
 
 namespace TechSupport.Data
@@ -17,7 +16,7 @@ namespace TechSupport.Data
         public TechSupportDbContext()
             : base("TechSupport")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
+            
         }
 
         public virtual IDbSet<CustomerCard> CustomerCards { get; set; }

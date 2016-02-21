@@ -25,7 +25,7 @@ namespace TechSupport.WebAPI
     {
         protected void Application_Start()
         {
-        //    Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TechSupportDbContext, Configuration>());
 
             RouteTable.Routes.Ignore("{resource}.axd/{*pathInfo}");
             GlobalConfiguration.Configure(ODataConfig.Register);

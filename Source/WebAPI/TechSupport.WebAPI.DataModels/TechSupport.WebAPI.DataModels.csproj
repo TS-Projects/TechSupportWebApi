@@ -73,6 +73,7 @@
     <Compile Include="Users\CustomerCardRegistrationRequestModel.cs" />
     <Compile Include="Users\CustomerCardRegistrationResponseModel.cs" />
     <Compile Include="Users\CustomerDataModel.cs" />
+    <Compile Include="Users\OrderRequestDataModel.cs" />
     <Compile Include="Users\ProfileResponseModel.cs" />
     <Compile Include="Users\ProfileRequestModel.cs" />
   </ItemGroup>
