@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -12,6 +13,7 @@ using TechSupport.Data.Models;
 using TechSupport.WebAPI.Api.CustomerCards.Controllers;
 using TechSupport.WebAPI.DataModels.Administration.CustomerCards;
 using TechSupport.WebAPI.DataModels.Users;
+using TechSupport.WebAPI.Infrastructure;
 using TechSupport.WebAPI.Infrastructure.Extensions;
 
 namespace TechSupport.WebAPI.Controllers
@@ -94,6 +96,19 @@ namespace TechSupport.WebAPI.Controllers
             this.customerCards.SaveChanges();
 
             return this.Get(model.Id);
+        }
+        
+        static string GenerateRandomNumber(int count)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < count; i++)
+            {
+                int number = StaticRandom.Instance.Next(10);
+                builder.Append(number);
+            }
+
+            return builder.ToString();
         }
     }
 }

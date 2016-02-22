@@ -4,6 +4,7 @@ using AutoMapper;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -17,6 +18,7 @@ using TechSupport.Data.Models;
 using TechSupport.Services.Data.Contracts;
 using TechSupport.WebAPI.Controllers;
 using TechSupport.WebAPI.DataModels.Administration.CustomerCards;
+using TechSupport.WebAPI.Infrastructure;
 
 namespace TechSupport.WebAPI.Controllers
 {
@@ -52,7 +54,20 @@ namespace TechSupport.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            customerCards.Id = Guid.NewGuid().ToString();
+            //customerCards.Id = Guid.NewGuid().ToString();
+            var generatedId = GenerateRandomNumber(12);
+            var existId = this.cutomerCards.All().Select(u => u.Id == generatedId).Any();
+
+            while (true)
+            {
+                if (!existId)
+                {
+                    customerCards.Id = generatedId;
+                    break;
+                }
+                generatedId = GenerateRandomNumber(12);
+                existId = this.cutomerCards.All().Select(u => u.Id == generatedId).Any();
+            }
 
             var dm = Mapper.Map<CustomerCard>(customerCards);
 
@@ -138,6 +153,19 @@ namespace TechSupport.WebAPI.Controllers
             this.cutomerCards.Delete(card);
             this.cutomerCards.SaveChanges();
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        static string GenerateRandomNumber(int count)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < count; i++)
+            {
+                int number = StaticRandom.Instance.Next(10);
+                builder.Append(number);
+            }
+
+            return builder.ToString();
         }
 
         private bool CardExists(string cardId)

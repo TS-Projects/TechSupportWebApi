@@ -11,7 +11,7 @@
             var model = {
                 id: "Id",
                 fields: {
-                    Id: { type: "string" },
+                    Id: { type: "string", editable: false },
                     FirstName: { type: "string" },
                     LastName: { type: "string" },
                     City: { type: "string" },
