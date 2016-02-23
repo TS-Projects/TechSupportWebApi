@@ -52,13 +52,20 @@ namespace TechSupport.WebAPI.Controllers
         {
             var userId = this.User.Identity.GetUserId();
 
-            var model = this.customerCards
-                 .All()
-                 .Where(p => p.UserId == userId)
-                 .ProjectTo<CustomerDataModel>()
-                 .ToList();
+            var existCard = this.customerCards.All().Any(p => p.UserId == userId);
 
-            return this.Data(model);
+            if (existCard)
+            {
+                var model = this.customerCards
+                     .All()
+                     .Where(p => p.UserId == userId)
+                     .ProjectTo<CustomerDataModel>()
+                     .ToList();
+
+                return this.Data(model);
+            }
+
+            return this.NotFound();
         }
 
         /// <summary>
@@ -73,13 +80,6 @@ namespace TechSupport.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = this.customerCards.All().FirstOrDefault(p => p.Id == model.Id);
-
-            if (order == null)
-            {
-                throw new HttpException((int)HttpStatusCode.NotFound, "Order number not exist!");
-            }
-
             var userId = this.User.Identity.GetUserId();
 
             var isExistUserWithOrder = this.customerCards.All().Any(p => p.Id == model.Id && p.UserId == userId);
@@ -89,6 +89,13 @@ namespace TechSupport.WebAPI.Controllers
                 return this.Get(model.Id);
             }
 
+            var order = this.customerCards.All().FirstOrDefault(p => p.Id == model.Id);
+
+            if (order == null)
+            {
+                throw new HttpException((int)HttpStatusCode.NotFound, "Order number not exist!");
+            }
+
             order.UserId = userId;
 
             this.customerCards.Update(order);
@@ -96,19 +103,6 @@ namespace TechSupport.WebAPI.Controllers
             this.customerCards.SaveChanges();
 
             return this.Get(model.Id);
-        }
-        
-        static string GenerateRandomNumber(int count)
-        {
-            StringBuilder builder = new StringBuilder();
-
-            for (int i = 0; i < count; i++)
-            {
-                int number = StaticRandom.Instance.Next(10);
-                builder.Append(number);
-            }
-
-            return builder.ToString();
         }
     }
 }
