@@ -56,7 +56,7 @@ namespace TechSupport.WebAPI.Controllers
 
             //customerCards.Id = Guid.NewGuid().ToString();
             var generatedId = GenerateRandomNumber(12);
-            var existId = this.cutomerCards.All().Select(u => u.Id == generatedId).Any();
+            var existId = this.cutomerCards.All().Any(u => u.Id == generatedId);
 
             while (true)
             {
@@ -66,7 +66,7 @@ namespace TechSupport.WebAPI.Controllers
                     break;
                 }
                 generatedId = GenerateRandomNumber(12);
-                existId = this.cutomerCards.All().Select(u => u.Id == generatedId).Any();
+                existId = this.cutomerCards.All().Any(u => u.Id == generatedId);
             }
 
             var dm = Mapper.Map<CustomerCard>(customerCards);
@@ -170,7 +170,7 @@ namespace TechSupport.WebAPI.Controllers
 
         private bool CardExists(string cardId)
         {
-            return this.cutomerCards.All().Select(u => u.Id == cardId).Any();
+            return this.cutomerCards.All().Any(u => u.Id == cardId);
         }
     }
 }
