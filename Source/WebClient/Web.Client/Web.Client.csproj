@@ -91,6 +91,8 @@
     <Content Include="app\components\administration\storage\notebooks-administrationController.js" />
     <Content Include="app\components\administration\storage\printers-administration-view.html" />
     <Content Include="app\components\administration\storage\printers-administration-controller.js" />
+    <Content Include="app\components\service\service-status-view.html" />
+    <Content Include="app\components\service\service-status-controller.js" />
     <Content Include="app\Identity\authorization.js" />
     <Content Include="app\common\login-checker-directive.html" />
     <Content Include="app\common\login-checker-directive.js" />
@@ -447,6 +449,9 @@
     <Content Include="assets\libs\bower_components\angular-messages\angular-messages.js" />
     <Content Include="assets\libs\bower_components\angular-messages\angular-messages.min.js" />
     <Content Include="assets\libs\bower_components\angular-messages\index.js" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\demo\usage.html" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\release\angular-recaptcha.js" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\release\angular-recaptcha.min.js" />
     <Content Include="assets\libs\bower_components\angular-resource\.bower.json" />
     <Content Include="assets\libs\bower_components\angular-resource\angular-resource.min.js.map" />
     <Content Include="assets\libs\bower_components\angular-resource\bower.json" />
@@ -1680,6 +1685,11 @@
     <Content Include="assets\libs\bower_components\angular-translate\.bower.json" />
     <Content Include="assets\libs\bower_components\angular-translate\bower.json" />
     <Content Include="assets\libs\bower_components\angular-translate\README.md" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\.bower.json" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\bower.json" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\LICENSE" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\package.json" />
+    <Content Include="assets\libs\bower_components\angular-recaptcha\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

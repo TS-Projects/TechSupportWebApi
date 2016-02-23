@@ -90,6 +90,11 @@
                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
                resolve: routeResolveChecks.profile
             })
+           .when('/service', {
+               templateUrl: 'app/components/service/service-status-view.html',
+               controller: 'ServiceStatusController',
+               controllerAs: CONTROLLER_VIEW_MODEL_NAME
+           })
             .when('/contacts', {
                 templateUrl: 'app/components/contacts/contacts-page-view.html',
                 controller: 'ContactsPageController',
@@ -129,7 +134,7 @@
     angular.module('techSupportApp.controllers', ['techSupportApp.data', 'techSupportApp.services']);
     angular.module('techSupportApp.directives', []);
 
-    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps', 'ui.bootstrap', 'ngMessages', 'ngAnimate', 'pascalprecht.translate'])
+    angular.module('techSupportApp', ['ngRoute', 'ngResource', 'ngCookies', 'kendo.directives', 'techSupportApp.controllers', 'techSupportApp.directives', 'uiGmapgoogle-maps', 'ui.bootstrap', 'ngMessages', 'ngAnimate', 'pascalprecht.translate', 'vcRecaptcha'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'routeResolversProvider', 'uiGmapGoogleMapApiProvider', '$translateProvider', config])
         .run(['$rootScope', '$http', '$location', 'auth', 'notifier', run])
         .value('jQuery', jQuery)
