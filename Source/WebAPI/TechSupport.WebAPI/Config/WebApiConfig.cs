@@ -24,13 +24,6 @@ namespace TechSupport.WebAPI.Config
                new { controller = "Files", action = "Get" },
                new { folder = @"\d+" });
 
-
-            config.Routes.MapHttpRoute(
-                "CustomServiceRoute",
-                "Api/Service/{action}",
-                new { controller = "Service", action = "Post" },
-                new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
-
             //config.Routes.MapHttpRoute(
             //    "CustomerCardsByUser",
             //    "api/CustomerCards/User/{username}",

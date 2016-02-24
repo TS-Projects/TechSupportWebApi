@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var serviceStatusController = function serviceStatusController($scope, vcRecaptchaService) {
+    var serviceStatusController = function serviceStatusController($scope, $q, $http, vcRecaptchaService) {
         var vm = this;
 
         console.log("this is your app's controller");
@@ -24,27 +24,25 @@
             vm.response = null;
         };
         vm.submit = function() {
-            var valid;
-            /**
-             * SERVER SIDE VALIDATION
-             *
-             * You need to implement your server side validation here.
-             * Send the reCaptcha response to the server and use some of the server side APIs to validate it
-             * See https://developers.google.com/recaptcha/docs/verify
-             */
-            console.log('sending the captcha response to the server', vm.response);
-            if (valid) {
-                console.log('Success');
-            } else {
-                console.log('Failed validation');
-                // In case of a failed validation you need to reload the captcha
-                // because each response can be checked just once
-                vcRecaptchaService.reload(vm.widgetId);
-            }
+            var defered = $q.defer();
+
+            var URL = 'http://localhost:13078/api/Captcha';
+
+            var postData = { "g-recaptcha-response": vm.response }
+
+            $http.post(URL, postData)
+                .then(function (response) {
+                    defered.resolve(response.data);
+                }, function (error) {
+                    vcRecaptchaService.reload(vm.widgetId);
+                    defered.reject(error);
+                });
+
+            return defered.promise;
         }
     };
 
     angular
         .module('techSupportApp.controllers')
-        .controller('ServiceStatusController', ['$scope', 'vcRecaptchaService', serviceStatusController]);
+        .controller('ServiceStatusController', ['$scope', '$q', '$http', 'vcRecaptchaService', serviceStatusController]);
 }());

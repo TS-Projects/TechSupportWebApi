@@ -4404,14 +4404,14 @@
 </div>
 </div>
 </div>
-<div>
+<div class="row">
     <form ng-submit="vm.submit()">
         <div vc-recaptcha
-             theme="'light'"
-             key="model.key"
-             on-create="setWidgetId(widgetId)"
-             on-success="setResponse(response)"
-             on-expire="cbExpiration()"></div>
+             theme="light"
+             key="vm.model.key"
+             on-create="vm.setWidgetId(widgetId)"
+             on-success="vm.setResponse(response)"
+             on-expire="vm.cbExpiration()"></div>
         <button class="btn" type="submit">Submit</button>
     </form>
 </div>
