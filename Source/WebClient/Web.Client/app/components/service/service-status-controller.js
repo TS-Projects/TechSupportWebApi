@@ -28,8 +28,7 @@
             var defered = $q.defer();
 
             var URL = 'http://localhost:13078/api/Service';
-            var resp = { "g-recaptcha-response": vm.response}
-            vm.formOrder.response = resp;
+            vm.formOrder['g-recaptcha-response'] = vm.response;
             console.log("vm.formOrder: ", vm.formOrder);
             var authHeader = authorization.getAuthorizationHeader();
 

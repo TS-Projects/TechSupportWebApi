@@ -80,9 +80,10 @@ namespace TechSupport.WebAPI.Controllers
         [HttpPost, Authorize]
         public async Task<IHttpActionResult> Post(OrderRequestDataModel model)
         {
-            var obj = await Request.Content.ReadAsAsync<JObject>();
-            var modelCaptcha = obj.ToObject<CaptchaResponse>();
-            var encodedResponse = modelCaptcha.GRecaptchaResponse;
+            //var obj = await Request.Content.ReadAsAsync<JObject>();
+            //var modelCaptcha = obj.ToObject<CaptchaResponse>();
+            //var encodedResponse = modelCaptcha.GRecaptchaResponse;
+            var encodedResponse = model.GRecaptchaResponse;
 
             var isCaptchaValid = ReCaptcha.Validate(encodedResponse);
 
