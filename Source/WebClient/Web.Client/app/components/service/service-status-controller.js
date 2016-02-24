@@ -1,8 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    var serviceStatusController = function serviceStatusController($scope, $q, $http, vcRecaptchaService) {
+    var serviceStatusController = function serviceStatusController($scope, $q, $http, authorization, vcRecaptchaService) {
         var vm = this;
+        vm.formOrder = {};
 
         console.log("this is your app's controller");
         vm.response = null;
@@ -23,15 +24,18 @@
             vcRecaptchaService.reload(vm.widgetId);
             vm.response = null;
         };
-        vm.submit = function() {
+        vm.submit = function () {
             var defered = $q.defer();
 
-            var URL = 'http://localhost:13078/api/Captcha';
+            var URL = 'http://localhost:13078/api/Service';
+            var resp = { "g-recaptcha-response": vm.response}
+            vm.formOrder.response = resp;
+            console.log("vm.formOrder: ", vm.formOrder);
+            var authHeader = authorization.getAuthorizationHeader();
 
-            var postData = { "g-recaptcha-response": vm.response }
-
-            $http.post(URL, postData)
+            $http.post(URL, vm.formOrder, { headers: authHeader })
                 .then(function (response) {
+                    console.log("vm.formOrder: ", vm.formOrder);
                     defered.resolve(response.data);
                 }, function (error) {
                     vcRecaptchaService.reload(vm.widgetId);
@@ -44,5 +48,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('ServiceStatusController', ['$scope', '$q', '$http', 'vcRecaptchaService', serviceStatusController]);
+        .controller('ServiceStatusController', ['$scope', '$q', '$http', 'authorization', 'vcRecaptchaService', serviceStatusController]);
 }());

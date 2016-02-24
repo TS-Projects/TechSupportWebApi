@@ -2,15 +2,18 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json.Linq;
 using TechSupport.Data.Common.Repositories;
 using TechSupport.Data.Models;
 using TechSupport.WebAPI.Api.CustomerCards.Controllers;
+using TechSupport.WebAPI.DataModels;
 using TechSupport.WebAPI.DataModels.Administration.CustomerCards;
 using TechSupport.WebAPI.DataModels.Users;
 using TechSupport.WebAPI.Infrastructure;
@@ -30,6 +33,8 @@ namespace TechSupport.WebAPI.Controllers
         [Authorize]
         public IHttpActionResult Get(string id)
         {
+
+
             var userId = this.User.Identity.GetUserId();
             var isExistOrder = this.customerCards.All().Any(p => p.Id == id && p.UserId == userId);
 
@@ -73,8 +78,19 @@ namespace TechSupport.WebAPI.Controllers
         /// Users only.
         /// </summary>
         [HttpPost, Authorize]
-        public IHttpActionResult Post(OrderRequestDataModel model)
+        public async Task<IHttpActionResult> Post(OrderRequestDataModel model)
         {
+            var obj = await Request.Content.ReadAsAsync<JObject>();
+            var modelCaptcha = obj.ToObject<CaptchaResponse>();
+            var encodedResponse = modelCaptcha.GRecaptchaResponse;
+
+            var isCaptchaValid = ReCaptcha.Validate(encodedResponse);
+
+            if (!isCaptchaValid)
+            {
+                return this.BadRequest("Sorry mate, wrong captcha response. Are you a bot?");
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -47,7 +47,7 @@
             },
             language: "english",
             columns: [
-                { field: "Id", title: "ID" },
+                { field: "Id", title: "ID", width: "110px" },
                 { field: "FirstName", title: "Име" },
                 { field: "LastName", title: "Фамилия" },
                 { field: "City", title: "Град" },
