@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-
-namespace TechSupport.WebAPI.Controllers
+﻿namespace TechSupport.WebAPI.DataModels
 {
-    public class FormModel
+    using Newtonsoft.Json;
+
+    public class CaptchaResponse
     {
         //public string Name { get; set; }
         //public string Email { get; set; }

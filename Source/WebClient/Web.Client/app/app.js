@@ -9,7 +9,6 @@
 
         var routeResolveChecks = routeResolversProvider.$get();
 
-
         //GoogleMapApi.configure( {
         //});
 
