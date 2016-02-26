@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    var serviceStatusController = function serviceStatusController($scope, $q, $http, authorization, vcRecaptchaService) {
+    var serviceStatusController = function serviceStatusController($scope, $location, $q, $http, authorization, notifier, vcRecaptchaService) {
         var vm = this;
         vm.formOrder = {};
 
@@ -34,10 +34,12 @@
 
             $http.post(URL, vm.formOrder, { headers: authHeader })
                 .then(function (response) {
-                    console.log("vm.formOrder: ", vm.formOrder);
+                    notifier.success('Проверката мина успешно!');
+                    $location.path('/');
                     defered.resolve(response.data);
                 }, function (error) {
                     vcRecaptchaService.reload(vm.widgetId);
+                    notifier.error('Грешка!');
                     defered.reject(error);
                 });
 
@@ -47,5 +49,5 @@
 
     angular
         .module('techSupportApp.controllers')
-        .controller('ServiceStatusController', ['$scope', '$q', '$http', 'authorization', 'vcRecaptchaService', serviceStatusController]);
+        .controller('ServiceStatusController', ['$scope', '$location', '$q', '$http', 'authorization', 'notifier', 'vcRecaptchaService', serviceStatusController]);
 }());

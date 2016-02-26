@@ -1,7 +1,7 @@
 (function () {
     'use strict'
 
-    var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider, GoogleMapApi, $translateProvider) {
+    var config = function config($routeProvider, $locationProvider, $httpProvider, routeResolversProvider, uiGmapGoogleMapApiProvider, $translateProvider) {
 
         var CONTROLLER_VIEW_MODEL_NAME = 'vm';
 
@@ -11,6 +11,10 @@
 
         //GoogleMapApi.configure( {
         //});
+
+        uiGmapGoogleMapApiProvider.configure({
+            libraries: 'geometry,visualization,drawing'
+        });
 
         //$translateProvider.translations('en-US', {
         //    'TITLE': 'Hello',
@@ -75,8 +79,7 @@
             .when('/products', {
                 templateUrl: 'app/components/products/products-page-view.html',
                 controller: 'ProductsPageController',
-                controllerAs: CONTROLLER_VIEW_MODEL_NAME,
-                resolve: routeResolveChecks.products
+                controllerAs: CONTROLLER_VIEW_MODEL_NAME
             })
             .when('/register', {
                 templateUrl: 'app/Identity/register-page-view.html',

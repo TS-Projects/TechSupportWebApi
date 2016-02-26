@@ -1,19 +1,19 @@
-﻿(function () {
-    'use strict';
+﻿//(function () {
+//    'use strict';
 
-    var productsPageData = function productsPageData(data) {
-        function getAllProducts() {
-            var student = { name: 'Ivaylo', age: 1 }
+//    var productsPageData = function productsPageData(data) {
+//        function getAllProducts() {
+//            var student = { name: 'Ivaylo', age: 1 }
 
 
-            return student;
-        }
+//            return student;
+//        }
 
-        return {
-            getAllProducts: getAllProducts
-        };
-    };
+//        return {
+//            getAllProducts: getAllProducts
+//        };
+//    };
 
-    angular.module('techSupportApp.data')
-        .factory('productsPageData', ['data', productsPageData]);
-}());
+//    angular.module('techSupportApp.data')
+//        .factory('productsPageData', ['data', productsPageData]);
+//}());

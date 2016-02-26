@@ -1,8 +1,28 @@
-﻿<form name="userForm">
-    <label>
-        Name: 
-        <input type="text" name="userName"
-               ng-model="vm.allProducts.name" />
-    </label>
-</form>
-<span>{{vm.allProducts.name}}</span>
+<!--<div class="c-content-contact-1 c-opt-1">
+    <div class="c-content-contact-1-gmap">
+        <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'></ui-gmap-google-map>
+    </div>
+</div>-->
+<!--<div class="c-content-contact-1 c-opt-1">
+    <div class="c-content-contact-1-gmap">
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+            <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                              geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+        </ui-gmap-google-map>
+    </div>
+</div>-->
+
+<div class="page-content" style="min-height:943px">
+    <!--<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+        <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                          geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable"></ui-gmap-polyline>
+    </ui-gmap-google-map>-->
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+        <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" visible='p.visible' geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" events="p.events"></ui-gmap-polyline>
+        <ui-gmap-drawing-manager options="drawingManagerOptions" control="drawingManagerControl" events="events"></ui-gmap-drawing-manager>
+    </ui-gmap-google-map>
+    <!--<div style="display:block;z-index:100;position:absolute;bottom:30px;left:3px;width:380px;height:38px;background:white;">
+        <label>Show drawing manager (via options)? <input type="checkbox" ng-model="drawingManagerOptions.drawingControl" /></label><br />
+        <label>Allow marker and circle drawing modes (via control)? <input type="checkbox" ng-model="markersAndCircleFlag" /></label>
+    </div>-->
+</div>
