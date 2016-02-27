@@ -13,6 +13,8 @@
         };
         vm.setResponse = function (response) {
             console.info('Response available');
+            console.info('Response available: ', response);
+            console.log('Response available: ', response);
             vm.response = response;
         };
         vm.setWidgetId = function (widgetId) {

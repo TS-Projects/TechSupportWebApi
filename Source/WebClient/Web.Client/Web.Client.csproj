@@ -91,10 +91,6 @@
     <Content Include="app\components\administration\storage\notebooks-administrationController.js" />
     <Content Include="app\components\administration\storage\printers-administration-view.html" />
     <Content Include="app\components\administration\storage\printers-administration-controller.js" />
-    <Content Include="app\components\service\service-orders-directive.js" />
-    <Content Include="app\components\service\service-search-directive.html" />
-    <Content Include="app\components\service\service-orders-directive.html" />
-    <Content Include="app\components\service\service-search-directive.js" />
     <Content Include="app\components\service\service-status-view.html" />
     <Content Include="app\components\service\service-status-controller.js" />
     <Content Include="app\Identity\authorization.js" />
