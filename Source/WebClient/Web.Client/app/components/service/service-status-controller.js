@@ -13,8 +13,6 @@
         };
         vm.setResponse = function (response) {
             console.info('Response available');
-            console.info('Response available: ', response);
-            console.log('Response available: ', response);
             vm.response = response;
         };
         vm.setWidgetId = function (widgetId) {
@@ -31,7 +29,6 @@
 
             var URL = 'http://localhost:13078/api/Service';
             vm.formOrder['g-recaptcha-response'] = vm.response;
-            console.log("vm.formOrder: ", vm.formOrder);
             var authHeader = authorization.getAuthorizationHeader();
 
             $http.post(URL, vm.formOrder, { headers: authHeader })
