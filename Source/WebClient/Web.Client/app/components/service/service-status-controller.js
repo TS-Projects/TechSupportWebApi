@@ -24,6 +24,13 @@
             vcRecaptchaService.reload(vm.widgetId);
             vm.response = null;
         };
+
+        // TODO: $ should not be here!
+        //http://qloo.github.io/angular-prevent-default/
+        $('.tab-button').click(function (e) {
+            e.preventDefault();
+        });
+
         vm.submit = function () {
             var defered = $q.defer();
 
