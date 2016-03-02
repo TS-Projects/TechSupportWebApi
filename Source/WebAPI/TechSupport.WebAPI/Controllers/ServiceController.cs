@@ -67,7 +67,7 @@ namespace TechSupport.WebAPI.Controllers
                      .ProjectTo<CustomerDataModel>()
                      .ToList();
 
-                return this.Data(model);
+                return this.Ok(model);
             }
 
             return this.NotFound();
@@ -78,7 +78,7 @@ namespace TechSupport.WebAPI.Controllers
         /// Users only.
         /// </summary>
         [HttpPost, Authorize]
-        public async Task<IHttpActionResult> Post(OrderRequestDataModel model)
+        public IHttpActionResult Post(OrderRequestDataModel model)
         {
             //var obj = await Request.Content.ReadAsAsync<JObject>();
             //var modelCaptcha = obj.ToObject<CaptchaResponse>();

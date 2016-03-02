@@ -19,7 +19,7 @@
             console.info('Created widget ID: %s', widgetId);
             vm.widgetId = widgetId;
         };
-        vm.cbExpiration = function() {
+        vm.cbExpiration = function () {
             console.info('Captcha expired. Resetting response object');
             vcRecaptchaService.reload(vm.widgetId);
             vm.response = null;
@@ -30,6 +30,36 @@
         $('.tab-button').click(function (e) {
             e.preventDefault();
         });
+
+        var sss = function () {
+            var defered = $q.defer();
+
+            var URL = 'http://localhost:13078/api/Service';
+            var authHeader = authorization.getAuthorizationHeader();
+
+            $http.get(URL, { headers: authHeader })
+                .then(function (response) {
+                    defered.resolve(response.data);
+                }, function (error) {
+                    notifier.error(error);
+                    defered.reject(error);
+                });
+
+            return defered.promise;
+        }
+
+        vm.orders = function () {
+            sss()
+                .then(function (response) {
+                    console.log("ei", response);
+                    //  defered.resolve(response.data);
+                }, function (error) {
+                    console.log("noi", error);
+                    //    notifier.error(error);
+                    //  defered.reject(error);
+                });
+        }
+
 
         vm.submit = function () {
             var defered = $q.defer();
