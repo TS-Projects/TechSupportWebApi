@@ -48,18 +48,18 @@
             return defered.promise;
         }
 
-        vm.orders = function () {
-            sss()
-                .then(function (response) {
-                    console.log("ei", response);
-                    //  defered.resolve(response.data);
-                }, function (error) {
-                    console.log("noi", error);
-                    //    notifier.error(error);
-                    //  defered.reject(error);
-                });
-        }
+        vm.getStatus = [];
 
+        sss()
+          .then(function (response) {
+              vm.getStatus = response;
+              console.log("ei", response);
+              //  defered.resolve(response.data);
+          }, function (error) {
+              console.log("noi", error);
+              //    notifier.error(error);
+              //  defered.reject(error);
+          });
 
         vm.submit = function () {
             var defered = $q.defer();

@@ -134,16 +134,15 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="trip in vm.orders()" ng-class-even="'even-class'" ng-class-odd="'odd-class'" role="row">
+                                                    <tr ng-repeat="order in vm.getStatus" ng-class-even="'even-class'" ng-class-odd="'odd-class'">
                                                         <td class="text-center">
-                                                            <!--<a href="#/trips/details/{{trip.id}}/{{trip.driverName}}">{{trip.driverName}}</a>-->
-                                                            trip.Id
+                                                            {{order.Id}}
                                                         </td>
                                                         <td class="text-center">
-                                                            {{trip.from}}
+                                                            {{order.FirstName}}
                                                         </td>
                                                         <td class="text-center">
-                                                            {{trip.to}}
+                                                            {{order.City}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -159,9 +158,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <button ng-click="vm.orders()">Ei</button>
                                     </div>
                                 </div>
                             </div>
