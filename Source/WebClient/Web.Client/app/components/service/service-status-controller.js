@@ -71,7 +71,7 @@
             $http.post(URL, vm.formOrder, { headers: authHeader })
                 .then(function (response) {
                     notifier.success('Проверката мина успешно!');
-                    $location.path('/');
+                    $location.path('/service');
                     defered.resolve(response.data);
                 }, function (error) {
                     vcRecaptchaService.reload(vm.widgetId);
